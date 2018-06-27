@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Dosis:300,700|Ubuntu+Mono|Lato:300,400,700,300italic,400italic&subset=latin,latin-ext);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese');
 .page {
   padding: 20px;
 }
@@ -13,8 +14,8 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  padding: 60px 10px;
-  background-color: #3f4e62;
+  padding: 90px 20px;
+ background: url(../images/eljebo_bg3.png);
   overflow: auto;
 }
 
@@ -285,7 +286,7 @@ ul.chats > li.out .media:after {
   color: white;
   text-transform: uppercase;
   font-size: 26px;
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 1px 0;
   text-align: center;
 }
@@ -364,7 +365,7 @@ ul.chats > li.out .media:after {
   padding: 0;
   margin: 0 0 10px 0;
   font-weight: 700;
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .page-search-results .search-results > .search-result .cover h4 a {
@@ -379,6 +380,10 @@ ul.chats > li.out .media:after {
 .page-search-results .search-results > .search-result .cover > p {
   color: #95a2a9;
 }
+
+.main_logo{position: absolute; margin-left: -6%; padding-top: 20px;}
+.w-420 .text-light{display: none;}
+
 
 .page-search-results .search-results > .search-result .cover > a {
   font-size: 12px;
@@ -2806,7 +2811,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 }
 
 #header {
-  background-color: #51445f;
+  background-color: #2b2e3c;
   z-index: 1001;
   -webkit-transition: right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335), padding-right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
   -moz-transition: right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335), padding-right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335);
@@ -2814,7 +2819,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 }
 
 #header .branding {
-  background-color: #493d55;
+  background-color: #000000;
   width: 250px;
   height: 45px;
   float: left;
@@ -2822,14 +2827,12 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 }
 
 #header .branding a.brand {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 300;
   color: white;
   padding-left: 30px;
   height: 45px;
-  line-height: 45px;
-  background: url(../images/minovate-logo.png) no-repeat 0 10px;
   float: left;
   -webkit-transition: none;
   -moz-transition: none;
@@ -2881,7 +2884,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 #header .search .underline-input {
   color: rgba(255, 255, 255, 0.7);
   border-color: rgba(255, 255, 255, 0.25);
-  font-family: "Ubuntu Mono", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
 }
 
@@ -3184,7 +3187,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 
 .appWrapper.aside-fixed #sidebar {
   position: fixed;
-  top: 45px;
+  top: 30px;
   bottom: 0;
 }
 
@@ -3217,7 +3220,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 #sidebar {
   width: 250px;
   padding: 0;
-  background-color: #493d55;
+  background-color: #ffffff;
   z-index: 21;
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling: -blackberry-touch;
@@ -3256,9 +3259,10 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   padding: 15px 15px 0;
   margin: 0 -15px;
   cursor: pointer;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  color: rgba(76, 88, 94, 0.6);
   text-decoration: none;
+  font-weight: bold;
 }
 
 #sidebar .panel-group .panel > .panel-heading .panel-title > a:after {
@@ -3270,7 +3274,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 
 #sidebar .panel-group .panel > .panel-heading .panel-title > a:hover {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(76, 88, 94, 0.6);
 }
 
 #sidebar .panel-group .panel > .panel-heading .panel-title > a > i {
@@ -3341,6 +3345,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   -webkit-overflow-scrolling: -blackberry-touch;
   width: 100%;
   height: 100%;
+  box-shadow: 0px 0px 23px #c4c4c4;
 }
 
 #navigation {
@@ -3349,7 +3354,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling: -blackberry-touch;
   list-style: none;
-  background-color: #493d55;
+ 
 }
 
 #navigation > li > a > i {
@@ -3373,8 +3378,8 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 
 #navigation > li.open > a,
 #navigation > li:hover > a {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: white;
+  background-color: #ff0720;
+color: white;
 }
 
 #navigation > li.open > i,
@@ -3383,7 +3388,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 }
 
 #navigation > li.active > a {
-  background-color: #16a085;
+  background-color: #ff0720;
   color: white;
 }
 
@@ -3396,7 +3401,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 }
 
 #navigation > li a {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
@@ -3406,6 +3411,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   -ms-user-select: none;
   user-select: none;
   position: relative;
+  color: #4d595f;
 }
 
 #navigation > li a:hover {
@@ -3432,7 +3438,9 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   font-weight: 700;
   position: relative;
   display: block;
-  padding: 12px 15px;
+  padding: 15px 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 15px;
 }
 
 #navigation > li > a > .badge {
@@ -3529,7 +3537,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   height: 100%;
   position: absolute;
   width: 80px;
-  background-color: #493d55;
+  background-color: #2b2e3c;
 }
 
 .sidebar-sm #sidebar.dropdown-open,
@@ -3581,7 +3589,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 
 .sidebar-sm #sidebar #navigation,
 .sidebar-xs #sidebar #navigation {
-  margin: 0 -10px;
+  margin: 10px -10px;
   height: 100%;
 }
 
@@ -3595,6 +3603,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   padding: 15px 5px;
   text-align: center;
   font-size: 10px;
+  color: #fff;
 }
 
 .sidebar-sm #sidebar #navigation > li > a > i,
@@ -3816,14 +3825,22 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   display: inline-block;
   color: #4a555b;
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 301;
   margin-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
 }
 
 .pageheader h2 span {
   font-size: 14px;
-  color: #95a2a9;
-  font-style: italic;
+color: #75838a;
+font-style: normal;
+font-family: 'Montserrat', sans-serif;
+border-bottom: 1px solid #b4bec3;
+width: 100%;
+display: block;
+padding-top: 8px;
+
 }
 
 .pageheader .page-bar {
@@ -4028,7 +4045,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 
 #rightbar .tab-content .tab-pane > h6 {
   color: #95a2a9;
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   font-weight: 300;
   border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
@@ -4065,7 +4082,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 }
 
 #rightbar .tab-content .tab-pane ul > li .media .media-body .media-heading {
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   color: #bfc7cb;
   margin: 0 0 3px;
@@ -4455,7 +4472,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   padding: 2px 5px;
   background-color: rgba(0, 0, 0, 0.1);
   color: #95a2a9;
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   margin-left: 5px;
   position: relative;
@@ -4798,6 +4815,7 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
 
 .form-control.input-sm:-moz-placeholder {
   line-height: 18px;
+  font-style: normal;
 }
 
 .form-control.input-sm:-ms-input-placeholder {
@@ -4816,6 +4834,8 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+.form-control.underline-input::placeholder {font-style: normal; color: #535f64; font-weight: 500; font-size:15px !important;}
 
 .form-control.underline-input {
   background: none;
@@ -7996,7 +8016,7 @@ button:focus {
 }
 
 .btn.btn-greensea {
-  background-color: #16a085;
+  background-color: #42ae5b;
   color: white;
   border-color: #138a72;
 }
@@ -8525,7 +8545,7 @@ button:focus {
 }
 
 @font-face {
-  font-family: 'Simple-Line-Icons';
+  font-family: 'Montserrat', sans-serif;
   src: url("../fonts/Simple-Line-Icons.eot");
   src: url("../fonts/Simple-Line-Icons.eot?#iefix") format("embedded-opentype"), url("../fonts/Simple-Line-Icons.woff") format("woff"), url("../fonts/Simple-Line-Icons.ttf") format("truetype"), url("../fonts/Simple-Line-Icons.svg#Simple-Line-Icons") format("svg");
   font-weight: normal;
@@ -9925,7 +9945,7 @@ ol.list-type.caret-right li:before {
 }
 
 .custom-font {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .filled {
@@ -9995,7 +10015,7 @@ dl.filled {
 }
 
 dl.filled dt {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 dl.filled dt,
@@ -10038,7 +10058,7 @@ blockquote p {
   padding: 2px 5px;
   background-color: rgba(0, 0, 0, 0.1);
   color: #95a2a9;
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   margin-left: 5px;
   position: relative;
@@ -10047,7 +10067,7 @@ blockquote p {
 }
 
 .example .link-effect {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 15px 25px;
   text-transform: uppercase;
   font-weight: 400;
@@ -10056,7 +10076,7 @@ blockquote p {
 }
 
 .link-effect {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 15px 25px;
   text-transform: uppercase;
   font-weight: 400;
@@ -10494,7 +10514,7 @@ blockquote p {
   text-transform: none;
   font-style: italic;
   font-size: 10px;
-  font-family: Georgia, serif;
+  font-family: 'Montserrat', sans-serif;
   opacity: 0;
   -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
   -moz-transition: -moz-transform 0.3s, opacity 0.3s;
@@ -11402,7 +11422,7 @@ blockquote p {
 }
 
 #toast-container > div .toast-title {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #toast-container > div .toast-message {
@@ -12981,7 +13001,7 @@ blockquote p {
 }
 
 .progress-list .details .title {
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 16px;
 }
 
@@ -13166,7 +13186,7 @@ blockquote p {
 .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
   height: 28px;
   margin: 0;
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #bfc7cb;
   font-style: italic;
   font-size: 12px;
@@ -13739,6 +13759,7 @@ div.dataTables_paginate.paging_input .prev {
 /***************************************/
 @font-face {
   font-family: 'ui-grid';
+  font-family: 'Montserrat', sans-serif;
   src: url("../fonts/ui-grid.eot");
   src: url("../fonts/ui-grid.eot#iefix") format("embedded-opentype"), url("../fonts/ui-grid.woff") format("woff"), url("../fonts/ui-grid.ttf?") format("truetype"), url("../fonts/ui-grid.svg?#ui-grid") format("svg");
   font-weight: normal;
@@ -13766,7 +13787,7 @@ input[type="text"].ui-grid-filter-input::-webkit-input-placeholder {
   -moz-transition: color 0.2s linear;
   transition: color 0.2s linear;
   color: #bfc7cb;
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
 }
 
@@ -13775,7 +13796,7 @@ input[type="text"].ui-grid-filter-input::-moz-placeholder {
   -moz-transition: color 0.2s linear;
   transition: color 0.2s linear;
   color: #bfc7cb;
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
 }
 
@@ -13784,7 +13805,7 @@ input[type="text"].ui-grid-filter-input:-moz-placeholder {
   -moz-transition: color 0.2s linear;
   transition: color 0.2s linear;
   color: #bfc7cb;
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
 }
 
@@ -13793,7 +13814,7 @@ input[type="text"].ui-grid-filter-input:-ms-input-placeholder {
   -moz-transition: color 0.2s linear;
   transition: color 0.2s linear;
   color: #bfc7cb;
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
 }
 
@@ -14007,7 +14028,7 @@ input[type="text"].ui-grid-filter-input:focus:hover {
 }
 
 .card-container .card {
-  min-height: 110px;
+  min-height: 132px;
   margin-bottom: 20px;
   position: relative;
   -webkit-perspective: 600px;
@@ -14016,13 +14037,14 @@ input[type="text"].ui-grid-filter-input:focus:hover {
   width: 100%;
   cursor: pointer;
   z-index: 9;
+  height: 30px;
 }
 
 .card-container .card .front {
   height: 100%;
   position: relative;
   width: 100%;
-  padding: 28px;
+  padding: 26px;
   top: 0;
   left: 0;
   z-index: 11;
@@ -14777,7 +14799,7 @@ input[type="text"].ui-grid-filter-input:focus:hover {
   margin: 0;
   text-transform: uppercase;
   font-weight: 300;
-  font-family: "Dosis", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .fc .fc-view-container .fc-event {
@@ -15081,14 +15103,14 @@ input[type="text"].ui-grid-filter-input:focus:hover {
 }
 
 body {
-  font-family: "Lato", "Arial", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 400;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
   -ms-overflow-style: scrollbar;
-  background-color: #e7eaeb;
+  background: url(../images/eljebo_bg_dashboard.png);
   color: #616f77;
 }
 
@@ -15104,6 +15126,7 @@ body a {
 
 .bg-white {
   background-color: white !important;
+  border-radius: 10px;
 }
 
 .bg-cyan {
@@ -15212,8 +15235,10 @@ body a {
 }
 
 .bg-greensea {
-  background-color: #16a085 !important;
-  color: white !important;
+  background-image: url(../images/Untitled-8.png);
+color: white !important;
+background-size: cover;
+  
 }
 
 .bg-greensea.dk {
@@ -15296,8 +15321,9 @@ body a {
 }
 
 .bg-blue {
-  background-color: #418bca !important;
-  color: white !important;
+  background-image: url(../images/Untitled-8.png);
+color: white !important;
+background-size: cover;
 }
 
 .bg-blue.dk {
@@ -15317,8 +15343,9 @@ body a {
 }
 
 .bg-lightred {
-  background-color: #e05d6f !important;
+  background-image: url(../images/Untitled-8.png);
   color: white !important;
+  background-size: cover;
 }
 
 .bg-lightred.dk {
@@ -15620,7 +15647,7 @@ body a {
 }
 
 .text-greensea {
-  color: #16a085;
+  color: #217cb3;
 }
 
 .text-dutch {
@@ -15725,7 +15752,7 @@ body a {
 }
 
 .text-light {
-  font-weight: 300 !important;
+  font-weight: 301 !important;
 }
 
 .animated {
@@ -15809,7 +15836,7 @@ body a {
 }
 
 .mt-20 {
-  margin-top: 20px !important;
+  margin-top: 24px !important;
 }
 
 .mt-10 {
@@ -15873,7 +15900,7 @@ body a {
 }
 
 .p-15 {
-  padding: 15px !important;
+  padding: 50px 34px !important;
 }
 
 .p-10 {
@@ -16163,7 +16190,7 @@ body a {
 }
 
 .w-xxl, .w-420 {
-  width: 420px;
+  width: 459px;
 }
 
 hr.line-dashed {
@@ -16193,7 +16220,7 @@ hr.line-full {
   position: relative;
   padding: 30px 15px 30px 75px !important;
   line-height: 30px;
-  font-family: Georgia, serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
 }
 

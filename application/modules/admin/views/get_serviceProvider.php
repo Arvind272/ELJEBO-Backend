@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Service Provider List <span>Service Provider glamarmy</span></h2>
+        <h2>Service Provider List <span>Service Provider ELJEBO</span></h2>
 
         <!-- <div class="page-bar">
 
@@ -35,7 +35,7 @@
                     <?php echo $this->session->flashdata('message'); ?>
                     <ul class="controls">
                         <li>
-                            <!-- <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_serviceProvider"><i class="fa fa-plus mr-5"></i> Add Service Provider</a> -->
+                            <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_serviceProvider"><i class="fa fa-plus mr-5"></i> Add Service Provider</a>
                         </li>
 
 
