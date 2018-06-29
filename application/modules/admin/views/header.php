@@ -10,7 +10,7 @@
         <base href="<?= base_url(); ?>">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>GlamArmy - Admin Dashboard</title>
+        <title>Eljebo - Admin Dashboard</title>
         <link rel="icon" type="image/ico" href="assets/images/favicon.ico" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,7 +84,7 @@
                     <!-- Branding -->
                     <div class="branding">
                         <a class="brand" href="<?php echo base_url(); ?>admin/dashboard">
-                            <span>Glam<strong>Army</strong></span>
+                           <img src="<?php echo base_url('assets/images/minovate-logo.png');?>" height="43px" />
                         </a>
                         <a href="#" class="offcanvas-toggle visible-xs-inline"><i class="fa fa-bars"></i></a>
                     </div>
@@ -99,6 +99,7 @@
                                 <i class="fa fa-outdent"></i>
                             </a>
                         </li>
+					 <!--
                         <li class="dropdown divided-right settings">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-cog"></i>
@@ -174,7 +175,8 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
+						-->
+					</ul>
                     <!-- Left-side navigation end -->
 
                     <!-- Search -->
@@ -189,7 +191,7 @@
                         <li class="dropdown nav-profile">
 
                             <a href class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="assets/images/profile-photo.jpg" alt="" class="img-circle size-30x30">
+                                <img src="uploads/avtar.png" alt="" class="img-circle size-30x30">
                                 <span>Admin <i class="fa fa-angle-down"></i></span>
                             </a>
 
@@ -241,14 +243,16 @@
 
                         <div class="panel-group slim-scroll" role="tablist">
                             <div class="panel panel-default">
-                                <div class="panel-heading" role="tab">
+                               <!--
+							   <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" href="#sidebarNav">
                                             Navigation <i class="fa fa-angle-up"></i>
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="sidebarNav" class="panel-collapse collapse in" role="tabpanel">
+								-->
+                                <div id="sidebarNav " class="panel-collapse collapse in" role="tabpanel">
                                     <div class="panel-body">
 
 
@@ -259,33 +263,30 @@
                                             <li class="<?php if($this->uri->segment(2) == 'dashboard') {echo 'active';} ?>"><a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                                            <!--  <li class="<?php if($this->uri->segment(2) == 'orders_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/orders_list');?>"><i class="fa fa-caret-right"></i>Order List</a></li> -->
 
-                                           <li class="<?php if(($this->uri->segment(2) == 'get_customer')|| ($this->uri->segment(2) == 'viewCustomer')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_customer');?>"><i class="fa fa-caret-right"></i>Customer List</a></li>
-
-                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-caret-right"></i>Service Provider List</a></li>
-
-
                                            <li class="dropdown <?php if(($this->uri->segment(2) == 'getCategory')||($this->uri->segment(2) == 'services')||($this->uri->segment(2) == 'edit_service')||($this->uri->segment(2) == 'edit_category')) {echo 'active';} ?>">
-                                                <a role="button" tabindex="0"><i class="fa fa-caret-right"></i> <span>Category</span></a>
+                                                <a role="button" tabindex="0"><i class="fa fa-cog"></i> <span>Services</span></a>
                                                 <ul>
                                                     <li><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Services List</a></li>
-                                                    <li><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>SubServices List</a></li>
+                                                    <li><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Sub Services List</a></li>
                                                    
                                                 </ul>
                                             </li> 
+                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-th-list"></i><span>Service Provider List</span></a></li>
+										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-list"></i><span>Customer List</span></a></li> 
 
                                          <?php /*  <li class="<?php if($this->uri->segment(2) == 'getCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Category List</a></li>
 
                                            <li class="<?php if($this->uri->segment(2) == 'services') {echo 'active';} ?>"><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Services</a></li> */ ?>
 
-                                            <li class="dropdown <?php if(($this->uri->segment(2) == 'getBeautyCategory')||($this->uri->segment(2) == 'edit_beautyCategory')||($this->uri->segment(2) == 'getBeautySubCategory')||($this->uri->segment(2) == 'edit_beautySubCategory')) {echo 'active';} ?>">
+                                            <!-- <li class="dropdown <?php //if(($this->uri->segment(2) == 'getBeautyCategory')||($this->uri->segment(2) == 'edit_beautyCategory')||($this->uri->segment(2) == 'getBeautySubCategory')||($this->uri->segment(2) == 'edit_beautySubCategory')) {echo 'active';} ?>">
                                                 <a role="button" tabindex="0"><i class="fa fa-caret-right"></i> <span>Beauty Category</span></a>
                                                 <ul>
-                                                    <li><a href="<?php echo site_url('admin/getBeautyCategory');?>"><i class="fa fa-caret-right"></i>Beauty Category List</a></li>
+                                                    <li><a href="<?php //echo site_url('admin/getBeautyCategory');?>"><i class="fa fa-caret-right"></i>Beauty Category List</a></li>
 
-                                                    <li><a href="<?php echo site_url('admin/getBeautySubCategory');?>"><i class="fa fa-caret-right"></i>Beauty Sub Category List</a></li>
+                                                    <li><a href="<?php //echo site_url('admin/getBeautySubCategory');?>"><i class="fa fa-caret-right"></i>Beauty Sub Category List</a></li>
                                                     
                                                 </ul>
-                                            </li>
+                                            </li> -->
 
                                        <?php /*    <li class="<?php if($this->uri->segment(2) == 'getBeautyCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getBeautyCategory');?>"><i class="fa fa-caret-right"></i>Beauty Category List</a></li>
 
@@ -303,16 +304,9 @@
 
                                             
 
-                                         <li class="<?php if(($this->uri->segment(2) == 'getAppointments')||($this->uri->segment(2) == 'getAppointmentList')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/getAppointments');?>"><i class="fa fa-caret-right"></i>Customer Appointments List</a></li> 
+                                         
 
-                                           <li class="dropdown <?php if(($this->uri->segment(2) == 'reference')||($this->uri->segment(2) == 'referenceOrder')||($this->uri->segment(2) == 'getReferenceView')||($this->uri->segment(2) == 'add_reference')) {echo 'active';} ?>">
-                                                <a role="button" tabindex="0"><i class="fa fa-caret-right"></i> <span>Referral</span></a>
-                                                <ul>
-                                                    <li><a href="<?php echo site_url('admin/reference');?>"><i class="fa fa-caret-right"></i> Referral List</a></li>
-                                                    <li><a href="<?php echo site_url('admin/referenceOrder');?>"><i class="fa fa-caret-right"></i> Referral Order</a></li>
-                                                    
-                                                </ul>
-                                            </li> 
+                                           
 
                                         
                                          <?php /*   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-caret-right"></i>Customer List</a></li> */ ?>

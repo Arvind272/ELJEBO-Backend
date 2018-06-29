@@ -33,6 +33,11 @@
                         <input type="text" class="form-control" id="lastname" required name="lastname">
                       </div>
 
+                      <div class="form-group">
+                        <label for="pwd">user Name:</label>
+                        <input type="text" class="form-control" id="username" required name="username">
+                      </div>
+
                        <div class="form-group">
                         <label for="pwd">Email:</label>
                         <input type="text" class="form-control" id="email" required name="email">
@@ -43,12 +48,76 @@
                         <input type="password" class="form-control" id="password" required name="password">
                       </div>
 
+                      <div class="form-group">
+                        <label for="pwd">Gender:</label>
+                        <select  class="form-control" id="gender"  name="gender">
+                          <option value="">Select Gender</option>
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                          <option value="0">Other</option>
+                        </select>
+                      </div>
+
+                <div class="row">
+
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="pwd">Country :</label>
+                        <select  class="form-control" id="country"  name="country">
+                          <option value="">Select Country</option>
+
+                          <?php if(isset($countries)){
+                              foreach ($countries as  $countrie) { ?>
+                          <option value="<?php echo $countrie->id; ?>"><?php echo $countrie->name; ?></option>
+                          
+                          <?php }} ?>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="pwd">State:</label>
+                        <select  class="form-control" id="state"  name="state">
+                          <option value="">Select State</option>
+                         
+                        </select>
+                      </div>
+
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="pwd">City:</label>
+                        <select  class="form-control" id="city"  name="city">
+                          <option value="">Select City</option>
+                          
+                        </select>
+                      </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
                        <div class="form-group">
                         <label for="pwd">Address:</label>
                         <input type="text" class="form-control" id="address" required name="address">
                       </div>
 
+                       <div class="form-group">
+                        <label for="pwd">Address 2 (optional):</label>
+                        <input type="text" class="form-control" id="address2" required name="address2">
+                      </div>
+
                       <div class="form-group">
+                        <label for="pwd">Zip Code:</label>
+                        <input type="text" class="form-control" id="zip" required name="zip_code">
+                      </div>
+
+                      <!-- <div class="form-group">
                         <label for="pwd">Latitude:</label>
                         <input type="number" class="form-control" id="latitude" required name="latitude">
                       </div>  
@@ -56,49 +125,182 @@
                       <div class="form-group">
                         <label for="pwd">Longitude:</label>
                         <input type="number" class="form-control" id="longitude" required name="longitude">
-                      </div>
-
-                       <div class="form-group">
-                        <label for="pwd">Profile Pic:</label>
-                        <input type="file" class="form-control" id="profile_pic" required name="profile_pic">
-                      </div>
-
-                       <div class="form-group">
-                        <label for="pwd">Portfolio Image Ids:</label>
-                        <input type="file" class="form-control" id="portfolio_img" required name="portfolio_img">
-                      </div> 
+                      </div> -->
 
                       <div class="form-group">
-                        <label for="pwd">Telephone:</label>
-                        <input type="text" class="form-control" id="telephone" required name="telephone">
-                      </div> 
-
-                      <div class="form-group">
-                        <label for="pwd">Mobile:</label>
+                        <label for="pwd">Phone number:</label>
                         <input type="text" class="form-control" id="mobile" required name="mobile">
                       </div> 
 
-                      <div class="form-group">
-                        <label for="pwd">Landline:</label>
-                        <input type="text" class="form-control" id="landline" required name="landline">
-                      </div>    
+                       
+                       <!-- <div class="form-group">
+                        <label for="pwd">Portfolio Image Ids:</label>
+                        <input type="file" class="form-control" id="portfolio_img" required name="portfolio_img">
+                      </div>  -->
+
+                      <!-- <div class="form-group">
+                        <label for="pwd">Telephone:</label>
+                        <input type="text" class="form-control" id="telephone" required name="telephone">
+                      </div> --> 
+
+                      
+
+
+
 
                       <div class="form-group">
-                    <label>Services</label>
+                        <label for="pwd">Security Question 1  :</label>
+                        <input type="text" class="form-control" id="question1" required name="question1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Answer 1 :</label>
+                        <input type="text" class="form-control" id="answer1" required name="answer1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Security Question 2 :</label>
+                        <input type="text" class="form-control" id="question2" required name="question2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Answer 2 :</label>
+                        <input type="text" class="form-control" id="answer2" required name="answer2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Security Question 3 :</label>
+                        <input type="text" class="form-control" id="question3" required name="question3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Answer 3 :</label>
+                        <input type="text" class="form-control" id="answer3" required name="answer3">
+                    </div>
+
+
+                      <div class="form-group">
+                    <label>Education</label>
                     <div style="clear: both;"></div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label> <input type="checkbox" class="some check  name="service_ids[]" value=""></label>
+                            GED
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5"></div>
+                      </div>
+                        
+                      <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label> <input type="checkbox" class="some check  name="service_ids[]" value=""></label>
+                            High School
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5"></div>
+                      </div>
+
+                      <div class="col-md-12">
+
+                        <div class="col-md-4">
+                            <label> <input type="checkbox" class="some check  name="service_ids[]" value=""></label>
+                            College & Above
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5"></div>
+                       </div>
+                   </div>
+
+
+                    <div class="form-group">
+                        <label for="pwd"> Enter your  Certification or Licence :</label>
+                        <input type="file" class="form-control" id="licenses" required name="licenses">
+                    </div>
+
+
+                    <div class="form-group">
+                    <label>Services charge Amount :</label>
+                    <div style="clear: both;"></div>
+
+
+
                     <?php if(isset($getService)){
  
                       foreach ($getService as $service) { ?>
 
-                      <div class="col-md-3">
-                          <label> <input type="checkbox" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
-                          <?php echo $service->service_name; ?> 
-                      </div>
-                      
+                      <div class="col-md-12">
 
+
+                        <div class="col-md-4">
+                            <label> <input type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
+                            <?php echo $service->service_name; ?> 
+                        </div>
+                        <div class="col-md-3">
+                            <label > <input placeholder="Enter Price" type="text" style="display: none;"   class="validate textbox<?php echo $service->id; ?>" name="service_ids[]" value=""></label>
+                             
+                        </div>
+
+                        <div class="col-md-5"></div>
+
+                        
+
+                     </div> 
                      <?php }} ?>
                         
                   </div>
+
+
+
+                  
+
+                  <div class="form-group">
+                        <label for="pwd">Description :</label>
+                        <textarea type="text" class="form-control" id="description" required name="description" rows="2"></textarea>
+                  </div>
+
+
+
+
+
+                  <div class="form-group">
+                        <label for="pwd">Time :</label>
+                  </div>
+
+                  <div class="col-md-12">
+                          <div class="col-md-3">
+                            <label for="pwd">From :</label>
+
+                            <div class="input-group clockpicker">
+                                <input type="time" class="form-control" value="00:00">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                          </div>
+                          <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                            <label for="pwd"> :to </label>
+
+                            <div class="input-group clockpicker">
+                                <input type="time" class="form-control" value="00:00">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                          </div>
+                          <div class="col-md-3"></div>
+                        </div>
+                  
+
+                    <div style="clear: both;"></div>
+                  <br>
+
+                    <div class="form-group">
+                        <label for="pwd">Upload Certifications:</label>
+                        <input type="file" class="form-control" id="licenses_certification" required name="licenses_certification">
+                  </div>
+
+
                   <div style="clear: both;"></div>
                   <br>
                       <div class="form-group">
@@ -109,6 +311,7 @@
                           <option value="2">Pending for Approval</option>
                         </select>
                     </div>
+
 
                      <input type="submit" name="add_provider" class="btn btn-default" value="Submit">
                  
@@ -121,3 +324,96 @@
     </div>
     <!-- /row -->
 </div>
+<script type="text/javascript">
+
+    function someFunction(id) {
+        
+        var  textbox  = '.textbox'+id;
+        var checkboxe = '.check'+id;
+
+        if ($(checkboxe).is(":checked")) 
+          {
+          
+            $(textbox).css("display", "block");
+          
+          } else {
+          
+            $(textbox).css("display", "none");
+            $(textbox).val('');
+          
+          }
+    }
+</script>
+<script type="text/javascript">
+  $('.validate').keypress(function(event) {
+  if ((event.which != 46 || event.which === 8 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57 )  ) {
+    event.preventDefault();
+  }
+});
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#country').on('change', function(){
+
+      var countryID = $(this).val();
+       var base_url_path = '<?php echo base_url();?>admin/getstate/'+countryID;
+       // alert(base_url_path);
+
+      if(countryID){
+
+        $.ajax({
+          type:'POST',
+          url : base_url_path,
+          data: 'country_id ='+countryID,
+          success: function(res){
+            console.log(res);
+              $('#city').empty();
+                $('#state').empty().append(res);
+
+            }
+        });
+      }
+  })
+
+
+
+    $('#state').on('change', function(){
+
+      var countryID = $(this).val();
+       var base_url_path = '<?php echo base_url();?>admin/getcity/'+countryID;
+       // alert(base_url_path);
+
+      if(countryID){
+
+        $.ajax({
+          type:'POST',
+          url : base_url_path,
+          data: 'country_id ='+countryID,
+          success: function(res){
+            console.log(res);
+                $('#city').empty().append(res);
+
+            }
+        });
+      }
+  })
+
+
+
+
+
+
+
+});
+
+
+</script>
+<script type="text/javascript">
+$('.clockpicker').clockpicker({
+    placement: 'top',
+    align: 'left',
+    donetext: 'Done'
+});
+</script>

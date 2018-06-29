@@ -794,6 +794,11 @@ class Admin extends CI_Controller {
 			$whr['user_type']=1;
 			$arr['fetch_customer'] = $this->Admin_model->fetchrowedit('users',$whr);
 			$arr['getService'] = $this->Admin_model->fetchrow('services');
+			$whr_status['status'] = 1;
+			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
+
+
+
 
 			if($arr != 0) {
 
@@ -1799,15 +1804,52 @@ class Admin extends CI_Controller {
 
 	public function chat() {
 		if(!is_logged_in()) redirect('admin');
-
 		$chat_sql 	= "SELECT * FROM chat INNER JOIN users WHERE chat.message_from = users.id";
 		$chat_data 	= $this->db->query($chat_sql)->result();
-
 		$data['chat_data'] = $chat_data;
-
 		$this->load->view('header');
 		$this->load->view('chat', $data);
 		$this->load->view('footer');
+	}
+
+
+	public function getstate($id){
+
+	$whr['country_id'] = $id;
+	$state = $this->Admin_model->fetchrowedit('states',$whr);
+	// echo $this->db->last_query();
+	$st = '';
+	if (!empty($state)) {
+		
+		foreach ($state as $statedata) {
+
+		$st.= '<option value = "'.$statedata->id.'">'.$statedata->name.'</option>';
+
+		}
+	}
+	
+	print_r($st);
+
+	}
+
+
+	public function getcity($id){
+
+	$whr['state_id'] = $id;
+	$state = $this->Admin_model->fetchrowedit('cities',$whr);
+	// echo $this->db->last_query();
+	$st = '';
+	if (!empty($state)) {
+		
+		foreach ($state as $statedata) {
+
+		$st.= '<option value = "'.$statedata->id.'">'.$statedata->name.'</option>';
+
+		}
+	}
+	
+	print_r($st);
+
 	}
 
 

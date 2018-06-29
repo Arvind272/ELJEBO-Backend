@@ -2514,6 +2514,19 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   padding-right: 0;
 }
 
+
+/*START 28-6-18*/
+.sidebar-xs .branding .brand img {visibility: hidden;}
+.sidebar-xs .brand {background: url(../images/minovate-logo-sm.png);background-repeat: no-repeat;background-size: contain;background-position: 1px 3px !important;}
+.dataTables_wrapper .dataTables_length select.input-sm{-moz-appearance: none;}
+.dataTables_wrapper .dataTables_length select.input-sm::after {
+    content: "\f0dd";
+}
+/*.actions .text-primary{color: #fff !important; background-color: #428bca; padding: 10px;}
+.actions .text-danger{color: #fff !important; background-color: #d9534f; padding: 10px;}*/
+div.dataTables_length select {width: 75px !important;}
+/*START 28-6-18*/
+
 @media only screen and (max-width: 1200px) {
   .appWrapper.rtl.rightbar-show #rightbar {
     left: 0;
@@ -3221,6 +3234,8 @@ html.boxed-layout .appWrapper.header-fixed.aside-static #header {
   width: 250px;
   padding: 0;
   background-color: #ffffff;
+
+
   z-index: 21;
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling: -blackberry-touch;
@@ -3412,6 +3427,7 @@ color: white;
   user-select: none;
   position: relative;
   color: #4d595f;
+
 }
 
 #navigation > li a:hover {
@@ -3484,7 +3500,7 @@ color: white;
 
 #navigation .dropdown > ul li:hover > a,
 #navigation .dropdown > ul li.active > a {
-  color: #16a085;
+  color: #fff;
 }
 
 #navigation .dropdown > ul li:last-child > a {
@@ -3829,6 +3845,7 @@ color: white;
   margin-top: 10px;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
+  margin-left: 5px;
 }
 
 .pageheader h2 span {
@@ -4295,13 +4312,15 @@ padding-top: 8px;
 .tile {
   position: relative;
   margin-bottom: 20px;
-  color: #616f77;
+  color: #424141;
   background-color: white;
   filter: alpha(opacity=100);
   opacity: 1;
   -webkit-transition: opacity 0.25s ease-out;
   -moz-transition: opacity 0.25s ease-out;
   transition: opacity 0.25s ease-out;
+  border-radius: 2px;
+  box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
 }
 
 .tile.collapsed .controls .minimize {
@@ -4352,7 +4371,7 @@ padding-top: 8px;
 .tile .tile-body,
 .tile .tile-footer {
   position: relative;
-  padding: 15px;
+  padding: 32px;
 }
 
 .tile .dvd {
@@ -4385,7 +4404,7 @@ padding-top: 8px;
 }
 
 .tile .tile-header {
-  padding: 8px 15px;
+  padding: 14px 28px;
 }
 
 .tile .tile-header h1,
@@ -4432,9 +4451,9 @@ padding-top: 8px;
 .tile .tile-header .controls > li > a {
   display: block;
   height: 100%;
-  line-height: 43px;
+  line-height: 50px;
   min-width: 41px;
-  padding: 0 10px;
+  padding: 0 21px;
   text-align: center;
   color: #95a2a9;
 }
@@ -13317,7 +13336,7 @@ blockquote p {
 .table.table-custom > tbody > tr th,
 .table.table-custom > tfoot > tr td,
 .table.table-custom > tfoot > tr th {
-  padding: 8px;
+  padding: 14px 11px;
 }
 
 .table.table-custom > thead > tr td,
@@ -13548,8 +13567,12 @@ div.dataTables_paginate a.last:after {
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
   color: #616f77;
-  font-size: 12px;
+  font-size: 14px;
+  padding-bottom: 15px;
 }
+
+
+
 
 .dataTables_wrapper .pagination {
   margin: 0;
@@ -13557,7 +13580,8 @@ div.dataTables_paginate a.last:after {
 
 .dataTables_wrapper .pagination > li > a,
 .dataTables_wrapper .pagination > li > span {
-  padding: 5px 10px;
+  border-radius: 4px;
+  padding: 5px 13px;
 }
 
 .dataTables_wrapper .DTTT {
@@ -15880,7 +15904,7 @@ background-size: cover;
 }
 
 .mr-10 {
-  margin-right: 10px !important;
+  margin-right: 20px !important;
 }
 
 .mr-5 {

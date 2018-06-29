@@ -8,7 +8,7 @@
         <!-- <base href=""> -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>GlamArmy - Admin Dashboard</title>
+        <title>Eljebo - Admin Dashboard</title>
         <link rel="icon" type="image/ico" href="assets/images/favicon.ico" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,9 +78,9 @@
 
             <div class="page page-core page-login">
 
-                <div class="text-center"><h3 class="text-light text-white"><span class="text-lightred">Glam</span>Army</h3></div>
+                <div class="text-center"><h3 class="text-light text-white"><img style="width: 170px;height: auto;" class="main_logo" src="uploads/logo_02.png"></h3></div>
 
-                <div class="container w-420 p-15 bg-white mt-40 text-center">
+                <div class="container w-420 p-15 bg-white mt-20 text-center">
 
 
                     <h2 class="text-light text-greensea">Log In</h2>
@@ -88,7 +88,7 @@
                     <form name="form" class="form-validation mt-20" novalidate="" action="<?= base_url(); ?>admin/login" method="post">
 
                         <div class="form-group">
-                            <input type="text" name="firstname" class="form-control underline-input" placeholder="Username">
+                            <input type="text" name="firstname" class="form-control underline-input" placeholder="Email">
                         </div>
 
                         <div class="form-group">

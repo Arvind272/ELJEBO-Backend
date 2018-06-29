@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Category <span>Category GlamArmy</span></h2>
+        <h2>Service </h2>
         <!-- <div class="page-bar">
 
             <ul class="page-breadcrumb">
@@ -29,11 +29,11 @@
 
                 <!-- tile header -->
                 <div class="tile-header dvd dvd-btm">
-                    <h1 class="custom-font"><strong>Category</strong></h1>
+                    <h1 class="custom-font"><strong>Service List</strong></h1>
                     <?php echo $this->session->flashdata('message'); ?>
                     <ul class="controls">
                         <li>
-                            <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_category"><i class="fa fa-plus mr-5"></i> Add Category</a>
+                            <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_category"><i class="fa fa-plus mr-5"></i> Add Services</a>
                         </li>
 
 
@@ -48,7 +48,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Category name</th>
+                                <th>Service name</th>
                                 <th>Create Date</th>
                                 <th style="width: 160px;" class="no-sort">Actions</th>
                             </tr>

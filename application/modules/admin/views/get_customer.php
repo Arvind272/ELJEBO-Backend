@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Customers <span>Registered customers of glamarmy</span></h2>
+        <h2>Customers <span>Registered customers of ELJEBO</span></h2>
 
         <!-- <div class="page-bar">
 

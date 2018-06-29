@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Edit Service <span>Services GlamArmy</span></h2>
+        <h2>Edit Service <span>Services ELJEBO</span></h2>
     </div>
 
     <!-- row -->

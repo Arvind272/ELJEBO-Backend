@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Edit Category <span>Category GlamArmy</span></h2>
+        <h2>Edit Category <span>Category ELJEBO</span></h2>
     </div>
 
     <!-- row -->

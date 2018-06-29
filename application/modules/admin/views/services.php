@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Services <span>Services GlamArmy</span></h2>
+        <h2>Sub Services </h2>
 
         <!-- <div class="page-bar">
 
@@ -31,11 +31,11 @@
 
                 <!-- tile header -->
                 <div class="tile-header dvd dvd-btm">
-                    <h1 class="custom-font"><strong>Services</strong></h1>
+                    <h1 class="custom-font"><strong>Sub Services</strong></h1>
                     <?php echo $this->session->flashdata('message'); ?>
                     <ul class="controls">
                         <li>
-                            <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_service"><i class="fa fa-plus mr-5"></i> Add Entry</a>
+                            <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_service"><i class="fa fa-plus mr-5"></i> Add Sub Service</a>
                         </li>
 
 
@@ -50,9 +50,9 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Category name</th>
                                 <th>Service name</th>
-                                <th>Service charge</th>
+                                <th>Sub Service name</th>
+                                <th>Charge</th>
                                 <th>Duration</th>
                                 <th style="width: 160px;" class="no-sort">Status</th>
                                 <th style="width: 160px;" class="no-sort">Actions</th> 
@@ -60,36 +60,37 @@
                             </thead>
                             <tbody>
                             <?php 
-                            if(!empty($info))
+                            if(isset($info)) {
                                 $i=1;
-                            foreach($info as $data): ?>
-                            <tr class="odd gradeX">
-                                <td><a href="<?php echo site_url();?>admin/edit_service/<?php echo $data['id']; ?>"><?php echo $data['id']; ?></a></td>
-                                <td><?php echo ucfirst($data['category_name']); ?></td>
-                                <td><?php echo ucfirst($data['service_name']); ?></td>
+                            
+                                foreach($info as $data): ?>
+                                <tr class="odd gradeX">
+                                    <td><a href="<?php echo site_url();?>admin/edit_service/<?php echo $data['id']; ?>"><?php echo $data['id']; ?></a></td>
+                                    <td><?php echo ucfirst($data['category_name']); ?></td>
+                                    <td><?php echo ucfirst($data['service_name']); ?></td>
 
-                                <td><?php
+                                    <td><?php
 
-                                 $check = explode('$', $data['service_charge']);
+                                     $check = explode('$', $data['service_charge']);
 
-                                 echo "$".end($check);
+                                     echo "$".end($check);
 
-                                
-                                  ?></td>
-                                  <td><?php echo $data['service_time']; ?>min</td>
-                                  <td class="actions">
-                                <?php $status = $data['status'];
-
-                                if($status ==1){ ?>
-                                    <a href="<?php echo base_url(); ?>admin/active_service/<?php echo $data['id']; ?>" class="label label-success">Active</a>
-                             <?php   }else{ ?>
-                                    <a href="<?php echo base_url(); ?>admin/deactive_service/<?php echo $data['id']; ?>" class="label label-info">Inactive</a>
-                         <?php   }  ?>
                                     
-                            </td>
-                                <td class="actions"><a class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo site_url();?>admin/edit_service/<?php echo $data['id']; ?>" >Edit</a><a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $data['id']; ?>" data-method="delete_service">Remove</a></td>
-                            </tr>
-                            <?php $i++; endforeach; ?>
+                                      ?></td>
+                                      <td><?php echo $data['service_time']; ?>min</td>
+                                      <td class="actions">
+                                    <?php $status = $data['status'];
+
+                                    if($status ==1){ ?>
+                                        <a href="<?php echo base_url(); ?>admin/active_service/<?php echo $data['id']; ?>" class="label label-success">Active</a>
+                                 <?php   }else{ ?>
+                                        <a href="<?php echo base_url(); ?>admin/deactive_service/<?php echo $data['id']; ?>" class="label label-info">Inactive</a>
+                             <?php   }  ?>
+                                        
+                                </td>
+                                    <td class="actions"><a class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo site_url();?>admin/edit_service/<?php echo $data['id']; ?>" >Edit</a><a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $data['id']; ?>" data-method="delete_service">Remove</a></td>
+                                </tr>
+                                <?php $i++; endforeach; }?>
                             </tbody>
                         </table>
                     </div>

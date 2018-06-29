@@ -2,13 +2,14 @@
 
     <div class="pageheader">
 
-        <h2>Dashboard <span>Activities</span></h2>
+        <h2>Dashboard <br/><span>Welcome to Everyday Service application</span></h2>
 
-        <div class="page-bar">
+        <?php /*
+		<div class="page-bar">
 
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="<?php echo base_url(); ?>admin/dashboard"><i class="fa fa-home"></i>GlamArmy</a>
+                    <a href="<?php echo base_url(); ?>admin/dashboard"><i class="fa fa-home"></i>Eljebo</a>
                 </li>
                 <li>
                     <a>Dashboard</a>
@@ -21,7 +22,7 @@
                 </a>
             </div> -->
 
-        </div>
+        </div> */?>
 
     </div>
 
@@ -32,7 +33,7 @@
 
         <!-- col -->
         
-        <div class="card-container col-lg-4 col-sm-6 col-sm-12">
+        <div class="card-container col-lg-3 col-sm-6 col-sm-12">
             <div class="card">
                 <a href="<?php echo site_url('admin/get_customer');?>">
                 <div class="front bg-lightred">
@@ -48,7 +49,7 @@
                         <div class="col-xs-8">
                             
                                 <p class="text-elg text-strong mb-0"><?php echo $customer_count; ?></p>
-                                <span>Total Customer Registered</span>
+                                <span>Users</span>
                             
                         </div>
                         <!-- /col -->
@@ -64,7 +65,7 @@
 
         <!-- col -->
         
-        <div class="card-container col-lg-4 col-sm-6 col-sm-12">
+        <div class="card-container col-lg-3 col-sm-6 col-sm-12">
             <div class="card">
                 <a href="<?php echo site_url('admin/get_serviceProvider');?>">
                 <div class="front bg-greensea">
@@ -79,8 +80,8 @@
                         <!-- col -->
                         <div class="col-xs-8">
                             
-                                <p class="text-elg text-strong mb-0"><?php echo $stylist_count; ?></p>
-                                <span>Total Stylist Registered</span>
+                                <p class="text-elg text-strong mb-0">0<?php //echo $stylist_count; ?></p>
+                                <span>Service Providers</span>
                             
                         </div>
                         <!-- /col -->
@@ -95,7 +96,36 @@
         <!-- /col -->
 
         <!-- col -->
-        <div class="card-container col-lg-4 col-sm-6 col-sm-12">
+        <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+            <div class="card">
+                <a href="<?php echo site_url('admin/getAppointments');?>">
+                <div class="front bg-blue">
+
+                    <!-- row -->
+                    <div class="row">
+                        <!-- col -->
+                        <div class="col-xs-4">
+                            <i class="fa fa-cogs fa-4x"></i>
+                        </div>
+                        <!-- /col -->
+                        <!-- col -->
+                        <div class="col-xs-8">
+                            
+                                <p class="text-elg text-strong mb-0"><?php echo $order_count; ?></p>
+                                <span>Services</span>
+                            
+                        </div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+
+                </div>
+                </a>
+            </div>
+        </div>
+        <!-- /col -->
+		
+		<div class="card-container col-lg-3 col-sm-6 col-sm-12">
             <div class="card">
                 <a href="<?php echo site_url('admin/getAppointments');?>">
                 <div class="front bg-blue">
@@ -111,7 +141,7 @@
                         <div class="col-xs-8">
                             
                                 <p class="text-elg text-strong mb-0"><?php echo $order_count; ?></p>
-                                <span>Total Appointments</span>
+                                <span>Orders</span>
                             
                         </div>
                         <!-- /col -->
@@ -122,7 +152,6 @@
                 </a>
             </div>
         </div>
-        <!-- /col -->
 
         <!-- col --
         <div class="card-container col-lg-3 col-sm-6 col-sm-12">
