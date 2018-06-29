@@ -28,11 +28,9 @@
         <table class="table table-custom" id="customers">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Address</th>
                 <th>Create Date</th>
                 <th style="width: 160px;" class="no-sort">Actions</th>
                 <th style="width: 160px;" class="no-sort">Status</th>
@@ -41,57 +39,28 @@
             <tbody>
             <?php foreach($info as $data) : ?>
                 <tr class="odd gradeX">
-                <td><?php echo $data['id'];?></td>
                 <td><?php echo $data['firstname'];?></td>
                 <td><?php echo $data['lastname'];?></td>
                 <td><?php echo $data['email'];?></td>
-                <td><?php echo $data['address'];?></td>
                 <td><?php echo $data['create_date'];?></td>
                 <td class="actions">
-                    <a role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo base_url('admin/editCustomer/'.$data['id']);?>">Edit</a>
-                    <!-- <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php echo $data['id'];?>">Remove</a> -->
+                    <a role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10" style="margin-right:  2px !important;" href="<?php echo base_url('admin/editCustomer/'.$data['id']);?>">Edit</a>|| <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo base_url('admin/viewCustomerData/'.$data['id']);?>">view</a>
+                    <!-- <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php// echo $data['id'];?>">Remove</a> -->
                 </td>
                 <td class="actions">
                     <?php if($data['status']==1){ ?>
-                    <ul class="list-inline">
 
-                        <li class="dropdown nav-profile">
+                    <button id="activatersd<?php echo $data['id'];?>" onclick="activate(<?php echo $data['id'];?>)" class ="btn btn-success">Active</button>
 
-                            <a href class="dropdown-toggle" data-toggle="dropdown">
-                                
-                                <span><span class="statusa text-primary text-uppercase text-strong text-sm mr-10">Active</span> <i class="fa fa-angle-down"></i></span>
-                            </a>
+                    <button id="deactivaters<?php echo $data['id'];?>" style="display: none;"  onclick="deactivate(<?php echo $data['id'];?>)" class ="btn btn-warning">Deactive</button>
 
-                            <ul class="dropdown-menu animated littleFadeInRight" role="menu">
-                                <li>
-                                    <span style="cursor: pointer;" data-id="<?php echo $data['id'];?>" tabindex="0" class="text-primary text-uppercase text-strong text-sm mr-10 activate">Activate</span>
-                                </li>
-                                <li>
-                                    <span style="cursor: pointer;" data-id="<?php echo $data['id'];?>" class="text-danger text-uppercase text-strong text-sm mr-10 deactivate">Deactivate</span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <?php } else { ?>
-                    <ul class="list-inline">
-
-                        <li class="dropdown nav-profile">
-
-                            <a href class="dropdown-toggle" data-toggle="dropdown">
-                                <span><span class="statusa text-danger text-uppercase text-strong text-sm mr-10">Inactive</span> <i class="fa fa-angle-down"></i></span>
-                            </a>
-
-                            <ul class="dropdown-menu animated littleFadeInRight" role="menu">
-                                <li>
-                                    <span style="cursor: pointer;" data-id="<?php echo $data['id'];?>" class="text-primary text-uppercase text-strong text-sm mr-10 activate">Activate</span>
-                                </li>
-                                <li>
-                                    <span style="cursor: pointer;" data-id="<?php echo $data['id'];?>" class="text-danger text-uppercase text-strong text-sm mr-10 deactivate">Deactivate</span>
                     
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <?php } else { ?>
+
+                    <button id="activaters<?php echo $data['id'];?>" style="display: none;" onclick="activate(<?php echo $data['id'];?>)" class ="btn btn-success">Active</button>
+
+                    <button id="deactivatersd<?php echo $data['id'];?>" onclick="deactivate(<?php echo $data['id'];?>)" class ="btn btn-warning">Deactive</button>
+                    
                     <?php } ?>
                     
                 </td>
@@ -102,32 +71,61 @@
         </table>
     </div>
 </div>
-<!-- /tile body -->
-<!-- Splash Modal -->
-<!-- <section>
-    <div class="modal splash fade" id="splash" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title custom-font">I'm a modal!</h3>
-                </div>
-                <div class="modal-body">
-                    <p>This sure is a fine modal, isn't it?</p>
 
-                    <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default btn-border">Submit</button>
-                    <button class="btn btn-default btn-border" data-dismiss="modal">Cancel</button>
-                </div>
+
+
+
+
+
             </div>
-        </div>
     </div>
-</section> -->
-<!-- /tile -->
-            </div>
-        <!-- /col -->
-    </div>
-    <!-- /row -->
 
 </div>
+
+
+
+<script>
+function activate($id) {
+    if(confirm('Are you really want to deactivate it?')){
+        var user_id = $id;
+        var base_url_path = '<?php echo base_url();?>admin/deactivate/'+user_id; 
+
+        if(user_id){
+            $.ajax({
+              
+              type:'POST',
+              url : base_url_path,
+              data: 'country_id ='+user_id,
+              success: function(res){
+               window.location.reload(true);
+
+
+                }
+            });
+          }
+    }
+    
+}
+</script>
+<script>
+function deactivate($id) {
+    if(confirm('Are you really want to activate it?')){
+        var user_id = $id;
+        var base_url_path = '<?php echo base_url();?>admin/activate/'+user_id; 
+
+        if(user_id){
+            $.ajax({
+              
+              type:'POST',
+              url : base_url_path,
+              data: 'country_id ='+user_id,
+              success: function(res){
+                window.location.reload(true);
+
+
+                }
+            });
+        }
+      }
+}
+</script>

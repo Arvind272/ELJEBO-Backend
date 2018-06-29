@@ -629,6 +629,18 @@ class Admin_model extends CI_Model {
          
     }  
 
+    function fetch_service($id){
+
+    	$sql="SELECT us.charge,us.service_id ,sr.service_name FROM `users_services` as us LEFT JOIN services as sr ON us.service_id = sr.id WHERE us.user_id = ".$id;
+    	$response = $this->db->query($sql);
+    	//print_r($response);die;
+    	return $result =  $response->result();
+
+    	
+
+
+    }
+
 
 
     

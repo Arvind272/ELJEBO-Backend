@@ -73,16 +73,37 @@
         ===================================================== -->
         <div id="wrap" class="animsition">
 
-
-
-
             <div class="page page-core page-login">
 
-                <div class="text-center"><h3 class="text-light text-white"><img style="width: 170px;height: auto;" class="main_logo" src="uploads/logo_02.png"></h3></div>
+                <div class="login-box-container">
+                    <div class="logo--brand">
+                        <a href=""><img src="uploads/logo--white.png" alt=""></a>
+                    </div>
+                    <div style="color: red;"><?php if(isset($error_msg)){ echo $error_msg; } ?></div>
+                    <form name="form" class="form-validation mt-20" novalidate="" action="<?= base_url(); ?>admin/login" method="post">
+                        <div class="form--group">
+                            <label>E-Mail</label>
+                            <input type="text" name="firstname" class="form--control underline-input" placeholder="E-Mail">
+                        </div>
+                        <div class="form--group">
+                            <label>Password</label>
+                            <input type="password" name="password" placeholder="Password" class="form--control underline-input">
+                        </div>
+                        <div class="form--group">
+                            <label class="checkbox checkbox-custom-alt checkbox-custom-sm inline-block">
+                                <input type="checkbox"><i></i> Remember me
+                            </label>
+                        </div>
+                        <div class="form--group">
+                            <button type="submit" class="login--button">Login</button>
+                        </div>
+                    </form>
+                </div>
 
+
+
+                <!--<div class="text-center"><h3 class="text-light text-white"><img style="width: 170px;height: auto;" class="main_logo" src="uploads/logo_02.png"></h3></div>
                 <div class="container w-420 p-15 bg-white mt-20 text-center">
-
-
                     <h2 class="text-light text-greensea">Log In</h2>
                     <div style="color: red;"><?php if(isset($error_msg)){ echo $error_msg; } ?></div>
                     <form name="form" class="form-validation mt-20" novalidate="" action="<?= base_url(); ?>admin/login" method="post">
@@ -100,47 +121,10 @@
                             <label class="checkbox checkbox-custom-alt checkbox-custom-sm inline-block">
                                 <input type="checkbox"><i></i> Remember me
                             </label>
-                            <!-- <a href="forgotpass.html" class="pull-right mt-10">Forgot Password?</a> -->
-
                         </div>
-
                     </form>
-
-                    <!-- <hr class="b-3x"> -->
-
-                    <!-- <div class="social-login text-left">
-
-                        <ul class="pull-right list-unstyled list-inline">
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-primary b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-info b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-lightred b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-google-plus"></i></a>
-                            </li>
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-primary b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-
-                        <h5>Or login with</h5>
-
-                    </div> -->
-
-                    <!-- <div class="bg-slategray lt wrap-reset mt-40">
-                        <p class="m-0">
-                            <a href="signup.html" class="text-uppercase">Create an account</a>
-                        </p>
-                    </div> -->
-
-                </div>
-
+                </div>-->
             </div>
-
-
-
         </div>
         <!--/ Application Content -->
 

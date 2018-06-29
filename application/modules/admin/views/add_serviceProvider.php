@@ -25,27 +25,27 @@
                      
                       <div class="form-group">
                         <label for="pwd">First Name:</label>
-                        <input type="text" class="form-control" id="firstname" required name="firstname">
+                        <input type="text" class="form-control" id="firstname"  name="firstname">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Last Name:</label>
-                        <input type="text" class="form-control" id="lastname" required name="lastname">
+                        <input type="text" class="form-control" id="lastname"  name="lastname">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">user Name:</label>
-                        <input type="text" class="form-control" id="username" required name="username">
+                        <input type="text" class="form-control" id="username"  name="username">
                       </div>
 
                        <div class="form-group">
                         <label for="pwd">Email:</label>
-                        <input type="text" class="form-control" id="email" required name="email">
+                        <input type="text" class="form-control" id="email"  name="email">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="password" required name="password">
+                        <input type="password" class="form-control" id="password"  name="password">
                       </div>
 
                       <div class="form-group">
@@ -58,142 +58,107 @@
                         </select>
                       </div>
 
-                <div class="row">
+                      <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="pwd">Country :</label>
+                              <select  class="form-control" id="country"  name="country">
+                                <option value="">Select Country</option>
+                                <?php if(isset($countries)){
+                                    foreach ($countries as  $countrie) { ?>
+                                <option value="<?php echo $countrie->id; ?>"><?php echo $countrie->name; ?></option>
+                                <?php }} ?>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="pwd">State:</label>
+                              <select  class="form-control" id="state"  name="state">
+                                <option value="">Select State</option>
+                               
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="pwd">City:</label>
+                              <select  class="form-control" id="city"  name="city">
+                                <option value="">Select City</option>
+                                
+                              </select>
+                            </div>
 
-                  <div class="col-md-4">
+                          </div>
+                        </div>
+
                       <div class="form-group">
-                        <label for="pwd">Country :</label>
-                        <select  class="form-control" id="country"  name="country">
-                          <option value="">Select Country</option>
-
-                          <?php if(isset($countries)){
-                              foreach ($countries as  $countrie) { ?>
-                          <option value="<?php echo $countrie->id; ?>"><?php echo $countrie->name; ?></option>
-                          
-                          <?php }} ?>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="pwd">State:</label>
-                        <select  class="form-control" id="state"  name="state">
-                          <option value="">Select State</option>
-                         
-                        </select>
-                      </div>
-
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="pwd">City:</label>
-                        <select  class="form-control" id="city"  name="city">
-                          <option value="">Select City</option>
-                          
-                        </select>
-                      </div>
-
-                    </div>
-
-
-                </div>
-
-
-
-
-                       <div class="form-group">
                         <label for="pwd">Address:</label>
-                        <input type="text" class="form-control" id="address" required name="address">
+                        <input type="text" class="form-control" id="address"  name="address">
                       </div>
 
                        <div class="form-group">
                         <label for="pwd">Address 2 (optional):</label>
-                        <input type="text" class="form-control" id="address2" required name="address2">
+                        <input type="text" class="form-control" id="address2"  name="address2">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Zip Code:</label>
-                        <input type="text" class="form-control" id="zip" required name="zip_code">
+                        <input type="text" class="form-control" id="zip_code"  name="zip_code">
                       </div>
-
-                      <!-- <div class="form-group">
-                        <label for="pwd">Latitude:</label>
-                        <input type="number" class="form-control" id="latitude" required name="latitude">
-                      </div>  
-
-                      <div class="form-group">
-                        <label for="pwd">Longitude:</label>
-                        <input type="number" class="form-control" id="longitude" required name="longitude">
-                      </div> -->
-
-                      <div class="form-group">
+                    <div class="form-group">
                         <label for="pwd">Phone number:</label>
-                        <input type="text" class="form-control" id="mobile" required name="mobile">
+                        <input type="text" class="form-control" id="phone"  name="phone">
                       </div> 
 
-                       
-                       <!-- <div class="form-group">
-                        <label for="pwd">Portfolio Image Ids:</label>
-                        <input type="file" class="form-control" id="portfolio_img" required name="portfolio_img">
-                      </div>  -->
-
-                      <!-- <div class="form-group">
-                        <label for="pwd">Telephone:</label>
-                        <input type="text" class="form-control" id="telephone" required name="telephone">
-                      </div> --> 
-
-                      
-
-
-
-
-                      <div class="form-group">
+                    <div class="form-group">
                         <label for="pwd">Security Question 1  :</label>
-                        <input type="text" class="form-control" id="question1" required name="question1">
+                        <input type="text" class="form-control" id="question1"  name="question1">
                     </div>
 
                     <div class="form-group">
                         <label for="pwd">Answer 1 :</label>
-                        <input type="text" class="form-control" id="answer1" required name="answer1">
+                        <input type="text" class="form-control" id="answer1"  name="answer1">
                     </div>
 
                     <div class="form-group">
                         <label for="pwd">Security Question 2 :</label>
-                        <input type="text" class="form-control" id="question2" required name="question2">
+                        <input type="text" class="form-control" id="question2"  name="question2">
                     </div>
 
                     <div class="form-group">
                         <label for="pwd">Answer 2 :</label>
-                        <input type="text" class="form-control" id="answer2" required name="answer2">
+                        <input type="text" class="form-control" id="answer2"  name="answer2">
                     </div>
 
                     <div class="form-group">
                         <label for="pwd">Security Question 3 :</label>
-                        <input type="text" class="form-control" id="question3" required name="question3">
+                        <input type="text" class="form-control" id="question3"  name="question3">
                     </div>
 
                     <div class="form-group">
                         <label for="pwd">Answer 3 :</label>
-                        <input type="text" class="form-control" id="answer3" required name="answer3">
+                        <input type="text" class="form-control" id="answer3"  name="answer3">
                     </div>
 
 
-                      <div class="form-group">
-                    <label>Education</label>
-                    <div style="clear: both;"></div>
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <label> <input type="checkbox" class="some check  name="service_ids[]" value=""></label>
-                            GED
-                        </div>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-5"></div>
-                      </div>
-                        
+
+
+                    <div class="form-group">
+                      <label>Education</label>
+                        <div style="clear: both;"></div>
                       <div class="col-md-12">
                         <div class="col-md-4">
-                            <label> <input type="checkbox" class="some check  name="service_ids[]" value=""></label>
+                              <label> <input type="checkbox" class="some check  name="education[]" value="1"></label>
+                              GED
+                        </div>
+                          <div class="col-md-3"></div>
+                          <div class="col-md-5"></div>
+                    </div>
+                        
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label> <input type="checkbox" class="some check  name="education[]" value="2"></label>
                             High School
                         </div>
                         <div class="col-md-3"></div>
@@ -203,7 +168,7 @@
                       <div class="col-md-12">
 
                         <div class="col-md-4">
-                            <label> <input type="checkbox" class="some check  name="service_ids[]" value=""></label>
+                            <label> <input type="checkbox" class="some check  name="education[]" value="3"></label>
                             College & Above
                         </div>
                         <div class="col-md-3"></div>
@@ -211,51 +176,42 @@
                        </div>
                    </div>
 
-
+                       <div style="clear: both;"></div>
+                  <br>
+                    
                     <div class="form-group">
-                        <label for="pwd"> Enter your  Certification or Licence :</label>
-                        <input type="file" class="form-control" id="licenses" required name="licenses">
-                    </div>
+                        <label>Services charge Amount :</label>
+                        <div style="clear: both;"></div>
+                          <?php if(isset($getService)){
+                            foreach ($getService as $service) { ?>
 
+                            <div class="col-md-12">
+                              <div class="col-md-4">
+                                <label> <input type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
+                                <?php echo $service->service_name; ?> 
+                            </div>
+                            <div class="col-md-3">
+                                <label > <input placeholder="Enter Price" type="text" style="display: none;"   class="validate textbox<?php echo $service->id; ?>" name="service_ids[]" value=""></label>
+                                 
+                            </div>
 
-                    <div class="form-group">
-                    <label>Services charge Amount :</label>
-                    <div style="clear: both;"></div>
+                            <div class="col-md-5"></div>
 
+                            
 
-
-                    <?php if(isset($getService)){
- 
-                      foreach ($getService as $service) { ?>
-
-                      <div class="col-md-12">
-
-
-                        <div class="col-md-4">
-                            <label> <input type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
-                            <?php echo $service->service_name; ?> 
-                        </div>
-                        <div class="col-md-3">
-                            <label > <input placeholder="Enter Price" type="text" style="display: none;"   class="validate textbox<?php echo $service->id; ?>" name="service_ids[]" value=""></label>
-                             
-                        </div>
-
-                        <div class="col-md-5"></div>
-
-                        
-
-                     </div> 
-                     <?php }} ?>
+                         </div> 
+                         <?php }} ?>
                         
                   </div>
 
 
-
+                      <div style="clear: both;"></div>
+                  <br>
                   
 
                   <div class="form-group">
                         <label for="pwd">Description :</label>
-                        <textarea type="text" class="form-control" id="description" required name="description" rows="2"></textarea>
+                        <textarea type="text" class="form-control" id="description"  name="description" rows="2"></textarea>
                   </div>
 
 
@@ -263,15 +219,15 @@
 
 
                   <div class="form-group">
-                        <label for="pwd">Time :</label>
+                        <label for="pwd">Time:</label>
                   </div>
 
                   <div class="col-md-12">
                           <div class="col-md-3">
-                            <label for="pwd">From :</label>
+                            <label for="pwd">From:</label>
 
                             <div class="input-group clockpicker">
-                                <input type="time" class="form-control" value="00:00">
+                                <input type="time" name="form" id="from" class="form-control" value="00:00">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
@@ -279,10 +235,10 @@
                           </div>
                           <div class="col-md-3"></div>
                             <div class="col-md-3">
-                            <label for="pwd"> :to </label>
+                            <label for="pwd"> To: </label>
 
                             <div class="input-group clockpicker">
-                                <input type="time" class="form-control" value="00:00">
+                                <input type="time" name="to" id="to" class="form-control" value="00:00">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
@@ -297,7 +253,7 @@
 
                     <div class="form-group">
                         <label for="pwd">Upload Certifications:</label>
-                        <input type="file" class="form-control" id="licenses_certification" required name="licenses_certification">
+                        <input type="file" class="form-control" id="certification"  name="certification">
                   </div>
 
 

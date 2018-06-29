@@ -15,6 +15,33 @@ class Admin extends CI_Controller {
 			redirect('admin/dashboard');
 		}
 	}
+
+
+
+	public function upload_service($name,$file_name)
+	{
+		$this->load->helper('form');
+		$config['upload_path'] = 'uploads/service_provider/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = '30000';
+		$config['max_width'] = '102400';
+		$config['max_height'] = '76800';
+		$config['file_name'] = $file_name;
+		$this->load->library('upload',$config);
+		$this->load->initialize($config);
+		if(!$this->upload->do_upload($name)){
+			// print_r($data);
+			//die();
+		}else{
+			$data = array('msg' =>"success");
+			$databasea['upload_data'] = $this->upload->data();
+			$this->load->library('image_lib');
+
+			return $databasea['upload_data']['file_name'];
+
+		}
+		return '';
+	}
 	// login
 	public function login() {
 		$username = $this->input->post('firstname');
@@ -790,6 +817,11 @@ class Admin extends CI_Controller {
 	{
 
 		if(is_logged_in()){
+
+
+
+
+
 			
 			$whr['user_type']=1;
 			$arr['fetch_customer'] = $this->Admin_model->fetchrowedit('users',$whr);
@@ -797,24 +829,20 @@ class Admin extends CI_Controller {
 			$whr_status['status'] = 1;
 			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
 
-
-
-
 			if($arr != 0) {
-
 				$this->load->view('header');
 				$this->load->view('add_serviceProvider',$arr);
 				$this->load->view('footer');
-
 			} else {
-
 				$this->load->view('header');
 				$this->load->view('add_serviceProvider',array('error' => 'No data found'));
 				$this->load->view('footer');
 			}
-		} else {
-			redirect('admin');
-		}
+		} 
+			else 
+			{
+				redirect('admin');
+			}
 	}
 
 	public function add_servicePro()
@@ -822,25 +850,36 @@ class Admin extends CI_Controller {
 		
 
 		if(isset($_POST['add_provider'])){
+			echo'<pre>';
+			print_r($_POST);
+			exit();
 			$data['firstname'] = $_POST['firstname'];
 			$data['lastname'] = $_POST['lastname'];
 			$data['email'] = $_POST['email'];
 			$data['password'] = $_POST['password'];
 			$data['address'] = $_POST['address'];
-			$lati = $_POST['latitude'];
-			$long = $_POST['longitude'];
-			$data['latlng'] = $lati.'@'.$long;
-			$data['profile_pic'] = $this->upload_pic('profile_pic');
-			$data['portfolio_image_ids']=$this->upload_pic('portfolio_img');
-			$data['telephone'] = $_POST['telephone'];
-			$data['mobile'] = $_POST['mobile'];
-			$data['landline'] = $_POST['landline'];
+			$data['address2'] = $_POST['address2'];
+			$data['certification'] = $this->upload_service('certification');
+			$data['security_que_ans'] =  '[{
+							    "answer" : "wqwqwqw",
+							    "question" : "qwqwqwq"
+							  },
+							  {
+							    "answer" : "wqwqw",
+							    "question" : "wwwwqwqw"
+							  },
+							  {
+							    "answer" : "wqwqwqw",
+							    "question" : "wqwqw"
+							  }]';
+			$data['start_time'] = $_POST['start_time'];
+			$data['end_time']   = $_POST['end_time'];
+			$data['mobile'] = $_POST['phone'];
 			$data['status'] = $_POST['status'];
+			
 			$serviceID = $_POST['service_ids'];
-
 			$arr = implode(",", $serviceID);
 			$data['service_ids'] = $arr;
-
 			$data['user_type'] = 2;
 
 
@@ -853,6 +892,70 @@ class Admin extends CI_Controller {
 
 	}
 
+
+
+	public function viewServiceProvider($id) 
+	{
+
+		if(is_logged_in()){
+			
+			$whr['id']=$id;
+			$whr['user_type']=2;
+			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
+			$arr['getService'] = $this->Admin_model->fetch_service($id);
+
+			// echo '<pre>';
+			// print_r($arr['getService']);
+			// exit();
+			
+
+			$whr_status['status'] = 1;
+			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
+			$arr['states'] = $this->Admin_model->fetchrow('states');
+			$arr['cities'] = $this->Admin_model->fetchrow('cities');
+
+
+
+			if($arr != 0) {
+				$this->load->view('header');
+				$this->load->view('viewServiceProvider',$arr);
+				$this->load->view('footer');
+			} else {
+				$this->load->view('header');
+				$this->load->view('viewServiceProvider',array('error' => 'No data found'));
+				$this->load->view('footer');
+			}
+		} else {
+			redirect('admin');
+		}
+	}
+
+
+
+	public function viewCustomerData($id) 
+	{
+		if(is_logged_in()){
+			$whr['id']=$id;
+			$whr['user_type']=1;
+			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
+			$whr_status['status'] = 1;
+			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
+			$arr['states'] = $this->Admin_model->fetchrow('states');
+			$arr['cities'] = $this->Admin_model->fetchrow('cities');
+			if($arr != 0) {
+				$this->load->view('header');
+				$this->load->view('viewCustomer',$arr);
+				$this->load->view('footer');
+			} else {
+				$this->load->view('header');
+				$this->load->view('viewCustomer',array('error' => 'No data found'));
+				$this->load->view('footer');
+			}
+		} else {
+			redirect('admin');
+		}
+	}
+	
 	public function active_user($id)
 	{
 		$data['status'] = 0;
@@ -1819,8 +1922,10 @@ class Admin extends CI_Controller {
 	$state = $this->Admin_model->fetchrowedit('states',$whr);
 	// echo $this->db->last_query();
 	$st = '';
+
 	if (!empty($state)) {
-		
+
+		$st = '<option value = "">Select State</option>';
 		foreach ($state as $statedata) {
 
 		$st.= '<option value = "'.$statedata->id.'">'.$statedata->name.'</option>';
@@ -1840,7 +1945,8 @@ class Admin extends CI_Controller {
 	// echo $this->db->last_query();
 	$st = '';
 	if (!empty($state)) {
-		
+	$st = '<option value = "">Select State</option>';
+
 		foreach ($state as $statedata) {
 
 		$st.= '<option value = "'.$statedata->id.'">'.$statedata->name.'</option>';
@@ -1850,6 +1956,24 @@ class Admin extends CI_Controller {
 	
 	print_r($st);
 
+	}
+
+
+
+	function deactivate($id){
+
+		$dataStatus['status'] = 0;
+
+		$whr['id']=$id;
+		$this->Admin_model->updaterow($dataStatus,'users',$whr);
+	}
+
+	function activate($id){
+
+		$dataStatus['status'] = 1;
+
+		$whr['id']=$id;
+		$this->Admin_model->updaterow($dataStatus,'users',$whr);
 	}
 
 

@@ -48,7 +48,6 @@
         <table class="table table-custom" id="example">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -63,36 +62,39 @@
                         $i=1;
                         foreach ($fetch_customer as $cust) { ?>
                 <tr class="odd gradeX">
-                <td> <a href="<?php echo base_url(); ?>admin/editServiceProvider/<?php echo $cust->id; ?>"><?php echo $cust->id; ?></a></td>
+                
                 <td><?php echo ucfirst($cust->firstname);  ?></td>
                 <td><?php echo ucfirst($cust->lastname);  ?></td>
                 <td><?php echo $cust->email;  ?></td>
                 <td><?php echo $cust->create_date;  ?></td>
 
                 <td class="actions">
-                    <a href="<?php echo base_url(); ?>admin/editServiceProvider/<?php echo $cust->id; ?>" role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>
+                    <a href="<?php echo base_url(); ?>admin/editServiceProvider/<?php echo $cust->id; ?>" role="button" tabindex="0" style="margin-right: 2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>|| <a href="<?php echo base_url(); ?>admin/viewServiceProvider/<?php echo $cust->id; ?>" style="margin-right:  2px !important;"  role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a>
 
-                   <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $cust->id; ?>" data-method="delete_user">Remove</a>  -->
+                   <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php //echo $cust->id; ?>" data-method="delete_user">Remove</a>  -->
                 </td>
+
+
+
+               
                
                     
                   <td class="actions">
-                    <?php $status = $cust->status;
+                    <?php if($cust->status==1){ ?>
 
-                    if($status == 0){ ?>
+                    <button id="activatersd<?php echo $cust->id;?>" onclick="activate(<?php echo $cust->id;?>)" class ="btn btn-success">Active</button>
 
-                 <span class="label label-info">Disabled account</span>
+                    <button id="deactivaters<?php echo $cust->id;?>" style="display: none;"  onclick="deactivate(<?php echo $cust->id?>)" class ="btn btn-warning">Deactive</button>
 
-                 <?php   }elseif($status == 1){ ?>
+                    
+                    <?php } else { ?>
 
-                 <span class="label label-success">Active</span>
+                    <button id="activaters<?php echo $cust->id;?>" style="display: none;" onclick="activate(<?php echo $cust->id;?>)" class ="btn btn-success">Active</button>
 
-                  <?php  }else{ ?>
-
-                <span class="label label-warning">Pending for approval</span>
-
-                        <?php  }  ?>
-                        
+                    <button id="deactivatersd<?php echo $cust->id;?>" onclick="deactivate(<?php echo $cust->id;?>)" class ="btn btn-warning">Deactive</button>
+                    
+                    <?php } ?>
+                    
                 </td>
               
             </tr>
@@ -117,4 +119,51 @@
         "order": [[ 0, "desc" ]]
     } );
 } );
+</script>
+
+
+<script>
+function activate($id) {
+    if(confirm('Are you really want to deactivate it?')){
+        var user_id = $id;
+        var base_url_path = '<?php echo base_url();?>admin/deactivate/'+user_id; 
+
+        if(user_id){
+            $.ajax({
+              
+              type:'POST',
+              url : base_url_path,
+              data: 'country_id ='+user_id,
+              success: function(res){
+               window.location.reload(true);
+
+
+                }
+            });
+          }
+    }
+    
+}
+</script>
+<script>
+function deactivate($id) {
+    if(confirm('Are you really want to activate it?')){
+        var user_id = $id;
+        var base_url_path = '<?php echo base_url();?>admin/activate/'+user_id; 
+
+        if(user_id){
+            $.ajax({
+              
+              type:'POST',
+              url : base_url_path,
+              data: 'country_id ='+user_id,
+              success: function(res){
+                window.location.reload(true);
+
+
+                }
+            });
+        }
+      }
+}
 </script>

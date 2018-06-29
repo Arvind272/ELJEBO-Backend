@@ -38,24 +38,27 @@
                 <a href="<?php echo site_url('admin/get_customer');?>">
                 <div class="front bg-lightred">
 
+                    <div class="card--objects">
+                        <div class="object-item">
+                            <div class="icn-box"><i class="fa fa-users"></i></div>
+                        </div>
+                        <div class="object-item">
+                            <div class="card-texts">
+                                <div class="title-xs"><?php echo $customer_count; ?></div>
+                                <div class="title-xxs">Users</div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- row -->
-                    <div class="row">
-                        <!-- col -->
+                    <!-- <div class="row">
                         <div class="col-xs-4">
                             <i class="fa fa-users fa-4x"></i>
                         </div>
-                        <!-- /col -->
-                        <!-- col -->
                         <div class="col-xs-8">
-                            
-                                <p class="text-elg text-strong mb-0"><?php echo $customer_count; ?></p>
-                                <span>Users</span>
-                            
+                            <p class="text-elg text-strong mb-0"><?php echo $customer_count; ?></p>
+                            <span>Users</span>
                         </div>
-                        <!-- /col -->
-                    </div>
-                    <!-- /row -->
-
+                    </div> -->
                 </div>
                 </a>
             </div>
@@ -68,27 +71,31 @@
         <div class="card-container col-lg-3 col-sm-6 col-sm-12">
             <div class="card">
                 <a href="<?php echo site_url('admin/get_serviceProvider');?>">
-                <div class="front bg-greensea">
+                    <div class="front bg-lightred">
+                        <div class="card--objects">
+                            <div class="object-item">
+                                <div class="icn-box"><i class="fa fa-user"></i></div>
+                            </div>
+                            <div class="object-item">
+                                <div class="card-texts">
+                                    <div class="title-xs"><?php echo $stylist_count; ?></div>
+                                    <div class="title-xxs">Service Providers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- <div class="front bg-greensea">
 
-                    <!-- row -->
                     <div class="row">
-                        <!-- col -->
                         <div class="col-xs-4">
                             <i class="fa fa-user fa-4x"></i>
                         </div>
-                        <!-- /col -->
-                        <!-- col -->
                         <div class="col-xs-8">
-                            
-                                <p class="text-elg text-strong mb-0">0<?php //echo $stylist_count; ?></p>
-                                <span>Service Providers</span>
-                            
+                            <p class="text-elg text-strong mb-0">0<?php //echo $stylist_count; ?></p>
+                            <span>Service Providers</span>
                         </div>
-                        <!-- /col -->
                     </div>
-                    <!-- /row -->
-
-                </div>
+                </div> -->
                 </a>
             </div>
         </div>
@@ -98,28 +105,31 @@
         <!-- col -->
         <div class="card-container col-lg-3 col-sm-6 col-sm-12">
             <div class="card">
-                <a href="<?php echo site_url('admin/getAppointments');?>">
-                <div class="front bg-blue">
-
-                    <!-- row -->
+                <a href="<?php echo site_url('admin/getCategory');?>">
+                    <div class="front bg-lightred">
+                        <div class="card--objects">
+                            <div class="object-item">
+                                <div class="icn-box"><i class="fa fa-cogs"></i></div>
+                            </div>
+                            <div class="object-item">
+                                <div class="card-texts">
+                                    <div class="title-xs"><?php echo $order_count; ?></div>
+                                    <div class="title-xxs">Services</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- <div class="front bg-blue">
                     <div class="row">
-                        <!-- col -->
                         <div class="col-xs-4">
                             <i class="fa fa-cogs fa-4x"></i>
                         </div>
-                        <!-- /col -->
-                        <!-- col -->
                         <div class="col-xs-8">
-                            
-                                <p class="text-elg text-strong mb-0"><?php echo $order_count; ?></p>
-                                <span>Services</span>
-                            
+                            <p class="text-elg text-strong mb-0"><?php echo $order_count; ?></p>
+                            <span>Services</span>
                         </div>
-                        <!-- /col -->
                     </div>
-                    <!-- /row -->
-
-                </div>
+                </div> -->
                 </a>
             </div>
         </div>
@@ -127,28 +137,31 @@
 		
 		<div class="card-container col-lg-3 col-sm-6 col-sm-12">
             <div class="card">
-                <a href="<?php echo site_url('admin/getAppointments');?>">
-                <div class="front bg-blue">
-
-                    <!-- row -->
-                    <div class="row">
-                        <!-- col -->
-                        <div class="col-xs-4">
-                            <i class="fa fa-shopping-cart fa-4x"></i>
+                <a href="javascript:void(0); <?php /* echo site_url('admin/getAppointments');*/?>">
+                    <div class="front bg-lightred">
+                        <div class="card--objects">
+                            <div class="object-item">
+                                <div class="icn-box"><i class="fa fa-shopping-cart"></i></div>
+                            </div>
+                            <div class="object-item">
+                                <div class="card-texts">
+                                    <div class="title-xs"><?php echo $order_count; ?></div>
+                                    <div class="title-xxs">Orders</div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /col -->
-                        <!-- col -->
-                        <div class="col-xs-8">
-                            
+                    </div>
+                    <!-- <div class="front bg-blue">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <i class="fa fa-shopping-cart fa-4x"></i>
+                            </div>
+                            <div class="col-xs-8">
                                 <p class="text-elg text-strong mb-0"><?php echo $order_count; ?></p>
                                 <span>Orders</span>
-                            
+                            </div>
                         </div>
-                        <!-- /col -->
-                    </div>
-                    <!-- /row -->
-
-                </div>
+                    </div> -->
                 </a>
             </div>
         </div>
