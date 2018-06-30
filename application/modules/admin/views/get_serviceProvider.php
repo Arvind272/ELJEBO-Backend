@@ -51,9 +51,9 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                <th>Create Date</th>
-                <th style="width: 160px;" class="no-sort">Actions</th>
-                <th style="width: 160px;" class="no-sort">Status</th>
+                <th width="210px">Create Date</th>
+                <th width="250px" class="no-sort">Actions</th>
+                <th  class="no-sort">Status</th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +61,7 @@
                     if(isset($fetch_customer)){
                         $i=1;
                         foreach ($fetch_customer as $cust) { ?>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" id="row_<?php echo $cust->id;?>">
                 
                 <td><?php echo ucfirst($cust->firstname);  ?></td>
                 <td><?php echo ucfirst($cust->lastname);  ?></td>
@@ -69,7 +69,7 @@
                 <td><?php echo $cust->create_date;  ?></td>
 
                 <td class="actions">
-                    <a href="<?php echo base_url(); ?>admin/editServiceProvider/<?php echo $cust->id; ?>" role="button" tabindex="0" style="margin-right: 2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>|| <a href="<?php echo base_url(); ?>admin/viewServiceProvider/<?php echo $cust->id; ?>" style="margin-right:  2px !important;"  role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a>
+                    <a href="<?php //echo base_url(); ?>admin/editServiceProvider/<?php echo $cust->id; ?>" role="button" tabindex="0" style="margin-right: 2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>|| <a href="<?php echo base_url(); ?>admin/viewServiceProvider/<?php echo $cust->id; ?>" style="margin-right:  2px !important;"  role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a> || <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="javascript:void(0)" onclick="delete_user(<?php echo $cust->id;?>);">Delete</a>
 
                    <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php //echo $cust->id; ?>" data-method="delete_user">Remove</a>  -->
                 </td>

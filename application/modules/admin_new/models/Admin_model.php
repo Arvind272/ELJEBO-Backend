@@ -68,25 +68,23 @@ class Admin_model extends CI_Model {
 		$query = $this->db->get();
 
 		$result = $query -> result_array();
-		if(count($result) > 0) 
-		{
-			foreach ($result as $key => $value) 
-			{
 
-				$this->db->select('category_name');
-				$this->db->from('category');
-				$this->db->where(array('id' => $value['category_id']));
-				$category_q = $this->db->get();
-				$category_name = $category_q->result_array();
-				$category_name = $category_name[0]['category_name'];
+		foreach ($result as $key => $value) {
 
-				$result[$key]['category_name'] = $category_name;
+			$this->db->select('category_name');
+			$this->db->from('category');
+			$this->db->where(array('id' => $value['category_id']));
+			$category_q = $this->db->get();
+			$category_name = $category_q->result_array();
+			$category_name = $category_name[0]['category_name'];
 
-			}
+			$result[$key]['category_name'] = $category_name;
+
+		}
+		
+		if (count($result) > 0) {
 			return $result;
-		} 
-		else 
-		{
+		} else {
 			return 0;
 		}
 		
@@ -511,7 +509,7 @@ class Admin_model extends CI_Model {
 	public function deleterow($table,$id)
 	{
 		$this->db->where($id);
-		$this->db->delete($table);
+		$this->db->update($table);
 		
 	}
 
@@ -629,31 +627,6 @@ class Admin_model extends CI_Model {
          
     }  
 
-    function fetch_service($id){
-
-    	$sql="SELECT us.charge,us.service_id ,sr.service_name FROM `users_services` as us LEFT JOIN services as sr ON us.service_id = sr.id WHERE us.user_id = ".$id;
-    	$response = $this->db->query($sql);
-    	//print_r($response);die;
-    	return $result =  $response->result();
-	}
-
-	function fetch_service_charge($id){
-
-    	$sql="SELECT us.service_id, us.charge  FROM `users_services` as us LEFT JOIN services as sr ON us.service_id = sr.id WHERE us.user_id = ".$id;
-    	$response = $this->db->query($sql);
-    	//print_r($response);die;
-    	return $result =  $response->result();
-	}
-
-	function fetch_service_id($id){
-
-    	$sql="SELECT us.service_id  FROM `users_services` as us LEFT JOIN services as sr ON us.service_id = sr.id WHERE us.user_id = ".$id;
-    	$response = $this->db->query($sql);
-    	//print_r($response);die;
-    	return $result =  $response->result();
-	}
-
-    
 
     
 }

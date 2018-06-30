@@ -10,10 +10,14 @@
         <base href="<?= base_url(); ?>">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Eljebo - Admin Dashboard</title>
+        <title>GlamArmy - Admin Dashboard</title>
         <link rel="icon" type="image/ico" href="assets/images/favicon.ico" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
         <!-- ============================================
         ================= Stylesheets ===================
         ============================================= -->
@@ -54,25 +58,27 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-<script src="assets/js/validate.js"></script>
-<script type="text/javascript">
-    
-  var  base_url = '<?php echo base_url(); ?>';
-</script>
-
-<style type="text/css">
-    .error{
-        color: red;
-    }
-</style>
 
     </head>
     <body id="minovate" class="appWrapper">
 
+
+
+
+
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
+
+
+
+
+
+
+
+
+
 
 
         <!-- ====================================================
@@ -88,8 +94,8 @@
 
                     <!-- Branding -->
                     <div class="branding">
-                        <a class="brand" href="<?php echo base_url(); ?>admin/dashboard">
-                           <img src="<?php echo base_url('assets/images/minovate-logo.png');?>" height="43px" />
+                        <a class="brand" href="index.html">
+                            <span>Glam<strong>Army</strong></span>
                         </a>
                         <a href="#" class="offcanvas-toggle visible-xs-inline"><i class="fa fa-bars"></i></a>
                     </div>
@@ -104,7 +110,6 @@
                                 <i class="fa fa-outdent"></i>
                             </a>
                         </li>
-					 <!--
                         <li class="dropdown divided-right settings">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-cog"></i>
@@ -180,9 +185,11 @@
                                 </li>
                             </ul>
                         </li>
-						-->
-					</ul>
+                    </ul>
                     <!-- Left-side navigation end -->
+
+
+
 
                     <!-- Search -->
                     <!-- <div class="search" id="main-search">
@@ -190,13 +197,16 @@
                     </div> -->
                     <!-- Search end -->
 
+
+
+
                     <!-- Right-side navigation -->
                     <ul class="nav-right pull-right list-inline">
 
                         <li class="dropdown nav-profile">
 
                             <a href class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="uploads/avtar.png" alt="" class="img-circle size-30x30">
+                                <img src="assets/images/profile-photo.jpg" alt="" class="img-circle size-30x30">
                                 <span>Admin <i class="fa fa-angle-down"></i></span>
                             </a>
 
@@ -238,6 +248,10 @@
             ================================================== -->
             <div id="controls">
 
+
+
+
+
                 <!-- ================================================
                 ================= SIDEBAR Content ===================
                 ================================================= -->
@@ -248,16 +262,14 @@
 
                         <div class="panel-group slim-scroll" role="tablist">
                             <div class="panel panel-default">
-                               <!--
-							   <div class="panel-heading" role="tab">
+                                <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" href="#sidebarNav">
                                             Navigation <i class="fa fa-angle-up"></i>
                                         </a>
                                     </h4>
                                 </div>
-								-->
-                                <div id="sidebarNav " class="panel-collapse collapse in" role="tabpanel">
+                                <div id="sidebarNav" class="panel-collapse collapse in" role="tabpanel">
                                     <div class="panel-body">
 
 
@@ -268,61 +280,23 @@
                                             <li class="<?php if($this->uri->segment(2) == 'dashboard') {echo 'active';} ?>"><a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
                                            <!--  <li class="<?php if($this->uri->segment(2) == 'orders_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/orders_list');?>"><i class="fa fa-caret-right"></i>Order List</a></li> -->
 
-                                           <li class="dropdown <?php if(($this->uri->segment(2) == 'getCategory')||($this->uri->segment(2) == 'services')||($this->uri->segment(2) == 'edit_service')||($this->uri->segment(2) == 'edit_category')) {echo 'active';} ?>">
-                                                <a role="button" tabindex="0"><i class="fa fa-cog"></i> <span>Services</span></a>
-                                                <ul>
-                                                    <li><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Services List</a></li>
-                                                    <li><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Sub Services List</a></li>
-                                                   
-                                                </ul>
-                                            </li> 
-                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-th-list"></i><span>Service Provider List</span></a></li>
-										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-list"></i><span>Customer List</span></a></li> 
+                                           <li class="<?php if($this->uri->segment(2) == 'get_customer') {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_customer');?>"><i class="fa fa-caret-right"></i>Customer List</a></li>
 
-                                         <?php /*  <li class="<?php if($this->uri->segment(2) == 'getCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Category List</a></li>
+                                           <li class="<?php if($this->uri->segment(2) == 'get_serviceProvider') {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-caret-right"></i>Service Provider List</a></li>
 
-                                           <li class="<?php if($this->uri->segment(2) == 'services') {echo 'active';} ?>"><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Services</a></li> */ ?>
 
-                                            <!-- <li class="dropdown <?php //if(($this->uri->segment(2) == 'getBeautyCategory')||($this->uri->segment(2) == 'edit_beautyCategory')||($this->uri->segment(2) == 'getBeautySubCategory')||($this->uri->segment(2) == 'edit_beautySubCategory')) {echo 'active';} ?>">
-                                                <a role="button" tabindex="0"><i class="fa fa-caret-right"></i> <span>Beauty Category</span></a>
-                                                <ul>
-                                                    <li><a href="<?php //echo site_url('admin/getBeautyCategory');?>"><i class="fa fa-caret-right"></i>Beauty Category List</a></li>
+                                            <li class="<?php if($this->uri->segment(2) == 'services') {echo 'active';} ?>"><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Services</a></li>
 
-                                                    <li><a href="<?php //echo site_url('admin/getBeautySubCategory');?>"><i class="fa fa-caret-right"></i>Beauty Sub Category List</a></li>
-                                                    
-                                                </ul>
-                                            </li> -->
+                                            <li class="<?php if($this->uri->segment(2) == 'styler_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/styler_list');?>"><i class="fa fa-caret-right"></i>Stylish List</a></li>
 
-                                       <?php /*    <li class="<?php if($this->uri->segment(2) == 'getBeautyCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getBeautyCategory');?>"><i class="fa fa-caret-right"></i>Beauty Category List</a></li>
+                                            <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-caret-right"></i>Customer List</a></li>
 
-                                           <li class="<?php if($this->uri->segment(2) == 'getBeautySubCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getBeautySubCategory');?>"><i class="fa fa-caret-right"></i>Beauty Sub Category List</a></li>
-                                                                          */  ?>
+                                           <!--  <li class="<?php if($this->uri->segment(2) == 'referrals') {echo 'active';} ?>"><a href="<?php echo site_url('admin/referrals');?>"><i class="fa fa-caret-right"></i>Referrals</a></li> -->
+                                            <li class="<?php if($this->uri->segment(2) == 'questions') {echo 'active';} ?>"><a href="<?php echo site_url('admin/questions');?>"><i class="fa fa-caret-right"></i>Questions</a></li>
 
-                                            <!-- <li>
-                                                <a role="button" tabindex="0"><i class="fa fa-envelope-o"></i> <span>Mail</span> <span class="badge bg-lightred">6</span></a>
-                                                <ul>
-                                                    <li><a href="mail-inbox.html"><i class="fa fa-caret-right"></i> Inbox</a></li>
-                                                    <li><a href="mail-compose.html"><i class="fa fa-caret-right"></i> Compose Mail</a></li>
-                                                    <li><a href="mail-single.html"><i class="fa fa-caret-right"></i> Single Mail</a></li>
-                                                </ul>
-                                            </li> -->
+                                            <li class="<?php if($this->uri->segment(2) == 'appointments') {echo 'active';} ?>"><a href="<?php echo site_url('admin/appointments');?>"><i class="fa fa-caret-right"></i>Appointments</a></li>
 
-                                            
-
-                                         
-
-                                           
-
-                                        
-                                         <?php /*   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-caret-right"></i>Customer List</a></li> */ ?>
-
-                                           <?php /*  <li class="<?php if($this->uri->segment(2) == 'referrals') {echo 'active';} ?>"><a href="<?php echo site_url('admin/referrals');?>"><i class="fa fa-caret-right"></i>Referrals</a></li> */ ?>
-
-                                          <?php /*  <li class="<?php if($this->uri->segment(2) == 'questions') {echo 'active';} ?>"><a href="<?php echo site_url('admin/questions');?>"><i class="fa fa-caret-right"></i>Questions</a></li> */ ?>
-
-                                           <?php /* <li class="<?php if($this->uri->segment(2) == 'appointments') {echo 'active';} ?>"><a href="<?php echo site_url('admin/appointments');?>"><i class="fa fa-caret-right"></i>Appointments</a></li> */ ?>
-
-                                          <?php /*  <!-- <li class="<?php if($this->uri->segment(2) == 'kitchen_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/kitchen_list');?>"><i class="fa fa-caret-right"></i>kitchen List</a></li> -->
+                                            <!-- <li class="<?php if($this->uri->segment(2) == 'kitchen_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/kitchen_list');?>"><i class="fa fa-caret-right"></i>kitchen List</a></li> -->
                                             <!-- <li class="dropdown open">
                                                 <a role="button" tabindex="0"><i class="fa fa-table"></i> <span>Admin Panel</span></a>
                                                 <ul style="display: block;">
@@ -331,7 +305,7 @@
                                                      <li class="<?php if($this->uri->segment(2) == 'orders_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/orders_list');?>"><i class="fa fa-caret-right"></i>Order List</a></li>
                                                      <li class="<?php if($this->uri->segment(2) == 'kitchen_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/kitchen_list');?>"><i class="fa fa-caret-right"></i>kitchen List</a></li>
                                                 </ul>
-                                            </li> */ ?>
+                                            </li> -->
                                         </ul>
 
                                         <!--/ NAVIGATION Content -->

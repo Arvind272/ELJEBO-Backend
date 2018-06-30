@@ -32,19 +32,20 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Create Date</th>
-                <th style="width: 160px;" class="no-sort">Actions</th>
+                
                 <th style="width: 160px;" class="no-sort">Status</th>
+                <th style="width: 160px;" class="no-sort">Actions</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach($info as $data) : ?>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" id="row_<?php echo $data['id'];?>">
                 <td><?php echo $data['firstname'];?></td>
                 <td><?php echo $data['lastname'];?></td>
                 <td><?php echo $data['email'];?></td>
                 <td><?php echo $data['create_date'];?></td>
                 <td class="actions">
-                    <a role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10" style="margin-right:  2px !important;" href="<?php echo base_url('admin/editCustomer/'.$data['id']);?>">Edit</a>|| <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo base_url('admin/viewCustomerData/'.$data['id']);?>">view</a>
+                    <a role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10" style="margin-right:  2px !important;" href="<?php echo base_url('admin/editCustomer/'.$data['id']);?>">Edit</a>|| <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo base_url('admin/viewCustomerData/'.$data['id']);?>">view</a> || <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="javascript:void(0)" onclick="delete_user(<?php echo $data['id'];?>);">Delete</a>
                     <!-- <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php// echo $data['id'];?>">Remove</a> -->
                 </td>
                 <td class="actions">
@@ -98,13 +99,10 @@ function activate($id) {
               data: 'country_id ='+user_id,
               success: function(res){
                window.location.reload(true);
-
-
                 }
             });
           }
     }
-    
 }
 </script>
 <script>

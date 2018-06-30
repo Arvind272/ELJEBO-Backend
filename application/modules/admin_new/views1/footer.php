@@ -65,7 +65,6 @@
         <script src="assets/js/vendor/filestyle/bootstrap-filestyle.min.js"></script>
 
         <script src="assets/js/vendor/summernote/summernote.min.js"></script>
-         <script src="assets/js/common.js"></script>
 
         <script src="assets/js/vendor/datatables/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/vendor/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
@@ -98,7 +97,7 @@
         <script>
             $(window).load(function(){
                 
-                jQuery('#open-chats ul#inbox li.active a.active').trigger("click");
+                
 
                 //initialize basic datatable
                 var table = $('#basic-usage').DataTable({

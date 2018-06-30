@@ -278,9 +278,17 @@
                     <div style="clear: both;"></div>
                   <br>
 
+                  <?php 
+
+                    $whr['id'] = $customer_data->certificate_ids;
+                    $images_data = $this->Admin_model->fetchrowedit('users_images',$whr); 
+                    $image = $images_data[0]->image
+
+                 ?>
+
                     <div class="form-group">
                         <label for="pwd"> Certifications:</label>
-                        <a href="<?php echo base_url();?>uploads/service_provider/certification/<?php echo $customer_data->certificate_ids;?>"   target="_blank" >Link of documents</a>
+                        <a href="<?php echo base_url();?>uploads/service_provider/<?php echo $image;?>"   target="_blank" >Link of documents</a>
                   </div>
 
 
@@ -398,15 +406,7 @@
         });
       }
   })
-
-
-
-
-
-
-
 });
-
 
 </script>
 <script type="text/javascript">

@@ -56,11 +56,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 <script src="assets/js/validate.js"></script>
-<script type="text/javascript">
-    
-  var  base_url = '<?php echo base_url(); ?>';
-</script>
-
 <style type="text/css">
     .error{
         color: red;
@@ -269,15 +264,15 @@
                                            <!--  <li class="<?php if($this->uri->segment(2) == 'orders_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/orders_list');?>"><i class="fa fa-caret-right"></i>Order List</a></li> -->
 
                                            <li class="dropdown <?php if(($this->uri->segment(2) == 'getCategory')||($this->uri->segment(2) == 'services')||($this->uri->segment(2) == 'edit_service')||($this->uri->segment(2) == 'edit_category')) {echo 'active';} ?>">
-                                                <a role="button" tabindex="0"><i class="fa fa-cog"></i> <span>Services</span></a>
+                                                <a role="button" tabindex="0"><i class="fa fa-dashboard"></i> <span>Services</span></a>
                                                 <ul>
                                                     <li><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Services List</a></li>
                                                     <li><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Sub Services List</a></li>
                                                    
                                                 </ul>
                                             </li> 
-                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-th-list"></i><span>Service Provider List</span></a></li>
-										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-list"></i><span>Customer List</span></a></li> 
+                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-caret-right"></i>Service Provider List</a></li>
+										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-caret-right"></i>Customer List</a></li> 
 
                                          <?php /*  <li class="<?php if($this->uri->segment(2) == 'getCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Category List</a></li>
 

@@ -2,7 +2,7 @@
 
     <div class="pageheader">
 
-        <h2>Customers <span>Registered customers of ELJEBO</span></h2>
+        <h2>Customers <span>Registered customers of glamarmy</span></h2>
 
         <!-- <div class="page-bar">
 
@@ -39,7 +39,7 @@
 
 <div class="tile-body">
     <div class="table-responsive">
-        <table class="table table-custom" id="example">
+        <table class="table table-custom" id="customers">
             <thead>
             <tr>
                 <th>ID</th>
@@ -55,47 +55,43 @@
             <tbody>
                 <?php 
                     if(isset($fetch_customer)){
-                       
+                        $i=1;
                         foreach ($fetch_customer as $cust) { ?>
                 <tr class="odd gradeX">
-                <td><a href="<?php echo base_url(); ?>admin/viewCustomer/<?php echo $cust->id; ?>"><?php echo $cust->id; ?></a></td>
-                <td><?php echo ucfirst($cust->firstname);  ?></td>
-                <td><?php echo ucfirst($cust->lastname);  ?></td>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $cust->firstname;  ?></td>
+                <td><?php echo $cust->lastname;  ?></td>
                 <td><?php echo $cust->email;  ?></td>
                 <td>
          <?php if($cust->referral_id !=0){
           $whr['id']=$cust->referral_id;
           $datareferral = $this->Admin_model->fetchrowedit('referral',$whr);
           foreach ($datareferral as $referral) {     ?>
-                <?php echo  ucfirst($referral->name);  ?>
+                <?php echo  $referral->name;  ?>
                 <?php }
                } ?>
                
                </td>
             
-                <td><?php $date1 = $cust->create_date;
-                                 echo $newDate = date("Y-m-d", strtotime($date1)); ?></td>
+                <td><?php echo $cust->create_date;  ?></td>
 
                 <td class="actions">
-                    <a href="<?php echo base_url(); ?>admin/viewCustomer/<?php echo $cust->id; ?>" role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a>
-                     <a href="<?php echo base_url(); ?>admin/viewCustomer/<?php echo $cust->id; ?>" role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>
+                    <a href="<?php echo base_url(); ?>admin/editCustomer/<?php echo $cust->id; ?>" role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a>
 
-
-
-                   <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php //echo $cust->id;?>">Remove</a>  -->
+                   <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php echo $cust->id;?>">Remove</a>  -->
                 </td>
                 <td class="actions">
                     <?php $status = $cust->status;
 
                     if($status ==1){ ?>
-                        <a href="<?php echo base_url(); ?>admin/active_user/<?php echo $cust->id; ?>" class="label label-success">Active</a>
+                        <a href="<?php echo base_url(); ?>admin/active_user/<?php echo $cust->id; ?>">Deactivate</a>
                  <?php   }else{ ?>
-                        <a href="<?php echo base_url(); ?>admin/deactive_user/<?php echo $cust->id; ?>" class="label label-info">Inactive</a>
+                        <a href="<?php echo base_url(); ?>admin/deactive_user/<?php echo $cust->id; ?>">Activate</a>
              <?php   }  ?>
                         
                 </td>
             </tr>
-            <?php  }} ?>
+            <?php $i++; }} ?>
             </tbody>
             
         </table>
@@ -130,10 +126,3 @@
     <!-- /row -->
 
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        "order": [[ 0, "desc" ]]
-    } );
-} );
-</script>

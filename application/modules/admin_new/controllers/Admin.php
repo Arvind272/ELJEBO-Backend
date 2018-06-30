@@ -15,62 +15,6 @@ class Admin extends CI_Controller {
 			redirect('admin/dashboard');
 		}
 	}
-
-
-	function upload_service($name)
-    { 
-                $this->load->helper('form'); 
-                $config['upload_path'] = 'uploads/service_provider/'; 
-                $config['allowed_types'] = 'jpg|png|jpeg'; 
-                $config['max_size'] = '30000'; 
-                $config['max_width'] = '102400'; 
-                $config['max_height'] = '76800'; 
-                $this->load->library('upload', $config);          
-                $this->upload->initialize($config); 
-                if (!$this->upload->do_upload($name)) 
-                { 
-                    $data = array('msg' => $this->upload->display_errors()); 
-                }
-                else
-                {       
-                        $data = array('msg' => "success"); 
-                        $databasea['upload_data'] = $this->upload->data(); 
-                        $this->load->library('image_lib'); 
-                        return $databasea['upload_data']['file_name']; 
-                } 
-                return ''; 
-    }
-
-
-
-    function upload_customer($name)
-    { 
-                $this->load->helper('form'); 
-                $config['upload_path'] = 'uploads/customer/'; 
-                $config['allowed_types'] = 'jpg|png|jpeg'; 
-                $config['max_size'] = '30000'; 
-                $config['max_width'] = '102400'; 
-                $config['max_height'] = '76800'; 
-                $this->load->library('upload', $config);          
-                $this->upload->initialize($config); 
-                if (!$this->upload->do_upload($name)) 
-                { 
-                    $data = array('msg' => $this->upload->display_errors()); 
-                }
-                else
-                {       
-                        $data = array('msg' => "success"); 
-                        $databasea['upload_data'] = $this->upload->data(); 
-                        $this->load->library('image_lib'); 
-                        return $databasea['upload_data']['file_name']; 
-                } 
-                return ''; 
-    }
-
-
-
-
-	
 	// login
 	public function login() {
 		$username = $this->input->post('firstname');
@@ -79,7 +23,7 @@ class Admin extends CI_Controller {
 		if($return == 1) {
 			redirect('admin/dashboard');
 		} else {
-			$this->session->set_flashdata('error_msg', 'Wrong email and password');
+			$this->session->set_flashdata('error_msg', 'Wrong username and password');
 			redirect('admin');
 		}
 	}
@@ -138,99 +82,6 @@ class Admin extends CI_Controller {
 		} else {
 			redirect('admin');
 		}
-	}
-	
-	public function add_customer() 
-	{
-
-		if(is_logged_in()){
-			
-			$whr['user_type']=1;
-			$arr['fetch_customer'] = $this->Admin_model->fetchrowedit('users',$whr);
-			$arr['getService'] = $this->Admin_model->fetchrow('services');
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
-
-			if($arr != 0) {
-
-				$this->load->view('header');
-				$this->load->view('add_customer',$arr);
-				$this->load->view('footer');
-
-			} else {
-
-				$this->load->view('header');
-				$this->load->view('add_customer',array('error' => 'No data found'));
-				$this->load->view('footer');
-			}
-		} else {
-			redirect('admin');
-		}
-	}
-
-	public function save_customer()
-	{
-		
-
-		if(isset($_POST['add_provider'])){
-			$data['firstname'] = $_POST['firstname'];
-			$data['lastname'] = $_POST['lastname'];
-			$data['email'] = $_POST['email'];
-			$data['password'] = $_POST['password'];
-			$data['address'] = $_POST['address'];
-			$lati = $_POST['latitude'];
-			$long = $_POST['longitude'];
-			$data['latlng'] = $lati.'@'.$long;
-			$data['profile_pic'] = $this->upload_pic('profile_pic');
-			$data['portfolio_image_ids']=$this->upload_pic('portfolio_img');
-			$data['telephone'] = $_POST['telephone'];
-			$data['mobile'] = $_POST['mobile'];
-			$data['landline'] = $_POST['landline'];
-			$data['status'] = $_POST['status'];
-			$serviceID = $_POST['service_ids'];
-
-			$arr = implode(",", $serviceID);
-			$data['service_ids'] = 0;
-
-			$data['user_type'] = '1';
-
-
-			$this->Admin_model->insertrow($data,'users');
-
-			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/customer_list');
-
-		}
-
-	}
-	
-	
-
-
-	public function updateCustomer()
-	{
-		
-
-		if(isset($_POST['update'])){
-			$data['firstname']=$_POST['firstname'];
-			$data['lastname']=$_POST['lastname'];
-			$data['address']=$_POST['address'];
-			$data['mobile']=$_POST['mobile'];
-			$data['landline']=$_POST['landline'];
-			$data['status']=$_POST['status'];
-			$serviceID = $_POST['service_ids'];
-
-			$arr = implode(",", $serviceID);
-			$data['service_ids'] = $arr;
-
-			$whr['id']=$_POST['id'];
-			$this->Admin_model->updaterow($data,'users',$whr);
-
-			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/customer_list');
-
-		}
-
 	}
 
 	// chef list
@@ -313,14 +164,14 @@ class Admin extends CI_Controller {
 		$arr['info'] = $obj;
 		$arr['category_names'] = $category_names;
 
-		if($obj != '' && $obj!=0 ) {
-			
+		if($arr != 0) {
+
 			$this->load->view('header');
 			$this->load->view('services',$arr);
 			$this->load->view('footer');
 
 		} else {
-			
+
 			$this->load->view('header');
 			$this->load->view('services',array('error' => 'No data found'));
 			$this->load->view('footer');
@@ -540,14 +391,10 @@ class Admin extends CI_Controller {
 		}
 
 		if($this->Admin_model->deleteUser($post['id'])){
-			$success = 1;
-			$msg="User has been deleted successfully.";
+			return true;
 		} else {
-			$success = 0;
-			$msg="Please try again.";
+			return false;
 		}
-
-		echo json_encode(array("success"=>$success,"message"=>$msg));
 	}
 
 	public function editUser()
@@ -601,33 +448,19 @@ class Admin extends CI_Controller {
 
 	}
 	//delete service
-	public function delete_service()  
-	{  
-
+	public function delete_service() {
 		$response = $this->Admin_model->deleteservice($_POST['id'],'services');
-
 		if($response){
 			die(json_encode(['success'=>true,'message'=>'Record deleted successfully.']));
-			
 		}else{
-
 			die(json_encode(['success'=>false,'message'=>'Unable to delete this. Please try after some time.']));	
 		}
-
-
 	} 
 
 	public function delete_user()  
-	{ 
+	{  
 
-	$userid = $_POST['id']; 
-
-	$response = $this->Admin_model->deleteUser($userid,'users');
-
-		
-		$img = $this->Admin_model->deleterow('users_services',$userid);
-
-
+		$response = $this->Admin_model->deleteUser($_POST['id'],'users');
 
 		if($response){
 			die(json_encode(['success'=>true,'message'=>'Record deleted successfully.']));
@@ -692,28 +525,41 @@ class Admin extends CI_Controller {
 	}   	
 
 	//get 
-	
+	public function get_customer() 
+	{
+
+		if(is_logged_in()){
+			
+			$whr['user_type']=1;
+			$arr['fetch_customer'] = $this->Admin_model->get_customerList('users',$whr);
+
+
+			if($arr != 0) {
+
+				$this->load->view('header');
+				$this->load->view('get_customer',$arr);
+				$this->load->view('footer');
+
+			} else {
+
+				$this->load->view('header');
+				$this->load->view('get_customer',array('error' => 'No data found'));
+				$this->load->view('footer');
+			}
+		} else {
+			redirect('admin');
+		}
+	}
 
 
 	public function viewCustomer($id) 
 	{
 
 		if(is_logged_in()){
+			$arr = array();
 			$whr['id']=$id;
-			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
-
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
-			$arr['states'] = $this->Admin_model->fetchrow('states');
-			$arr['cities'] = $this->Admin_model->fetchrow('cities');
-
-			// echo '<pre>';
-			// print_r($arr['fetch_customer']);
-			// exit();
-			// $arr['getService'] = $this->Admin_model->fetchrow('services');
-
-			// $arr['getServices'] = $this->Admin_model->fetch_service($id);
-			// $arr['getServicesCharge'] = $this->Admin_model->fetch_service_charge($id);
+			$arr['fetch_customer'] = $this->Admin_model->fetchrowedit('users',$whr);
+			$arr['getBeautySubCatData'] = $this->Admin_model->getCustomerBeautyDetial($id);
 
 
 
@@ -736,7 +582,32 @@ class Admin extends CI_Controller {
 	}
 
 	
-	
+	public function editServiceProvider($id) 
+	{
+
+		if(is_logged_in()){
+			
+			$whr['id']=$id;
+			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
+			$arr['getService'] = $this->Admin_model->fetchrow('services');
+
+
+			if($arr != 0) {
+
+				$this->load->view('header');
+				$this->load->view('editServiceProvider',$arr);
+				$this->load->view('footer');
+
+			} else {
+
+				$this->load->view('header');
+				$this->load->view('editServiceProvider',array('error' => 'No data found'));
+				$this->load->view('footer');
+			}
+		} else {
+			redirect('admin');
+		}
+	}
 
 
 	public function updateservice()
@@ -792,375 +663,68 @@ class Admin extends CI_Controller {
 	}
 
 
-
-
 	public function add_serviceProvider() 
 	{
 
 		if(is_logged_in()){
-
-
-
-
-
 			
 			$whr['user_type']=1;
 			$arr['fetch_customer'] = $this->Admin_model->fetchrowedit('users',$whr);
 			$arr['getService'] = $this->Admin_model->fetchrow('services');
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
 
 			if($arr != 0) {
+
 				$this->load->view('header');
 				$this->load->view('add_serviceProvider',$arr);
 				$this->load->view('footer');
+
 			} else {
+
 				$this->load->view('header');
 				$this->load->view('add_serviceProvider',array('error' => 'No data found'));
 				$this->load->view('footer');
 			}
-		} 
-			else 
-			{
-				redirect('admin');
-			}
+		} else {
+			redirect('admin');
+		}
 	}
 
 	public function add_servicePro()
 	{
 		
 
-	if(isset($_POST['add_provider'])){
-
-		$dataimage['image'] = $this->upload_service('certification');
-		$this->Admin_model->insertrow($dataimage,'users_images');
-			$data['certificate_ids'] = $this->db->insert_id();
-			$data['firstname'] = $_POST['firstname'];
-			$data['lastname'] = $_POST['lastname'];
-			$data['email'] = $_POST['email'];
-			$data['password'] = md5($_POST['password']);
-			$data['address'] = $_POST['address'];
-			$data['address2'] = $_POST['address2'];
-			$question1 = $_POST['question1'];
-			$question2 = $_POST['question2'];
-			$question3 = $_POST['question3'];
-			$answer1 = $_POST['answer1'];
-			$answer2 = $_POST['answer2'];
-			$answer3 = $_POST['answer3'];
-			$data['question1'] = $_POST['question1'];
-			$data['question2'] = $_POST['question2'];
-			$data['question3'] = $_POST['question3'];
-			$data['answer1'] = $_POST['answer1'];
-			$data['answer2'] = $_POST['answer2'];
-			$data['answer3'] = $_POST['answer3'];
-			$data['description'] = $_POST['description'];
-			$data['country_id'] = $_POST['country'];
-			$data['state_id'] = $_POST['state'];
-			$data['city_id'] = $_POST['city'];
-			$data['username'] = $_POST['username'];
-			$data['zip_code'] = $_POST['zip_code'];
-			$data['security_que_ans'] =  '[{
-							    "answer" : "'.$answer1.'",
-							    "question" : "'.$question1.'"
-							  },
-							  {
-							    "answer" : "'.$answer2.'",
-							    "question" : "'.$question2.'"
-							  },
-							  {
-							    "answer" : "'.$answer3.'",
-							    "question" : "'.$question3.'"
-							  }]';
-			$data['start_time'] = $_POST['from'].':00';
-			$data['end_time']   = $_POST['to'].':00';
-			$data['mobile'] = $_POST['phone'];
-			$data['status'] = $_POST['status'];
-			$data['user_type'] = 2;
-			$data['education'] = implode(',', $_POST['education']);
-			$serviceID = $_POST['service_ids'];
-			$dataservice['services']    = $_POST['service_amount'];
-			$dataservice['services_id'] = $_POST['service_ids'];
-			$this->Admin_model->insertrow($data,'users');
-			$insert['user_id'] = $this->db->insert_id();
-			
-
-			$count =  count($_POST['service_ids']);
-			$serviceIds=$_POST['service_ids'];
-			$serviceAmount=$_POST['service_amount'];
-				// echo "<pre>";
-				// 			print_r($serviceAmount); die;
-			$service_data = array();
-			
-			foreach($serviceIds as $k=>$service){
-				$insert['service_id'] = $service;
-				$insert['charge'] = $serviceAmount[$service];
-				$this->db->insert('users_services',$insert);
-			}
-			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/get_serviceProvider');
-
-		}
-
-	}
-
-	public function edit_servicePro()
-	{
-		
-
-	if(isset($_POST['edit_provider'])){
-
-
-
-		if(!empty($_FILES['certification']['name']) && isset($_FILES['certification']['name'])){
-
-			$whrimageids['id'] = $_POST['image_ids'];
-			$dataimageupdate['image'] = $this->upload_service('certification');
-			$this->Admin_model->updaterow($dataimageupdate,'users_images',$whrimageids);
-			
-			}  else {
-			
-			$data['certificate_ids'] = $_POST['image_ids'];
-			
-			}
-			// $data['certificate_ids'] = $this->db->insert_id();
-			$data['firstname'] = $_POST['firstname'];
-			$data['lastname'] = $_POST['lastname'];
-			$data['email'] = $_POST['email'];
-			$data['password'] = md5($_POST['password']);
-			$data['address'] = $_POST['address'];
-			$data['address2'] = $_POST['address2'];
-			$question1 = $_POST['question1'];
-			$question2 = $_POST['question2'];
-			$question3 = $_POST['question3'];
-			$answer1 = $_POST['answer1'];
-			$answer2 = $_POST['answer2'];
-			$answer3 = $_POST['answer3'];
-			
-			$data['description'] = $_POST['description'];
-			$data['country_id'] = $_POST['country'];
-			$data['state_id'] = $_POST['state'];
-			$data['city_id'] = $_POST['city'];
-			$data['username'] = $_POST['username'];
-			$data['zip_code'] = $_POST['zip_code'];
-			$data['security_que_ans'] =  '[{
-							    "answer" : "'.$answer1.'",
-							    "question" : "'.$question1.'"
-							  },
-							  {
-							    "answer" : "'.$answer2.'",
-							    "question" : "'.$question2.'"
-							  },
-							  {
-							    "answer" : "'.$answer3.'",
-							    "question" : "'.$question3.'"
-							  }]';
-			$data['start_time'] = $_POST['from'].':00';
-			$data['end_time']   = $_POST['to'].':00';
-			$data['mobile'] = $_POST['phone'];
-			$data['status'] = $_POST['status'];
-			// $data['user_type'] = 2;
-			$data['education'] = implode(',', $_POST['education']);
-			$serviceID = $_POST['service_ids'];
-			$dataservice['services']    = $_POST['service_amount'];
-			$dataservice['services_id'] = $_POST['service_ids'];
-
-
-				$whereServices['user_id'] = $_POST['user_id'];
-				$this->Admin_model->deleterow('users_services',$whereServices);
-			$whruser['id']= $_POST['user_id'];
-			$this->Admin_model->updaterow($data,'users',$whruser);
-
-			// echo '<pre>';
-			// print_r($data);
-			// echo $this->db->last_query();
-			// exit();
-			$insert['user_id'] = $_POST['user_id'];
-			$count =  count($_POST['service_ids']);
-			$serviceIds=$_POST['service_ids'];
-			$serviceAmount=$_POST['service_amount'];
-				// echo "<pre>";
-				// 			print_r($serviceAmount); die;
-			$service_data = array();
-			
-			foreach($serviceIds as $k=>$service){
-				$insert['service_id'] = $service;
-				$insert['charge'] = $serviceAmount[$service];
-				$this->db->insert('users_services',$insert);
-			}
-
-			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/get_serviceProvider');
-
-		}
-
-	}
-
-
-	public function add_CustomerPro()
-	{
-		
-
 		if(isset($_POST['add_provider'])){
-
-			$dataimage['image'] = $this->upload_customer('certification');
-			
-			$this->Admin_model->insertrow($dataimage,'users_images');
-
-
-			$data['certificate_ids'] = $this->db->insert_id();
 			$data['firstname'] = $_POST['firstname'];
 			$data['lastname'] = $_POST['lastname'];
 			$data['email'] = $_POST['email'];
-
-			$data['password'] = md5($_POST['password']);
+			$data['password'] = $_POST['password'];
 			$data['address'] = $_POST['address'];
-			$data['address2'] = $_POST['address2'];
-
-			$question1 = $_POST['question1'];
-			$question2 = $_POST['question2'];
-			$question3 = $_POST['question3'];
-			$answer1 = $_POST['answer1'];
-			$answer2 = $_POST['answer2'];
-			$answer3 = $_POST['answer3'];
-
-			$data['question1'] = $_POST['question1'];
-			$data['question2'] = $_POST['question2'];
-			$data['question3'] = $_POST['question3'];
-			$data['answer1'] = $_POST['answer1'];
-			$data['answer2'] = $_POST['answer2'];
-			$data['answer3'] = $_POST['answer3'];
-			$data['description'] = $_POST['description'];
-
-
-			$data['country_id'] = $_POST['country'];
-			$data['state_id'] = $_POST['state'];
-			$data['city_id'] = $_POST['city'];
-			$data['username'] = $_POST['username'];
-			$data['zip_code'] = $_POST['zip_code'];
-
-
-			
-			$data['security_que_ans'] =  '[{
-							    "answer" : "'.$answer1.'",
-							    "question" : "'.$question1.'"
-							  },
-							  {
-							    "answer" : "'.$answer2.'",
-							    "question" : "'.$question2.'"
-							  },
-							  {
-							    "answer" : "'.$answer3.'",
-							    "question" : "'.$question3.'"
-							  }]';
-			/*$data['start_time'] = $_POST['from'].':00';
-			$data['end_time']   = $_POST['to'].':00';*/
-			$data['mobile'] = $_POST['phone'];
+			$lati = $_POST['latitude'];
+			$long = $_POST['longitude'];
+			$data['latlng'] = $lati.'@'.$long;
+			$data['profile_pic'] = $this->upload_pic('profile_pic');
+			$data['portfolio_image_ids']=$this->upload_pic('portfolio_img');
+			$data['telephone'] = $_POST['telephone'];
+			$data['mobile'] = $_POST['mobile'];
+			$data['landline'] = $_POST['landline'];
 			$data['status'] = $_POST['status'];
-			$data['user_type'] = 1;
-			$data['education'] = implode(',', $_POST['education']);
-
-			// echo '<pre>';
-			// print_r($data);
-			// exit();
-
-			
-
-
 			$serviceID = $_POST['service_ids'];
-			$dataservice['services']    = $_POST['service_amount'];
-			$dataservice['services_id'] = $_POST['service_ids'];
+
+			$arr = implode(",", $serviceID);
+			$data['service_ids'] = $arr;
+
+			$data['user_type'] = 2;
+
+
 			$this->Admin_model->insertrow($data,'users');
-			$insert['user_id'] = $this->db->insert_id();
-			
-			// $count =  count($_POST['service_ids']);
-			// $service_data = array();
-			// for ($i=0; $i < $count ; $i++) {
-				
-			// 	$insert['service_id'] = $_POST['service_ids'][$i];
-			// 	$insert['charge'] = $_POST['service_amount'][$i];
-			// 	$this->db->insert('users_services',$insert);
-			// }
 
 			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/customer_list');
+			redirect('admin/get_serviceProvider');
 
 		}
 
 	}
 
-
-	public function get_customer() 
-	{
-
-		if(is_logged_in()){
-			
-			$whr['user_type']=1;
-			$arr['fetch_customer'] = $this->Admin_model->get_customerList('users',$whr);
-
-
-			if($arr != 0) {
-
-				$this->load->view('header');
-				$this->load->view('get_customer',$arr);
-				$this->load->view('footer');
-
-			} else {
-
-				$this->load->view('header');
-				$this->load->view('get_customer',array('error' => 'No data found'));
-				$this->load->view('footer');
-			}
-		} else {
-			redirect('admin');
-		}
-	}
-
-
-
-	
-
-
-
-	public function viewServiceProvider($id) 
-	{
-
-		if(is_logged_in()){
-			
-			$whr['id']=$id;
-			$whr['user_type']=2;
-			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
-			$arr['getService'] = $this->Admin_model->fetch_service($id);
-
-			// echo '<pre>';
-			// print_r($arr['getService']);
-			// exit();
-			
-
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
-			$arr['states'] = $this->Admin_model->fetchrow('states');
-			$arr['cities'] = $this->Admin_model->fetchrow('cities');
-
-
-
-			if($arr != 0) {
-				$this->load->view('header');
-				$this->load->view('viewServiceProvider',$arr);
-				$this->load->view('footer');
-			} else {
-				$this->load->view('header');
-				$this->load->view('viewServiceProvider',array('error' => 'No data found'));
-				$this->load->view('footer');
-			}
-		} else {
-			redirect('admin');
-		}
-	}
-
-
-
-	
-	
 	public function active_user($id)
 	{
 		$data['status'] = 0;
@@ -1373,13 +937,9 @@ class Admin extends CI_Controller {
 	}
 
 	
-	public function insertBeautyCat($id) 
-	{
-
-		$data['name']=$_POST['name'];
-
+	public function insertBeautyCat($id='') {
+		$data['name'] = $_POST['name'];
 		$this->Admin_model->insertrow($data,'beauty_category');
-
 		$this->session->set_flashdata('message', 'Data updated successfully');
 		redirect('admin/getBeautyCategory');
 	}
@@ -1609,23 +1169,17 @@ class Admin extends CI_Controller {
 	}
 
 
-	public function getAppointments() 
-	{
+	public function getAppointments() {
 
 		if(is_logged_in()){
 			$service_chrge = array();
 			$result = $this->Admin_model->getAppointmentsList('appointments');
 			foreach ($result as $value) {
-
-
 				$sql = $this->db->query('SELECT SUM(service_charge) as total_charge FROM `services` WHERE id in('.$value->service_id.')');
 				$service_chrge = $sql->result();
-
-
 				foreach ($service_chrge as $key => $object) {
 					$service_chrge[] = $object->total_charge;
 				}
-				
 			}
 			
 			$data['final_data'] = array_merge($result,$service_chrge);
@@ -2043,10 +1597,13 @@ class Admin extends CI_Controller {
 			$data['final_data'] = $result;
 
 			if($data != 0) {
+
 				$this->load->view('header');
 				$this->load->view('referenceOrder',$data);
 				$this->load->view('footer');
+
 			} else {
+
 				$this->load->view('header');
 				$this->load->view('referenceOrder',array('error' => 'No data found'));
 				$this->load->view('footer');
@@ -2109,260 +1666,18 @@ class Admin extends CI_Controller {
 
 	public function chat() {
 		if(!is_logged_in()) redirect('admin');
-		$chat_sql 	= "SELECT * FROM chat INNER JOIN users WHERE chat.message_from = users.id";
+
+		//$chat_sql 	= "SELECT * FROM chat INNER JOIN users WHERE chat.message_from = users.id";
+		$chat_sql 	= "SELECT chat.room_id,chat.message_from,chat.message_to,users.*,users_images.image FROM chat INNER JOIN users ON chat.message_from = users.id INNER JOIN users_images ON users.profile_pic=users_images.id";
+		
 		$chat_data 	= $this->db->query($chat_sql)->result();
+
 		$data['chat_data'] = $chat_data;
+
 		$this->load->view('header');
 		$this->load->view('chat', $data);
 		$this->load->view('footer');
 	}
 
-
-	public function getstate($id){
-
-	$whr['country_id'] = $id;
-	$state = $this->Admin_model->fetchrowedit('states',$whr);
-	// echo $this->db->last_query();
-	$st = '';
-
-	if (!empty($state)) {
-
-		$st = '<option value = "">Select State</option>';
-		foreach ($state as $statedata) {
-
-		$st.= '<option value = "'.$statedata->id.'">'.$statedata->name.'</option>';
-
-		}
-	}
-	
-	print_r($st);
-
-	}
-
-
-	public function getcity($id){
-
-	$whr['state_id'] = $id;
-	$state = $this->Admin_model->fetchrowedit('cities',$whr);
-	// echo $this->db->last_query();
-	$st = '';
-	if (!empty($state)) {
-	$st = '<option value = "">Select State</option>';
-
-		foreach ($state as $statedata) {
-
-		$st.= '<option value = "'.$statedata->id.'">'.$statedata->name.'</option>';
-
-		}
-	}
-	
-	print_r($st);
-
-	}
-
-
-
-	function deactivate($id){
-
-		$dataStatus['status'] = 0;
-
-		$whr['id']=$id;
-		$this->Admin_model->updaterow($dataStatus,'users',$whr);
-	}
-
-	function activate($id){
-
-		$dataStatus['status'] = 1;
-
-		$whr['id']=$id;
-		$this->Admin_model->updaterow($dataStatus,'users',$whr);
-	}
-
-
-
-	public function editCustomer($id) 
-	{
-
-		if(is_logged_in()){
-			$whr['id']=$id;
-			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
-
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
-			$arr['states'] = $this->Admin_model->fetchrow('states');
-			$arr['cities'] = $this->Admin_model->fetchrow('cities');
-
-			// echo '<pre>';
-			// print_r($arr['fetch_customer']);
-			// exit();
-			// $arr['getService'] = $this->Admin_model->fetchrow('services');
-
-			// $arr['getServices'] = $this->Admin_model->fetch_service($id);
-			// $arr['getServicesCharge'] = $this->Admin_model->fetch_service_charge($id);
-
-
-
-
-			if($arr != 0) {
-
-				$this->load->view('header');
-				$this->load->view('editCustomer',$arr);
-				$this->load->view('footer');
-
-			} else {
-
-				$this->load->view('header');
-				$this->load->view('editCustomer',array('error' => 'No data found'));
-				$this->load->view('footer');
-			}
-		} else {
-			redirect('admin');
-		}
-	}
-public function edit_CustomerPro()
-	{
-		
-
-	if(isset($_POST['edit_provider'])){
-		if(!empty($_FILES['certification']['name']) && isset($_FILES['certification']['name'])){
-
-			$whrimageids['id'] = $_POST['image_ids'];
-			$dataimageupdate['image'] = $this->upload_customer('certification');
-			$this->Admin_model->updaterow($dataimageupdate,'users_images',$whrimageids);
-			
-			}  else {
-			
-			$data['certificate_ids'] = $_POST['image_ids'];
-			
-			}
-			// $data['certificate_ids'] = $this->db->insert_id();
-			$data['firstname'] = $_POST['firstname'];
-			$data['lastname'] = $_POST['lastname'];
-			$data['email'] = $_POST['email'];
-			$data['password'] = md5($_POST['password']);
-			$data['address'] = $_POST['address'];
-			$data['address2'] = $_POST['address2'];
-			$question1 = $_POST['question1'];
-			$question2 = $_POST['question2'];
-			$question3 = $_POST['question3'];
-			$answer1 = $_POST['answer1'];
-			$answer2 = $_POST['answer2'];
-			$answer3 = $_POST['answer3'];
-			
-			$data['description'] = $_POST['description'];
-			$data['country_id'] = $_POST['country'];
-			$data['state_id'] = $_POST['state'];
-			$data['city_id'] = $_POST['city'];
-			$data['username'] = $_POST['username'];
-			$data['zip_code'] = $_POST['zip_code'];
-			$data['security_que_ans'] =  '[{
-							    "answer" : "'.$answer1.'",
-							    "question" : "'.$question1.'"
-							  },
-							  {
-							    "answer" : "'.$answer2.'",
-							    "question" : "'.$question2.'"
-							  },
-							  {
-							    "answer" : "'.$answer3.'",
-							    "question" : "'.$question3.'"
-							  }]';
-			// $data['start_time'] = $_POST['from'].':00';
-			// $data['end_time']   = $_POST['to'].':00';
-			$data['mobile'] = $_POST['phone'];
-			$data['status'] = $_POST['status'];
-			// $data['user_type'] = 2;
-			$data['education'] = implode(',', $_POST['education']);
-
-			$serviceID = $_POST['service_ids'];
-			$dataservice['services']    = $_POST['service_amount'];
-			$dataservice['services_id'] = $_POST['service_ids'];
-
-
-			$whereServices['user_id'] = $_POST['user_id'];
-				$this->Admin_model->deleterow('users_services',$whereServices);
-			$whruser['id']= $_POST['user_id'];
-			// echo '<pre>';
-			// print_r($_POST);
-
-			$this->Admin_model->updaterow($data,'users',$whruser);
-
-
-			echo $this->db->last_query();
-			// exit();
-			
-
-			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/customer_list');
-
-		}
-
-	}
-
-
-	public function viewCustomerData($id) 
-	{
-		if(is_logged_in()){
-			$whr['id']=$id;
-			$whr['user_type']=1;
-			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
-			$arr['states'] = $this->Admin_model->fetchrow('states');
-			$arr['cities'] = $this->Admin_model->fetchrow('cities');
-			if($arr != 0) {
-				$this->load->view('header');
-				$this->load->view('viewCustomer',$arr);
-				$this->load->view('footer');
-			} else {
-				$this->load->view('header');
-				$this->load->view('viewCustomer',array('error' => 'No data found'));
-				$this->load->view('footer');
-			}
-		} else {
-			redirect('admin');
-		}
-	}
-
-
-	public function editServiceProvider($id) 
-	{
-
-		if(is_logged_in()){
-			
-			$whr['id']=$id;
-			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
-
-			$whr_status['status'] = 1;
-			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
-			$arr['states'] = $this->Admin_model->fetchrow('states');
-			$arr['cities'] = $this->Admin_model->fetchrow('cities');
-
-			
-			$arr['getServeducationice'] = $this->Admin_model->fetchrow('services');
-
-			$arr['getService'] = $this->Admin_model->fetch_service($id);
-			// echo '<pre>';
-			// echo $this->db->last_query();
-			// print_r($arr['getService']);
-			// exit();
-			$arr['getServicesCharge'] = $this->Admin_model->fetch_service_charge($id);
-		
-		if($arr != 0) {
-
-				$this->load->view('header');
-				$this->load->view('editServiceProvider',$arr);
-				$this->load->view('footer');
-
-			} else {
-
-				$this->load->view('header');
-				$this->load->view('editServiceProvider',array('error' => 'No data found'));
-				$this->load->view('footer');
-			}
-		} else {
-			redirect('admin');
-		}
-	}
 
 }

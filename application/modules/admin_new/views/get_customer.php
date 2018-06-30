@@ -78,11 +78,8 @@
 
                 <td class="actions">
                     <a href="<?php echo base_url(); ?>admin/viewCustomer/<?php echo $cust->id; ?>" role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a>
-                     <a href="<?php echo base_url(); ?>admin/viewCustomer/<?php echo $cust->id; ?>" role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>
 
-
-
-                   <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php //echo $cust->id;?>">Remove</a>  -->
+                   <!--  <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php echo $cust->id;?>">Remove</a>  -->
                 </td>
                 <td class="actions">
                     <?php $status = $cust->status;

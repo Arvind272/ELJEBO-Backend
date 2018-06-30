@@ -21,66 +21,187 @@
 
                 <!-- tile body -->
                 <div class="tile-body">
-                   <form action="<?php echo site_url();?>admin/save_customer" method='POST'>
+                   <form action="<?php echo site_url();?>admin/add_CustomerPro"  method='POST' enctype="multipart/form-data">
                      
                       <div class="form-group">
                         <label for="pwd">First Name:</label>
-                        <input type="text" class="form-control" id="firstname" required name="firstname">
+                        <input required type="text" class="form-control" id="firstname"  name="firstname">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Last Name:</label>
-                        <input type="text" class="form-control" id="lastname" required name="lastname">
+                        <input  required type="text" class="form-control" id="lastname"  name="lastname">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="pwd">user Name:</label>
+                        <input  required type="text" class="form-control" id="username"  name="username">
                       </div>
 
                        <div class="form-group">
                         <label for="pwd">Email:</label>
-                        <input type="text" class="form-control" id="email" required name="email">
+                        <input required type="text" class="form-control" id="email"  name="email">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="password" required name="password">
+                        <input required type="password" class="form-control" id="password"  name="password">
                       </div>
 
-                       <div class="form-group">
+                      <div class="form-group">
+                        <label for="pwd">Gender:</label>
+                        <select required  class="form-control" id="gender"  name="gender">
+                          <option value="">Select Gender</option>
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                          <option value="0">Other</option>
+                        </select>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="pwd">Country :</label>
+                              <select  required class="form-control" id="country"  name="country">
+                                <option value="">Select Country</option>
+                                <?php if(isset($countries)){
+                                    foreach ($countries as  $countrie) { ?>
+                                <option value="<?php echo $countrie->id; ?>"><?php echo $countrie->name; ?></option>
+                                <?php }} ?>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="pwd">State:</label>
+                              <select required  class="form-control" id="state"  name="state">
+                                <option value="">Select State</option>
+                               
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="pwd">City:</label>
+                              <select required  class="form-control" id="city"  name="city">
+                                <option value="">Select City</option>
+                                
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+
+                      <div class="form-group">
                         <label for="pwd">Address:</label>
-                        <input type="text" class="form-control" id="address" required name="address">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="pwd">Latitude:</label>
-                        <input type="number" class="form-control" id="latitude" required name="latitude">
-                      </div>  
-
-                      <div class="form-group">
-                        <label for="pwd">Longitude:</label>
-                        <input type="number" class="form-control" id="longitude" required name="longitude">
+                        <input required type="text" class="form-control" id="address"  name="address">
                       </div>
 
                        <div class="form-group">
-                        <label for="pwd">Profile Pic:</label>
-                        <input type="file" class="form-control" id="profile_pic" required name="profile_pic">
+                        <label for="pwd">Address 2 (optional):</label>
+                        <input type="text" class="form-control" id="address2"  name="address2">
                       </div>
 
-                      
-
                       <div class="form-group">
-                        <label for="pwd">Telephone:</label>
-                        <input type="text" class="form-control" id="telephone" required name="telephone">
+                        <label for="pwd">Zip Code:</label>
+                        <input required type="text" class="form-control" id="zip_code"  name="zip_code">
+                      </div>
+                    <div class="form-group">
+                        <label for="pwd">Phone number:</label>
+                        <input required type="text" class="form-control" id="phone"  name="phone">
                       </div> 
 
-                      <div class="form-group">
-                        <label for="pwd">Mobile:</label>
-                        <input type="text" class="form-control" id="mobile" required name="mobile">
-                      </div> 
+                    <div class="form-group">
+                        <label for="pwd">Security Question 1  :</label>
+                        <input required type="text" class="form-control" id="question1"  name="question1">
+                    </div>
 
-                      <div class="form-group">
-                        <label for="pwd">Landline:</label>
-                        <input type="text" class="form-control" id="landline" required name="landline">
-                      </div>    
+                    <div class="form-group">
+                        <label for="pwd">Answer 1 :</label>
+                        <input required type="text" class="form-control" id="answer1"  name="answer1">
+                    </div>
 
-                     
+                    <div class="form-group">
+                        <label for="pwd">Security Question 2 :</label>
+                        <input type="text" class="form-control" id="question2"  name="question2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Answer 2 :</label>
+                        <input type="text" class="form-control" id="answer2"  name="answer2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Security Question 3 :</label>
+                        <input type="text" class="form-control" id="question3"  name="question3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Answer 3 :</label>
+                        <input type="text" class="form-control" id="answer3"  name="answer3">
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                      <label>Education</label>
+                        <div style="clear: both;"></div>
+                      <div class="col-md-12">
+                        <div class="col-md-4">
+                              <label> <input type="checkbox" required class="some check"   name="education[]" value="1"></label>
+                              GED
+                        </div>
+                          <div class="col-md-3"></div>
+                          <div class="col-md-5"></div>
+                    </div>
+                        
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label> <input  type="checkbox" class="some check"   name="education[]" value="2"></label>
+                            High School
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5"></div>
+                      </div>
+
+                      <div class="col-md-12">
+
+                        <div class="col-md-4">
+                            <label> <input type="checkbox" class="some check"  name="education[]" value="3"></label>
+                            College & Above
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5"></div>
+                       </div>
+                   </div>
+
+                       <div style="clear: both;"></div>
+                  <br>
+                    
+                    
+                  
+
+                  <div class="form-group">
+                        <label for="pwd">Description :</label>
+                        <textarea  required type="text" class="form-control" id="description"  name="description" rows="2"></textarea>
+                  </div>
+
+
+
+
+
+                  
+
+                    <div style="clear: both;"></div>
+                  <br>
+
+                    <div class="form-group">
+                        <label for="pwd">Upload Certifications:</label>
+                        <input required  type="file" class="form-control" id="certification"  name="certification">
+                  </div>
+
+
                   <div style="clear: both;"></div>
                   <br>
                       <div class="form-group">
@@ -91,6 +212,7 @@
                           <option value="2">Pending for Approval</option>
                         </select>
                     </div>
+
 
                      <input type="submit" name="add_provider" class="btn btn-default" value="Submit">
                  
@@ -103,3 +225,63 @@
     </div>
     <!-- /row -->
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#country').on('change', function(){
+
+      var countryID = $(this).val();
+       var base_url_path = '<?php echo base_url();?>admin/getstate/'+countryID;
+       // alert(base_url_path);
+
+      if(countryID){
+
+        $.ajax({
+          type:'POST',
+          url : base_url_path,
+          data: 'country_id ='+countryID,
+          success: function(res){
+            console.log(res);
+              $('#city').empty();
+                $('#state').empty().append(res);
+
+            }
+        });
+      }
+  })
+
+
+
+    $('#state').on('change', function(){
+
+      var countryID = $(this).val();
+       var base_url_path = '<?php echo base_url();?>admin/getcity/'+countryID;
+       // alert(base_url_path);
+
+      if(countryID){
+
+        $.ajax({
+          type:'POST',
+          url : base_url_path,
+          data: 'country_id ='+countryID,
+          success: function(res){
+            console.log(res);
+                $('#city').empty().append(res);
+
+            }
+        });
+      }
+  })
+
+
+
+
+
+
+
+});
+
+
+</script>

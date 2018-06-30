@@ -1,8 +1,7 @@
 <div class="page page-tables-datatables">
 
     <div class="pageheader">
-
-        <h2>Add Service Provider <span>Services Provider GlamArmy</span></h2>
+  <h2>Add Service Provider <span>Services Provider </span></h2>
     </div>
 
     <!-- row -->
@@ -21,36 +20,36 @@
 
                 <!-- tile body -->
                 <div class="tile-body">
-                   <form action="<?php echo site_url();?>admin/add_servicePro" method='POST'>
-                     
+                   <form action="<?php echo site_url();?>admin/add_servicePro" id="add_servicePro" method='POST' enctype="multipart/form-data">
+                      
                       <div class="form-group">
                         <label for="pwd">First Name:</label>
-                        <input type="text" class="form-control" id="firstname"  name="firstname">
+                        <input required type="text" class="form-control" id="firstname"  name="firstname">
                       </div>
-
+                      
                       <div class="form-group">
                         <label for="pwd">Last Name:</label>
-                        <input type="text" class="form-control" id="lastname"  name="lastname">
+                        <input  required type="text" class="form-control" id="lastname"  name="lastname">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">user Name:</label>
-                        <input type="text" class="form-control" id="username"  name="username">
+                        <input  required type="text" class="form-control" id="username"  name="username">
                       </div>
 
-                       <div class="form-group">
+                      <div class="form-group">
                         <label for="pwd">Email:</label>
-                        <input type="text" class="form-control" id="email"  name="email">
+                        <input required type="text" class="form-control" id="email"  name="email">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="password"  name="password">
+                        <input required type="password" class="form-control" id="password"  name="password">
                       </div>
 
                       <div class="form-group">
                         <label for="pwd">Gender:</label>
-                        <select  class="form-control" id="gender"  name="gender">
+                        <select required  class="form-control" id="gender"  name="gender">
                           <option value="">Select Gender</option>
                           <option value="1">Male</option>
                           <option value="2">Female</option>
@@ -62,19 +61,19 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="pwd">Country :</label>
-                              <select  class="form-control" id="country"  name="country">
+                              <select  required class="form-control" id="country"  name="country">
                                 <option value="">Select Country</option>
                                 <?php if(isset($countries)){
                                     foreach ($countries as  $countrie) { ?>
                                 <option value="<?php echo $countrie->id; ?>"><?php echo $countrie->name; ?></option>
-                                <?php }} ?>
+                              <?php }} ?>
                               </select>
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="pwd">State:</label>
-                              <select  class="form-control" id="state"  name="state">
+                              <select required  class="form-control" id="state"  name="state">
                                 <option value="">Select State</option>
                                
                               </select>
@@ -83,18 +82,17 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="pwd">City:</label>
-                              <select  class="form-control" id="city"  name="city">
+                              <select required  class="form-control" id="city"  name="city">
                                 <option value="">Select City</option>
                                 
                               </select>
                             </div>
-
                           </div>
                         </div>
 
                       <div class="form-group">
                         <label for="pwd">Address:</label>
-                        <input type="text" class="form-control" id="address"  name="address">
+                        <input required type="text" class="form-control" id="address"  name="address">
                       </div>
 
                        <div class="form-group">
@@ -104,21 +102,21 @@
 
                       <div class="form-group">
                         <label for="pwd">Zip Code:</label>
-                        <input type="text" class="form-control" id="zip_code"  name="zip_code">
+                        <input required type="text" class="form-control" id="zip_code"  name="zip_code">
                       </div>
                     <div class="form-group">
                         <label for="pwd">Phone number:</label>
-                        <input type="text" class="form-control" id="phone"  name="phone">
+                        <input required type="text" class="form-control" id="phone"  name="phone">
                       </div> 
 
                     <div class="form-group">
                         <label for="pwd">Security Question 1  :</label>
-                        <input type="text" class="form-control" id="question1"  name="question1">
+                        <input required type="text" class="form-control" id="question1"  name="question1">
                     </div>
 
                     <div class="form-group">
                         <label for="pwd">Answer 1 :</label>
-                        <input type="text" class="form-control" id="answer1"  name="answer1">
+                        <input required type="text" class="form-control" id="answer1"  name="answer1">
                     </div>
 
                     <div class="form-group">
@@ -149,7 +147,7 @@
                         <div style="clear: both;"></div>
                       <div class="col-md-12">
                         <div class="col-md-4">
-                              <label> <input type="checkbox" class="some check  name="education[]" value="1"></label>
+                              <label> <input type="checkbox" required class="some check"   name="education[]" value="1"></label>
                               GED
                         </div>
                           <div class="col-md-3"></div>
@@ -158,7 +156,7 @@
                         
                     <div class="col-md-12">
                         <div class="col-md-4">
-                            <label> <input type="checkbox" class="some check  name="education[]" value="2"></label>
+                            <label> <input  type="checkbox" class="some check"   name="education[]" value="2"></label>
                             High School
                         </div>
                         <div class="col-md-3"></div>
@@ -168,7 +166,7 @@
                       <div class="col-md-12">
 
                         <div class="col-md-4">
-                            <label> <input type="checkbox" class="some check  name="education[]" value="3"></label>
+                            <label> <input type="checkbox" class="some check"  name="education[]" value="3"></label>
                             College & Above
                         </div>
                         <div class="col-md-3"></div>
@@ -187,11 +185,11 @@
 
                             <div class="col-md-12">
                               <div class="col-md-4">
-                                <label> <input type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
+                                <label> <input  type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
                                 <?php echo $service->service_name; ?> 
                             </div>
                             <div class="col-md-3">
-                                <label > <input placeholder="Enter Price" type="text" style="display: none;"   class="validate textbox<?php echo $service->id; ?>" name="service_ids[]" value=""></label>
+                                <label > <input placeholder="Enter Price" type="text" style="display: none;"    class="validate textbox<?php echo $service->id; ?>" name="service_amount[<?php echo $service->id; ?>]" value=""></label>
                                  
                             </div>
 
@@ -211,7 +209,7 @@
 
                   <div class="form-group">
                         <label for="pwd">Description :</label>
-                        <textarea type="text" class="form-control" id="description"  name="description" rows="2"></textarea>
+                        <textarea  required type="text" class="form-control" id="description"  name="description" rows="2"></textarea>
                   </div>
 
 
@@ -227,7 +225,7 @@
                             <label for="pwd">From:</label>
 
                             <div class="input-group clockpicker">
-                                <input type="time" name="form" id="from" class="form-control" value="00:00">
+                                <input required type="time" name="from" id="from" class="form-control" >
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
@@ -238,7 +236,7 @@
                             <label for="pwd"> To: </label>
 
                             <div class="input-group clockpicker">
-                                <input type="time" name="to" id="to" class="form-control" value="00:00">
+                                <input required type="time" name="to" id="to" class="form-control" >
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
@@ -253,7 +251,7 @@
 
                     <div class="form-group">
                         <label for="pwd">Upload Certifications:</label>
-                        <input type="file" class="form-control" id="certification"  name="certification">
+                        <input required  type="file" class="form-control" id="certification"  name="certification">
                   </div>
 
 
