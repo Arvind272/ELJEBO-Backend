@@ -67,6 +67,7 @@
         <script src="assets/js/vendor/summernote/summernote.min.js"></script>
          <script src="assets/js/common.js"></script>
 
+          
         <script src="assets/js/vendor/datatables/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/vendor/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
         <script src="assets/js/vendor/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
@@ -74,6 +75,7 @@
         <script src="assets/js/vendor/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
         <script src="assets/js/vendor/datatables/extensions/dataTables.bootstrap.js"></script>
         <script src="assets/js/sweetalert2.min.js"></script>
+
 
 
 
@@ -86,7 +88,20 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/admin_script.js"></script>
         <!--/ custom javascripts -->
+        <script src="assets/js/toastr.min.js"></script>
 
+         <script type="text/javascript">
+        
+        <?php if($this -> session -> flashdata ( 'success' )){ ?>
+        toastr.success("<?php echo $this -> session -> flashdata ( 'success' ); ?>");
+        <?php }else if($this -> session -> flashdata ( 'error' )){  ?>
+        toastr.error("<?php echo $this -> session -> flashdata ( 'error' ); ?>");
+        <?php }else if($this -> session -> flashdata ( 'warning' )){  ?>
+        toastr.warning("<?php echo $this -> session -> flashdata ( 'warning' ); ?>");
+        <?php }else if($this -> session -> flashdata ( 'info' )){  ?>
+        toastr.info("<?php echo $this -> session -> flashdata ( 'info' ); ?>");
+        <?php } ?>
+    </script>
 
         <!-- ===============================================
         ============== Page Specific Scripts ===============

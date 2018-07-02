@@ -16,6 +16,23 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	
+	public function alreadyemail()
+    { 
+        $uName['email'] = $this->input->post('email'); 
+        $isUNameCount = $this->Admin_model->alreadyexits('users',$uName); 
+
+		if($isUNameCount > 0){
+		    
+		    echo 'false';
+
+		} else{ 
+			
+            echo 'true'; 
+
+        } 
+	}
+
 
 	function upload_service($name)
     { 
@@ -539,6 +556,9 @@ class Admin extends CI_Controller {
 			return false;
 		}
 
+		$whr['user_id'] = $post['id'];
+		$this->Admin_model->deleterow('users_services',$whr);
+
 		if($this->Admin_model->deleteUser($post['id'])){
 			$success = 1;
 			$msg="User has been deleted successfully.";
@@ -798,17 +818,18 @@ class Admin extends CI_Controller {
 	{
 
 		if(is_logged_in()){
-
-
-
-
-
 			
 			$whr['user_type']=1;
 			$arr['fetch_customer'] = $this->Admin_model->fetchrowedit('users',$whr);
 			$arr['getService'] = $this->Admin_model->fetchrow('services');
 			$whr_status['status'] = 1;
 			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
+			
+
+			$arr['service_category'] = $this->Admin_model->fetch_all_categotry_all();
+			
+
+
 
 			if($arr != 0) {
 				$this->load->view('header');
@@ -896,8 +917,8 @@ class Admin extends CI_Controller {
 				$insert['charge'] = $serviceAmount[$service];
 				$this->db->insert('users_services',$insert);
 			}
-			$this->session->set_flashdata('message', 'Data updated successfully');
-			redirect('admin/get_serviceProvider');
+ 		$this->session->set_flashdata('success' , ' Add service provider  Sucessfully');			
+ 			redirect('admin/get_serviceProvider');
 
 		}
 
@@ -988,7 +1009,8 @@ class Admin extends CI_Controller {
 				$this->db->insert('users_services',$insert);
 			}
 
-			$this->session->set_flashdata('message', 'Data updated successfully');
+	$this->session->set_flashdata('success','Update service provider Sucessfully');			
+
 			redirect('admin/get_serviceProvider');
 
 		}
@@ -1023,12 +1045,7 @@ class Admin extends CI_Controller {
 			$answer2 = $_POST['answer2'];
 			$answer3 = $_POST['answer3'];
 
-			$data['question1'] = $_POST['question1'];
-			$data['question2'] = $_POST['question2'];
-			$data['question3'] = $_POST['question3'];
-			$data['answer1'] = $_POST['answer1'];
-			$data['answer2'] = $_POST['answer2'];
-			$data['answer3'] = $_POST['answer3'];
+			
 			$data['description'] = $_POST['description'];
 
 
@@ -1081,7 +1098,7 @@ class Admin extends CI_Controller {
 			// 	$this->db->insert('users_services',$insert);
 			// }
 
-			$this->session->set_flashdata('message', 'Data updated successfully');
+			 $this->session->set_flashdata('success' , 'Payment Added Sucessfully');
 			redirect('admin/customer_list');
 
 		}
@@ -1611,34 +1628,21 @@ class Admin extends CI_Controller {
 
 	public function getAppointments() 
 	{
-
 		if(is_logged_in()){
 			$service_chrge = array();
 			$result = $this->Admin_model->getAppointmentsList('appointments');
 			foreach ($result as $value) {
-
-
 				$sql = $this->db->query('SELECT SUM(service_charge) as total_charge FROM `services` WHERE id in('.$value->service_id.')');
 				$service_chrge = $sql->result();
-
-
 				foreach ($service_chrge as $key => $object) {
 					$service_chrge[] = $object->total_charge;
 				}
-				
 			}
-			
 			$data['final_data'] = array_merge($result,$service_chrge);
-			// echo "<pre>";
-			// print_r($data);
-			// die();
-
 			if($data != 0) {
-
 				$this->load->view('header');
 				$this->load->view('getAppointments',$data);
 				$this->load->view('footer');
-
 			} else {
 
 				$this->load->view('header');
@@ -1651,24 +1655,15 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function getAppointmentList($id)
-	{
+	public function getAppointmentList($id){
 		if(is_logged_in()){
-
-
-			// $que = "SELECT a.*,u.firstname as stylish_name,u.lastname as stylish_lname, c.firstname as customer_name, c.lastname as customer_lname, s.service_name as sName, s.service_charge as sCharge, cat.category_name as cat_name FROM `appointments` a INNER JOIN users u ON u.id = a.`styler_id` INNER JOIN users c ON c.id = a.`customer_id`INNER JOIN services s ON s.id = a.`service_id`INNER JOIN category cat ON cat.id = s.`category_id` where a.id = '$id'";
-
-			// $result = $this->db->query($que)->result();
-			//print_r($result); die;	
-			//echo $this->db->last_query(); die;
-
 			$whr['id'] = $id;
 			$result = $this->Admin_model->fetchrowedit('appointments',$whr);
 			$data['final_data'] = $result;
 			//print_r($result);die;
 			foreach ($result as $appoint) {
 
-				$stylerId = $appoint->styler_id;
+				$stylerId = $appoint->service_provider_id;
 				$customerId = $appoint->customer_id;
 				$serviceId = $appoint->service_id;
 				$catName = $appoint->category_id;
@@ -1730,12 +1725,6 @@ class Admin extends CI_Controller {
 					$query2 = $this->db->select('*')->where_in('id',$arr)->get('services');
 					$data['serviceData'] = $query2->result_array();
 
-
-				  //   echo "<pre>";
-				  // print_r($result['serviceData']); die;
-
-					
-
 				}else{
 					$result['serviceName'] = "";
 					$result['service_charge'] = "";
@@ -1757,15 +1746,10 @@ class Admin extends CI_Controller {
 			}
 
 			$data['final_data'] = $result;
-	     	// echo "<pre>";
-	     	// print_r($result); die;
-
 			if($data != 0) {
-
 				$this->load->view('header');
 				$this->load->view('getAppointmentList',$data);
 				$this->load->view('footer');
-
 			} else {
 
 				$this->load->view('header');
@@ -1813,7 +1797,7 @@ class Admin extends CI_Controller {
 		
 		if(is_logged_in()){
 			
-			$get_ref_order_sql = "SELECT a.*,u.firstname,u.lastname,u2.firstname as styler_firstname,u2.lastname as styler_lastname FROM appointments a INNER JOIN users u ON a.customer_id IN (SELECT id FROM users WHERE referral_id = $id ORDER BY id ASC) AND a.actual_amount > '0' AND a.settlement_status = '0' AND (a.status='6' OR a.status='9') AND a.customer_id=u.id INNER JOIN users u2 on u2.id=a.styler_id GROUP BY a.customer_id ORDER BY a.create_date ASC";
+			$get_ref_order_sql = "SELECT a.*,u.firstname,u.lastname,u2.firstname as styler_firstname,u2.lastname as styler_lastname FROM appointments a INNER JOIN users u ON a.customer_id IN (SELECT id FROM users WHERE referral_id = $id ORDER BY id ASC) AND a.actual_amount > '0' AND a.settlement_status = '0' AND (a.status='6' OR a.status='9') AND a.customer_id=u.id INNER JOIN users u2 on u2.id=a.service_provider_id GROUP BY a.customer_id ORDER BY a.create_date ASC";
 
 
 			$referral_orders_data = $this->db->query($get_ref_order_sql)->result();
@@ -1824,7 +1808,7 @@ class Admin extends CI_Controller {
 			$refferalsID = $this->db->query($que)->result_array();
 			$resulArray =array();
 			foreach ($refferalsID as $referral) {
-				$final = "SELECT a.*,u.firstname as stylist_firstname,u.lastname as stylist_lastname,c.firstname as customer_firstname,c.lastname as customer_lastname,c.referral_id, p.amount,p.id as paymentId FROM `appointments` a INNER JOIN users u ON u.id = a.styler_id INNER JOIN users c ON c.id = a.customer_id INNER JOIN payment p ON p.appoinment_id = a.id WHERE a.`settlement_status` = 0 AND a.`customer_id` = '".$referral['id']."' ORDER BY `a`.`appointment_date` ASC LIMIT 1";
+				$final = "SELECT a.*,u.firstname as stylist_firstname,u.lastname as stylist_lastname,c.firstname as customer_firstname,c.lastname as customer_lastname,c.referral_id, p.amount,p.id as paymentId FROM `appointments` a INNER JOIN users u ON u.id = a.service_provider_id INNER JOIN users c ON c.id = a.customer_id INNER JOIN payment p ON p.appoinment_id = a.id WHERE a.`settlement_status` = 0 AND a.`customer_id` = '".$referral['id']."' ORDER BY `a`.`appointment_date` ASC LIMIT 1";
 				$result_array = $this->db->query($final)->result_array();
 
 				if(!empty($result_array)){
@@ -1837,7 +1821,7 @@ class Admin extends CI_Controller {
 			$data['referralName'] = $nameGet[0]->name;
 			$data['final_data'] = $resulArray;
 
-			$query = "SELECT settlOrder.orderID,settlOrder.amount as settlementAmount,settlOrder.settlement_date,ur.firstname as styler_Fname,ur.lastname as styler_Lname,usr.firstname as customer_Fname,usr.lastname as customer_Lname FROM `settlement_order` settlOrder INNER JOIN appointments app ON app.id = settlOrder.orderID INNER JOIN users ur ON ur.id = app.styler_id INNER JOIN users usr ON usr.id = app.customer_id ORDER BY `settlOrder`.`settlement_date`";
+			$query = "SELECT settlOrder.orderID,settlOrder.amount as settlementAmount,settlOrder.settlement_date,ur.firstname as styler_Fname,ur.lastname as styler_Lname,usr.firstname as customer_Fname,usr.lastname as customer_Lname FROM `settlement_order` settlOrder INNER JOIN appointments app ON app.id = settlOrder.orderID INNER JOIN users ur ON ur.id = app.service_provider_id INNER JOIN users usr ON usr.id = app.customer_id ORDER BY `settlOrder`.`settlement_date`";
 			$settlementOrders = $this->db->query($query)->result();
 			$data['final_data1'] = $settlementOrders;
 			if($data != 0) {
@@ -2292,7 +2276,7 @@ public function edit_CustomerPro()
 			// exit();
 			
 
-			$this->session->set_flashdata('message', 'Data updated successfully');
+			  $this->session->set_flashdata('success' , 'Customer update Sucessfully');
 			redirect('admin/customer_list');
 
 		}
@@ -2364,5 +2348,7 @@ public function edit_CustomerPro()
 			redirect('admin');
 		}
 	}
+
+
 
 }

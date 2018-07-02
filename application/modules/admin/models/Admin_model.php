@@ -8,12 +8,23 @@ class Admin_model extends CI_Model {
 		$query = $this->db->get_where('users',array('user_type' => '1'));
 
 		if ($query -> num_rows() > 0) {
+
 			return $query -> result_array();
 		} else {
+			
 			return 0;
 		}
 
 	}
+
+
+	function alreadyexits($table,$var){
+        $query = $this->db->select('*')->where($var)->get($table)->num_rows();
+        return $query;
+  		} 
+
+
+
 	public function getStylers () 
 	{
 
@@ -128,7 +139,7 @@ class Admin_model extends CI_Model {
 
 			$this->db->select('firstname');
 			$this->db->from('users');
-			$this->db->where(array('id' => $value['styler_id']));
+			$this->db->where(array('id' => $value['service_provider_id']));
 			$styler_q = $this->db->get();
 			$styler_name = $styler_q->result_array();
 			$styler_name = $styler_name[0]['firstname'];
@@ -249,7 +260,7 @@ class Admin_model extends CI_Model {
 
 			$this->db->select('firstname');
 			$this->db->from('users');
-			$this->db->where(array('id' => $value['styler_id']));
+			$this->db->where(array('id' => $value['service_provider_id']));
 			$styler_q = $this->db->get();
 			$styler_name = $styler_q->result_array();
 			$styler_name = $styler_name[0]['firstname'];
@@ -605,7 +616,7 @@ class Admin_model extends CI_Model {
 
         $this->db->select('app.id,app.service_id,us.firstname as stylerFname,us.lastname as stylerLname,usr.firstname as customerFname,usr.lastname as customerLname,app.appointment_date,app.status,ser.service_charge');
         $this->db->from('appointments app');
-        $this->db->join('users us','us.id = app.styler_id','left');
+        $this->db->join('users us','us.id = app.service_provider_id','left');
         $this->db->join('users usr','usr.id = app.customer_id','left');
         $this->db->join('services ser','ser.id = app.service_id','left');
         $query = $this->db->get();
@@ -623,7 +634,7 @@ class Admin_model extends CI_Model {
         $this->db->join('referral refe','refe.id = refeoder.referral_id','left');
         $this->db->join('appointments app','app.id = refeoder.appoinment_id','left');
         $this->db->join('users us','us.id = app.customer_id','left');
-        $this->db->join('users usr','usr.id = app.styler_id','left');
+        $this->db->join('users usr','usr.id = app.service_provider_id','left');
         $query = $this->db->get();
         return $query->result();
          
@@ -648,6 +659,16 @@ class Admin_model extends CI_Model {
 	function fetch_service_id($id){
 
     	$sql="SELECT us.service_id  FROM `users_services` as us LEFT JOIN services as sr ON us.service_id = sr.id WHERE us.user_id = ".$id;
+    	$response = $this->db->query($sql);
+    	//print_r($response);die;
+    	return $result =  $response->result();
+	}
+
+
+function fetch_all_categotry_all($id){
+
+
+    $sql="SELECT DISTINCT category.id, category.* FROM `category` INNER JOIN services ON category.id = services.category_id WHERE category.status = 1";
     	$response = $this->db->query($sql);
     	//print_r($response);die;
     	return $result =  $response->result();

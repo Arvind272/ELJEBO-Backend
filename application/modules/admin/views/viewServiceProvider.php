@@ -132,36 +132,28 @@
                         <input type="text" value="<?php echo $customer_data->mobile; ?>" readonly class="form-control" id="phone"  name="phone">
                       </div> 
 
+                  <?php  $test =  $customer_data->security_que_ans ; 
+                        $jsonquestion = json_decode($test, true);
+                        /*echo "<pre>";
+                        print_r($jsonquestion);
+                        exit();*/
+                        // $keycont = 0;
+                        $icount = 1;
+                          ?>
+
+                          <?php foreach ($jsonquestion as  $value) {?>
+                          
+
                     <div class="form-group">
-                        <label for="pwd">Security Question 1  :</label>
-                        <input type="text" value="<?php echo $customer_data->question1; ?>" readonly class="form-control" id="question1"  name="question1">
+                        <label for="pwd">Security Question <?php echo $icount; ?>  :<span style="color: red;">*</span></label>
+                        <input type="text" value="<?php echo $value['question']; ?>"  class="form-control" readonly id="question1"  name="question<?php echo $icount; ?>">
                     </div>
 
                     <div class="form-group">
-                        <label for="pwd">Answer 1 :</label>
-                        <input type="text" value="<?php echo $customer_data->answer1; ?>" readonly class="form-control" id="answer1"  name="answer1">
+                        <label for="pwd">Answer <?php echo $icount; ?> :<span style="color: red;">*</span></label>
+                        <input type="text" readonly value="<?php echo $value['answer']; ?>"  class="form-control" id="answer<?php echo $answer;  ?>"  name="answer<?php echo $icount; ?>">
                     </div>
-
-                    <div class="form-group">
-                        <label for="pwd">Security Question 2 :</label>
-                        <input type="text" value="<?php echo $customer_data->question2; ?>"  readonly class="form-control" id="question2"  name="question2">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pwd">Answer 2 :</label>
-                        <input type="text" value="<?php echo $customer_data->answer2; ?>" readonly  class="form-control" id="answer2"  name="answer2">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pwd">Security Question 3 :</label>
-                        <input type="text" value="<?php echo $customer_data->question3;?>" readonly class="form-control" id="question3"  name="question3">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pwd">Answer 3 :</label>
-                        <input type="text" value="<?php echo $customer_data->answer3; ?>" readonly class="form-control" id="answer3"  name="answer3">
-                    </div>
-
+                  <?php $icount++;   } ?>
 
 
 

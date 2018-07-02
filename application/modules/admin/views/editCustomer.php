@@ -20,7 +20,7 @@
 
                 <!-- tile body -->
                 <div class="tile-body">
-                    <form action="<?php echo site_url();?>admin/edit_CustomerPro" enctype="multipart/form-data" method='POST'>
+                    <form action="<?php echo site_url();?>admin/edit_CustomerPro" enctype="multipart/form-data" id = "edit_CustomerPro" method='POST'>
 
                     <?php  
                   if(isset($fetch_customer)){
@@ -28,34 +28,34 @@
 
                      
                       <div class="form-group">
-                        <label for="pwd">First Name:</label>
+                        <label for="pwd">First Name:<span style="color: red;">*</span></label>
                         <input type="text"  value="<?php echo $customer_data->firstname; ?>" class="form-control" id="firstname"  name="firstname">
                         <input type="hidden" name="user_id" value="<?php echo $customer_data->id; ?>">
                       </div>
 
 
                       <div class="form-group">
-                        <label for="pwd">Last Name:</label>
+                        <label for="pwd">Last Name:<span style="color: red;">*</span></label>
                         <input type="text" value="<?php echo $customer_data->lastname; ?>"   class="form-control" id="lastname"  name="lastname">
                       </div>
 
 
                       <div class="form-group">
-                        <label for="pwd">user Name:</label>
+                        <label for="pwd">user Name:<span style="color: red;">*</span></label>
                         <input type="text" value="<?php echo $customer_data->username; ?>"  class="form-control" id="username"  name="username">
                       </div>
 
 
                        <div class="form-group">
-                        <label for="pwd">Email:</label>
-                        <input type="text" value="<?php echo $customer_data->email; ?>"  class="form-control" id="email"  name="email">
+                        <label for="pwd">Email:<span style="color: red;">*</span></label>
+                        <input type="text" value="<?php echo $customer_data->email; ?>"  class="form-control" readonly id="email"  name="email">
                       </div>
 
 
                       
 
                       <div class="form-group">
-                        <label for="pwd">Gender:</label>
+                        <label for="pwd">Gender:<span style="color: red;">*</span></label>
                         <select   class="form-control" id="gender"  name="gender">
                           
                             <?php if($customer_data->gender = 1 ){ ?>
@@ -79,7 +79,7 @@
                       <div class="row">
                           <div class="col-md-4">
                             <div class="form-group">
-                              <label for="pwd">Country :</label>
+                              <label for="pwd">Country :<span style="color: red;">*</span></label>
                               <select  class="form-control" id="country"  name="country">
                                
                                 <?php if(isset($countries)){
@@ -91,7 +91,7 @@
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
-                              <label for="pwd">State:</label>
+                              <label for="pwd">State:<span style="color: red;">*</span></label>
                               <select   class="form-control" id="state"  name="state">
                                 <?php if(isset($states)){
                                     foreach ($states as  $state) { ?>
@@ -104,7 +104,7 @@
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
-                              <label for="pwd">City:</label>
+                              <label for="pwd">City:<span style="color: red;">*</span></label>
                               <select   class="form-control" id="city"  name="city">
                                 <?php if(isset($cities)){
                                     foreach ($cities as  $city) { ?>
@@ -119,21 +119,21 @@
                         </div>
 
                       <div class="form-group">
-                        <label for="pwd">Address:</label>
+                        <label for="pwd">Address:<span style="color: red;">*</span></label>
                         <input type="text"  value="<?php echo $customer_data->address; ?>"  class="form-control" id="address"  name="address">
                       </div>
 
                        <div class="form-group">
-                        <label for="pwd">Address 2 (optional):</label>
+                        <label for="pwd">Address 2 (optional):<span style="color: red;">*</span></label>
                         <input type="text" value="<?php echo $customer_data->address2; ?>"  class="form-control" id="address2"  name="address2">
                       </div>
 
                       <div class="form-group">
-                        <label for="pwd">Zip Code:</label>
+                        <label for="pwd">Zip Code:<span style="color: red;">*</span></label>
                         <input type="text" value="<?php echo $customer_data->zip_code; ?>"  class="form-control" id="zip_code"  name="zip_code">
                       </div>
                     <div class="form-group">
-                        <label for="pwd">Phone number:</label>
+                        <label for="pwd">Phone number:<span style="color: red;">*</span></label>
                         <input type="text" value="<?php echo $customer_data->mobile; ?>"  class="form-control" id="phone"  name="phone">
                       </div> 
 
@@ -156,7 +156,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="pwd">Answer <?php echo $icount; ?> :</label>
+                        <label for="pwd">Answer <?php echo $icount; ?> :<span style="color: red;">*</span></label>
                         <input type="text" value="<?php echo $value['answer']; ?>"  class="form-control" id="answer<?php echo $answer; ?>"  name="answer<?php echo $icount; ?>">
                     </div>
                   <?php $icount++;   } ?>
@@ -192,7 +192,7 @@
 
 
                     <div class="form-group">
-                      <label>Education</label>
+                      <label>Education<span style="color: red;">*</span></label>
                         <div style="clear: both;"></div>
 
                         
@@ -254,7 +254,7 @@
                   
 
                   <div class="form-group">
-                        <label for="pwd">Description :</label>
+                        <label for="pwd">Description :<span style="color: red;">*</span></label>
                         <textarea type="text" class="form-control" id="description"    name="description" rows="5"><?php echo $customer_data->description;?></textarea>
                   </div>
 
@@ -279,7 +279,7 @@
 
 
                   <div class="form-group">
-                        <label for="pwd">Upload Certifications:</label>
+                        <label for="pwd">Upload Certifications:<span style="color: red;">*</span></label>
                         <input   type="file" class="form-control" id="certification"  name="certification">
                       <input type="hidden" name="image_ids" value="<?php echo $customer_data->certificate_ids ; ?>">
                   </div>
@@ -293,7 +293,7 @@
                   <div style="clear: both;"></div>
                   <br>
                       <div class="form-group">
-                        <label for="pwd">Status:</label>
+                        <label for="pwd">Status:<span style="color: red;">*</span></label>
                         <select class="form-control" name="status" >
 
 

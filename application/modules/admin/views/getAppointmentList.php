@@ -62,8 +62,8 @@
                                  echo $newDate = date("Y-m-d", strtotime($date1));
 
                                       ?></b>&nbsp;&nbsp;Appoinment Time: <b><?php echo date("h:i:s A", strtotime($date1)); ?></b></p>
-                        <h3>Stylist Details  </h3>
-                        <p>Stylist Name: <b><?php echo ucfirst($final_data['stylist_name']); ?> <?php echo ucfirst($final_data['lname']); ?></b></p>
+                        <h3>Service Provider Details  </h3>
+                        <p>Name: <b><?php echo ucfirst($final_data['stylist_name']); ?> <?php echo ucfirst($final_data['lname']); ?></b></p>
                      
                         <p>Email: <b><?php echo $final_data['email']; ?></b></p>
                         <p>Phone No.: <b><?php echo $final_data['mobile']; ?></b></p>

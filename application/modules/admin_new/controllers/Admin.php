@@ -15,6 +15,9 @@ class Admin extends CI_Controller {
 			redirect('admin/dashboard');
 		}
 	}
+
+
+
 	// login
 	public function login() {
 		$username = $this->input->post('firstname');
@@ -169,9 +172,9 @@ class Admin extends CI_Controller {
 			$this->load->view('header');
 			$this->load->view('services',$arr);
 			$this->load->view('footer');
-
+		
 		} else {
-
+		
 			$this->load->view('header');
 			$this->load->view('services',array('error' => 'No data found'));
 			$this->load->view('footer');
@@ -217,10 +220,7 @@ class Admin extends CI_Controller {
 		$new_fileName = time().'_'.$file_name;
 		$service_img = $this->upload_picservice('service_image',$new_fileName);
 		$data['service_image'] = $service_img;
-
-
 		$this->Admin_model->insertrow($data,'services');
-
 		$this->session->set_flashdata('message', 'Data updated successfully');
 		redirect('admin/services');
 
@@ -1665,19 +1665,28 @@ class Admin extends CI_Controller {
 
 
 	public function chat() {
-		if(!is_logged_in()) redirect('admin');
 
-		//$chat_sql 	= "SELECT * FROM chat INNER JOIN users WHERE chat.message_from = users.id";
-		$chat_sql 	= "SELECT chat.room_id,chat.message_from,chat.message_to,users.*,users_images.image FROM chat INNER JOIN users ON chat.message_from = users.id INNER JOIN users_images ON users.profile_pic=users_images.id";
+
+			$test = $this->Admin_model->servicesWcategory();
+			echo '<pre>';
+			print_r($test);
+			
 		
-		$chat_data 	= $this->db->query($chat_sql)->result();
+		// if(!is_logged_in()) redirect('admin');
 
-		$data['chat_data'] = $chat_data;
+		// //$chat_sql 	= "SELECT * FROM chat INNER JOIN users WHERE chat.message_from = users.id";
+		// $chat_sql 	= "SELECT chat.room_id,chat.message_from,chat.message_to,users.*,users_images.image FROM chat INNER JOIN users ON chat.message_from = users.id INNER JOIN users_images ON users.profile_pic=users_images.id";
+		
+		// $chat_data 	= $this->db->query($chat_sql)->result();
 
-		$this->load->view('header');
-		$this->load->view('chat', $data);
-		$this->load->view('footer');
+		// $data['chat_data'] = $chat_data;
+
+		// $this->load->view('header');
+		// $this->load->view('chat', $data);
+		// $this->load->view('footer');
 	}
+
+	
 
 
 }

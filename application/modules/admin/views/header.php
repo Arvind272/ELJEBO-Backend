@@ -41,6 +41,8 @@
         <link rel="stylesheet" href="assets/js/vendor/datatables/extensions/ColVis/css/dataTables.colVis.min.css">
         <link rel="stylesheet" href="assets/js/vendor/datatables/extensions/TableTools/css/dataTables.tableTools.min.css">
 
+        <link rel="assets/js/toastr.min.css">
+
         <!-- ==========================================
         ================= Modernizr ===================
         =========================================== -->
@@ -276,8 +278,9 @@
                                                    
                                                 </ul>
                                             </li> 
-                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-th-list"></i><span>Service Provider List</span></a></li>
-										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-list"></i><span>Customer List</span></a></li> 
+                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-user"></i><span>Service Provider List</span></a></li>
+										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-user"></i><span>Customer List</span></a></li> 
+                                           <li class="<?php if($this->uri->segment(2) == 'appointments') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getAppointments');?>"><i class="fa fa-list"></i><span>Appointments</span></a></li>
 
                                          <?php /*  <li class="<?php if($this->uri->segment(2) == 'getCategory') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getCategory');?>"><i class="fa fa-caret-right"></i>Category List</a></li>
 
@@ -320,7 +323,6 @@
 
                                           <?php /*  <li class="<?php if($this->uri->segment(2) == 'questions') {echo 'active';} ?>"><a href="<?php echo site_url('admin/questions');?>"><i class="fa fa-caret-right"></i>Questions</a></li> */ ?>
 
-                                           <?php /* <li class="<?php if($this->uri->segment(2) == 'appointments') {echo 'active';} ?>"><a href="<?php echo site_url('admin/appointments');?>"><i class="fa fa-caret-right"></i>Appointments</a></li> */ ?>
 
                                           <?php /*  <!-- <li class="<?php if($this->uri->segment(2) == 'kitchen_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/kitchen_list');?>"><i class="fa fa-caret-right"></i>kitchen List</a></li> -->
                                             <!-- <li class="dropdown open">

@@ -96,12 +96,12 @@ class Admin_model extends CI_Model {
 
 		return $sql->result_array();
 	}
+
 	public function getCategoryNames ()
 	{
 		$this->db->select(array('id','category_name'));
 		$this->db->from('category');
 		$query = $this->db->get();
-
 		if ($query -> num_rows() > 0) {
 			return $query -> result_array();
 		} else {
@@ -627,6 +627,8 @@ class Admin_model extends CI_Model {
          
     }  
 
+
+    
 
     
 }
