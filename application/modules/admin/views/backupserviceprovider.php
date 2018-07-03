@@ -177,7 +177,34 @@
                        <div style="clear: both;"></div>
                   <br>
                     
-                   
+                    <div class="form-group">
+                        <label>Services charge Amount :</label>
+                        <div style="clear: both;"></div>
+                          <?php if(isset($getService)){
+                            foreach ($getService as $service) { ?>
+
+                            <div class="col-md-12">
+                              <div class="col-md-4">
+                                <label> <input  type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
+                                <?php echo $service->service_name; ?> 
+                            </div>
+                            <div class="col-md-3">
+                                <label > <input placeholder="Enter Price" type="text" style="display: none;"    class="validate textbox<?php echo $service->id; ?>" name="service_amount[<?php echo $service->id; ?>]" value=""></label>
+                                 
+                            </div>
+
+                            <div class="col-md-5"></div>
+
+                            
+
+                         </div> 
+                         <?php }} ?>
+                        
+                  </div>
+
+
+                      <div style="clear: both;"></div>
+                  <br>
 
           <div class="col-md-12">
             <?php if(isset($service_category)){ 
@@ -185,7 +212,7 @@
 
 
 
-                     <div class="form-group col-md-6">
+                     <div class="form-group col-md-4">
                         <label for="pwd"><?php echo $name->category_name;?> :<span style="color: red;">*</span></label>
                       <?php    
                      
@@ -198,7 +225,7 @@
 
                             <div class="col-md-12">
                               <div class="col-md-9">
-                                <label> <input  type="checkbox" class="some check<?php echo $subcategorynameid->id; ?>" onclick="someFunction(<?php echo $subcategorynameid->id; ?>)" name="service_ids[]" value="<?php echo $subcategorynameid->id; ?>"></label>
+                                <label> <input  type="checkbox" class="some check<?php echo $subcategorynameid->id; ?>" onclick="someFunction(<?php echo $subcategorynameid->id; ?>)" name="service_ids[]" value="<?php echo $service->id; ?>"></label>
                                 <?php echo $subcategorynameid->service_name; ?> 
                             </div>
                            
@@ -374,3 +401,54 @@ $('.clockpicker').clockpicker({
     donetext: 'Done'
 });
 </script>
+
+
+<!-- back up -->
+
+     <div class="form-group">
+                        <label>Services charge Amount :<span style="color: red;">*</span></label>
+                        <div style="clear: both;"></div>
+                          <?php //if(isset($getServeducationice)){
+                           // foreach ($getServeducationice as $service) {
+                             
+
+
+                              //if(!empty($userSrvices) && in_array($service->id, $userSrvices)){
+                              //  $pkey = array_search ($service->id, $userSrvices);
+                              //  $cheked = 'checked';
+                              //  $price = $userSrvicesP[$pkey];
+                              //  $stl = '';
+                              //}else{
+                              //  $cheked = '';
+                               // $price = '';
+                               // $stl = 'style="display: none;"';
+                              }
+                             ?>
+
+
+
+
+                            <div class="col-md-12">
+                              <div class="col-md-4">
+                                <label> <input <?php //echo $cheked; ?> type="checkbox" class="some check<?php /////echo $service->id; ?>" onclick="someFunction(<?php //echo $service->id; ?>)" name="service_ids[]" <?php //if //(in_array($service->id == $getServicesId->service_id)) {?> checked <?php } ?>value="<?php ///echo $service->id; ?>"></label>
+                                <?php //echo $service->service_name; ?> 
+                            </div>
+                            <div class="col-md-3">
+                                <label > <input placeholder="Enter Price" type="text" <?php //echo $stl; ?>    class="validate textbox<?php //echo $service->id; ?>" name="service_amount[<?php// echo $service->id; ?>]" value="<?php// echo $price; ?>"></label>
+                                 
+                            </div>
+
+                            <div class="col-md-5"></div>
+
+                            
+
+                         </div> 
+                         <?php }}  ?>
+                        
+                  </div>
+
+
+                      <div style="clear: both;"></div>
+                  <br>
+                  
+<!--  -->

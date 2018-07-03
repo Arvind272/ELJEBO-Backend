@@ -828,14 +828,14 @@ class Admin extends CI_Controller {
 
 			$arr['service_category'] = $this->Admin_model->fetch_all_categotry_all();
 			
-
-
-
-			if($arr != 0) {
+		if($arr != 0) 
+			{
 				$this->load->view('header');
 				$this->load->view('add_serviceProvider',$arr);
 				$this->load->view('footer');
-			} else {
+			}
+			else 
+			{
 				$this->load->view('header');
 				$this->load->view('add_serviceProvider',array('error' => 'No data found'));
 				$this->load->view('footer');
@@ -868,12 +868,7 @@ class Admin extends CI_Controller {
 			$answer1 = $_POST['answer1'];
 			$answer2 = $_POST['answer2'];
 			$answer3 = $_POST['answer3'];
-			$data['question1'] = $_POST['question1'];
-			$data['question2'] = $_POST['question2'];
-			$data['question3'] = $_POST['question3'];
-			$data['answer1'] = $_POST['answer1'];
-			$data['answer2'] = $_POST['answer2'];
-			$data['answer3'] = $_POST['answer3'];
+			
 			$data['description'] = $_POST['description'];
 			$data['country_id'] = $_POST['country'];
 			$data['state_id'] = $_POST['state'];
@@ -2324,6 +2319,7 @@ public function edit_CustomerPro()
 
 			
 			$arr['getServeducationice'] = $this->Admin_model->fetchrow('services');
+			$arr['service_category'] = $this->Admin_model->fetch_all_categotry_all();
 
 			$arr['getService'] = $this->Admin_model->fetch_service($id);
 			// echo '<pre>';
