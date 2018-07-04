@@ -972,6 +972,7 @@ class Admin extends CI_Controller {
 							  }]';
 			$data['start_time'] = $_POST['from'].':00';
 			$data['end_time']   = $_POST['to'].':00';
+
 			$data['mobile'] = $_POST['phone'];
 			$data['status'] = $_POST['status'];
 			// $data['user_type'] = 2;

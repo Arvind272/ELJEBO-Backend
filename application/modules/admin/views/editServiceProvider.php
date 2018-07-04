@@ -244,44 +244,63 @@
                  }
                 
                  ?> 
-                    <div class="form-group">
-                        <label>Services charge Amount :<span style="color: red;">*</span></label>
-                        <div style="clear: both;"></div>
-                          <?php if(isset($getServeducationice)){
-                            foreach ($getServeducationice as $service) {
+                    
+
+
+      <div class="form-group">
+        <label>Services charge Amount :<span style="color: red;">*</span></label>
+      <div>
+            <div style="clear: both;"></div>
+            <br>
+
+                  <div class="col-md-12">
+            <?php if(isset($service_category)){ 
+                      foreach ($service_category as $name){?>
+                    <div class="form-group col-md-6">
+                        <label for="pwd"><?php echo $name->category_name;?> :<span style="color: red;">*</span></label>
+                <?php    
+                           $whrservice['category_id'] =  $name->id;
+                            $subcategoryname =   $this->Admin_model->fetchrowedit('services',$whrservice);
+                  foreach ($subcategoryname as $service ) { 
+
                               if(!empty($userSrvices) && in_array($service->id, $userSrvices)){
                                 $pkey = array_search ($service->id, $userSrvices);
                                 $cheked = 'checked';
                                 $price = $userSrvicesP[$pkey];
-                                $stl = '';
+                                $stl = 'style="width:100px;"';
                               }else{
                                 $cheked = '';
                                 $price = '';
-                                $stl = 'style="display: none;"';
+                                $stl = 'style="display: none; width:100px;"';
                               }
-                             ?>
+                           
 
-                            <div class="col-md-12">
-                              <div class="col-md-4">
-                                <label> <input <?php echo $cheked; ?> type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" <?php if (in_array($service->id == $getServicesId->service_id)) {?> checked <?php } ?>value="<?php echo $service->id; ?>"></label>
+
+
+
+                    ?>
+                          <div class="col-md-12">
+                              <div class="col-md-9">
+                               <label> <input <?php echo $cheked; ?> type="checkbox" class="some check<?php echo $service->id; ?>" onclick="someFunction(<?php echo $service->id; ?>)" name="service_ids[]" <?php if (in_array($service->id == $getServicesId->service_id)) {?> checked <?php } ?>value="<?php echo $service->id; ?>"></label>
                                 <?php echo $service->service_name; ?> 
                             </div>
-                            <div class="col-md-3">
+                          <div class="col-md-1">
                                 <label > <input placeholder="Enter Price" type="text" <?php echo $stl; ?>    class="validate textbox<?php echo $service->id; ?>" name="service_amount[<?php echo $service->id; ?>]" value="<?php echo $price; ?>"></label>
                                  
                             </div>
 
-                            <div class="col-md-5"></div>
+                            <div class="col-md-2"></div>
 
                             
 
                          </div> 
-                         <?php }}  ?>
-                        
+                         <?php } ?>
+                  </div>
+                <?php }} ?>
                   </div>
 
 
-                      <div style="clear: both;"></div>
+                  <div style="clear: both;"></div>
                   <br>
                   
 
@@ -289,10 +308,6 @@
                         <label for="pwd">Description :<span style="color: red;">*</span></label>
                         <textarea type="text" class="form-control" id="description"    name="description" rows="5"><?php echo $customer_data->description;?></textarea>
                   </div>
-
-
-
-
 
                   <div class="form-group">
                         <label for="pwd">Time:</label>
@@ -303,7 +318,7 @@
                             <label for="pwd">From:</label>
 
                             <div class="input-group clockpicker">
-                                <input type="time" name="form" id="from" class="form-control"  value="<?php echo $customer_data->start_time;?>" >
+                                  <input type="time" name="from" id="from" class="form-control"   value="<?php echo $customer_data->end_time;?>">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
@@ -328,25 +343,11 @@
                   <br>
 
                   <?php 
-
                     $whr['id'] = $customer_data->certificate_ids;
                     $images_data = $this->Admin_model->fetchrowedit('users_images',$whr); 
                     $image = $images_data[0]->image
-
                  ?>
-
-                 <div class="form-group">
-
-                  <img src="<?php echo base_url();?>uploads/service_provider/<?php echo $image;?>" style="height: 100px; width: 150px; align :left;">
-                   
-
-
-                 </div>
-
-
-
-
-
+                 <div class="form-group"></div>
                   <div class="form-group">
                         <label for="pwd">Upload Certifications:<span style="color: red;">*</span></label>
                         <input   type="file" class="form-control" id="certification"  name="certification">

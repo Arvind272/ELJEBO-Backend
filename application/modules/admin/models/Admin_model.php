@@ -668,7 +668,7 @@ class Admin_model extends CI_Model {
 function fetch_all_categotry_all($id){
 
 
-    $sql="SELECT DISTINCT category.id, category.* FROM `category` INNER JOIN services ON category.id = services.category_id WHERE category.status = 1";
+    $sql="SELECT DISTINCT category.id, category.* FROM `category` INNER JOIN services ON category.id = services.category_id WHERE category.status = 1 ORDER BY  category.order_list ASC ";
     	$response = $this->db->query($sql);
     	//print_r($response);die;
     	return $result =  $response->result();

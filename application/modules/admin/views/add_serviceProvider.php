@@ -177,34 +177,37 @@
                        <div style="clear: both;"></div>
                   <br>
                     
-                   
+          <div class="form-group">
+                      <label>Services<span style="color: red;">*</span></label>
+          </div>         
 
           <div class="col-md-12">
             <?php if(isset($service_category)){ 
                       foreach ($service_category as $name){?>
-
-
-
-                     <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" style="margin-bottom: 15px; height: auto;">
+                      <?php $whrservice['category_id'] =  $name->id;
+                            $subcategoryname =   $this->Admin_model->fetchrowedit('services',$whrservice); ?>
+                        
+                           
                         <label for="pwd"><?php echo $name->category_name;?> :<span style="color: red;">*</span></label>
-                      <?php    
-                     
-
-                      $whrservice['category_id'] =  $name->id;
-                      $subcategoryname =   $this->Admin_model->fetchrowedit('services',$whrservice);
-                      // echo $this->db->last_query();
-
+                      
+                <?php    
+                           
                   foreach ($subcategoryname as $subcategorynameid ) { ?>
 
-                            <div class="col-md-12">
+
+                      <div class="col-md-12" >
+
                               <div class="col-md-9">
                                 <label> <input  type="checkbox" class="some check<?php echo $subcategorynameid->id; ?>" onclick="someFunction(<?php echo $subcategorynameid->id; ?>)" name="service_ids[]" value="<?php echo $subcategorynameid->id; ?>"></label>
+                                
                                 <?php echo $subcategorynameid->service_name; ?> 
-                            </div>
+                                
+                              </div>
+                         
                            
-
-                            <div class="col-md-1">
-                                <label > <input placeholder="Enter Price" type="text" style="display: none; width: 100px;"    class="validate textbox<?php echo $subcategorynameid->id; ?>" name="service_amount[<?php echo $subcategorynameid->id; ?>]" value=""></label>
+                        <div class="col-md-1">
+                                <label > <input placeholder="Enter Price" type="text" style="display: none; width: 100px;margin-left: -100px; margin-left: -100px;"    class="validate textbox<?php echo $subcategorynameid->id; ?>" name="service_amount[<?php echo $subcategorynameid->id; ?>]" value=""></label>
                                  
                             </div>
 
@@ -213,6 +216,7 @@
                             
 
                          </div> 
+
                          <?php } ?>
                   </div>
 
