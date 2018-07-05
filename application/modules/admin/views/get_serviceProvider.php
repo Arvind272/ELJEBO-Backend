@@ -34,9 +34,15 @@
                     <h1 class="custom-font"><strong>Service Provider List</strong></h1>
                     <?php echo $this->session->flashdata('message'); ?>
                     <ul class="controls">
+
+                        <?php
+                          $role = $this->session->userdata('role'); 
+                            if($role == '0'){
+                        ?>
                         <li>
                             <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_serviceProvider"><i class="fa fa-plus mr-5"></i> Add Service Provider</a>
                         </li>
+                    <?php } ?>
 
 
                     </ul>
@@ -52,8 +58,11 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th width="210px">Create Date</th>
+                    <?php  if($role == '0'){ ?>
+
                 <th width="250px" class="no-sort">Actions</th>
                 <th  class="no-sort">Status</th>
+            <?php } ?>
             </tr>
             </thead>
             <tbody>
@@ -67,6 +76,7 @@
                 <td><?php echo ucfirst($cust->lastname);  ?></td>
                 <td><?php echo $cust->email;  ?></td>
                 <td><?php echo $cust->create_date;  ?></td>
+                <?php  if($role == '0'){ ?>
 
                 <td class="actions">
                     <a href="<?php //echo base_url(); ?>admin/editServiceProvider/<?php echo $cust->id; ?>" role="button" tabindex="0" style="margin-right: 2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10">Edit</a>|| <a href="<?php echo base_url(); ?>admin/viewServiceProvider/<?php echo $cust->id; ?>" style="margin-right:  2px !important;"  role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10">View</a> || <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="javascript:void(0)" onclick="delete_user(<?php echo $cust->id;?>);">Delete</a>
@@ -96,6 +106,7 @@
                     <?php } ?>
                     
                 </td>
+            <?php } ?>
               
             </tr>
             <?php $i++; }} ?>

@@ -34,9 +34,12 @@
                     <h1 class="custom-font"><strong>Sub Services</strong></h1>
                     <?php echo $this->session->flashdata('message'); ?>
                     <ul class="controls">
+                        <?php $role = $this->session->userdata('role');
+                            if($role == '0'){?>
                         <li>
                             <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_service"><i class="fa fa-plus mr-5"></i> Add Sub Service</a>
                         </li>
+                    <?php } ?>
 
 
                     </ul>
@@ -54,8 +57,12 @@
                                 <th>Sub Service name</th>
                                 <th>Charge</th>
                                 <th>Duration</th>
+                                  <?php 
+                            if($role == '0'){?>
                                 <th style="width: 160px;" class="no-sort">Status</th>
-                                <th style="width: 160px;" class="no-sort">Actions</th> 
+                              
+                                <th style="width: 160px;" class="no-sort">Actions</th>
+                                <?php } ?> 
                             </tr>
                             </thead>
                             <tbody>
@@ -78,7 +85,13 @@
                                     
                                       ?></td>
                                       <td><?php echo $data['service_time']; ?>min</td>
+
+                                       <?php 
+                            if($role == '0'){?>
                                       <td class="actions">
+
+
+
                                     <?php $status = $data['status'];
 
                                     if($status ==1){ ?>
@@ -86,9 +99,14 @@
                                  <?php   }else{ ?>
                                         <a href="<?php echo base_url(); ?>admin/deactive_service/<?php echo $data['id']; ?>" class="label label-info">Inactive</a>
                              <?php   }  ?>
+
+
                                         
                                 </td>
+                               
                                     <td class="actions"><a class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo site_url();?>admin/edit_service/<?php echo $data['id']; ?>" >Edit</a><a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $data['id']; ?>" data-method="delete_service">Remove</a></td>
+
+                                <?php } ?>
                                 </tr>
                                 <?php $i++; endforeach; }?>
                             </tbody>

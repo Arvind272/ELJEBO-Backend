@@ -33,7 +33,18 @@
                     <?php echo $this->session->flashdata('message'); ?>
                     <ul class="controls">
                         <li>
-                            <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_category"><i class="fa fa-plus mr-5"></i> Add Services</a>
+                            <?php $role = $this->session->userdata('role');
+                            if($role != '3'){?>
+                                 
+
+                                 <a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_category"><i class="fa fa-plus mr-5"></i> Add Services</a>
+                            
+
+                            <?php }?>
+
+                           
+
+
                         </li>
 
 
@@ -50,7 +61,12 @@
                                 <th>Id</th>
                                 <th>Service name</th>
                                 <th>Create Date</th>
+
+                                <?php 
+                            if($role != '3'){?>
+                                 
                                 <th style="width: 160px;" class="no-sort">Actions</th>
+                            <?php } ?>
                             </tr>
                             </thead>
                             <tbody>
@@ -63,8 +79,12 @@
                                 <td><a href="<?php echo site_url();?>admin/edit_category/<?php echo $data->id ; ?>"><?php echo $data->id; ?></a></td>
                                 <td><?php echo ucfirst($data->category_name); ?></td>
                                 <td><?php echo $data->create_date ; ?></td>
+                                <?php $role = $this->session->userdata('role');
+                            if($role != '3'){?>
+                                 
                                
                                 <td class="actions"><a class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo site_url();?>admin/edit_category/<?php echo $data->id ; ?>" >Edit</a><a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $data->id ; ?>" data-method="delete_category">Remove</a></td>
+                            <?php } ?>
                             </tr>
                             <?php $i++; endforeach; ?>
                             </tbody>

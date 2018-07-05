@@ -27,8 +27,12 @@
                                     <th>Customer Name</th>
                                     <th>Price</th>
 									 <th>Payment Status</th>
+                                  
+                                  
 									<th>Status</th> 
+                                   
                                     <th style="width: 200px;" class="no-sort">Actions</th>
+                               
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,6 +48,7 @@
                                                 <td><a href="<?php echo site_url();?>admin/getAppointmentList/<?php echo $data->id ; ?>"><?php echo ucfirst($data->stylerFname); ?> <?php echo ucfirst($data->stylerLname); ?></a></td>
                                                 <td><?php echo ucfirst($data->customerFname); ?> <?php echo ucfirst($data->customerLname); ?></td>
                                                 <td><?php echo $data->service_charge; ?></td>
+                                              
                                                 
                                                 <td>
                                                     <?php
@@ -57,6 +62,7 @@
 													}
                                                     ?>
                                                 </td>
+                                                  
 												<td>
                                                     <?php
                                                     $app_status = $data->status;
@@ -89,9 +95,12 @@
                                                 </td>
                                                 
                                                 <td class="actions">
-												    <a class="edit text-primary text-uppercase text-strong text-sm" href="<?php echo site_url();?>admin/getAppointmentList/<?php echo $data->id ; ?>" >View</a> || 
-                                                    <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $data->id; ?>" data-method="delete_userApp">Remove</a>
+												    <a class="edit text-primary text-uppercase text-strong text-sm" href="<?php echo site_url();?>admin/getAppointmentList/<?php echo $data->id ; ?>" >View</a><?php
+                                        $role = $this->session->userdata('role'); 
+                                        if($role == '0'){?> || 
+                                                    <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10 delete_row" data-id="<?php echo $data->id; ?>" data-method="delete_userApp">Remove</a><?php } ?>
                                                 </td>
+                                            
                                             </tr>
                                             <?php
                                             $i++;

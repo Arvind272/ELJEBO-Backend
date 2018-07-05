@@ -1,3 +1,4 @@
+
 <div class="page page-tables-datatables">
 
     <div class="pageheader">
@@ -13,6 +14,8 @@
             <section class="tile">
 
                 <!-- tile header -->
+
+                
                 <div class="tile-header dvd dvd-btm">
                     <h1 class="custom-font"><strong>Add Category</strong></h1>
                     <?php echo $this->session->flashdata('message'); ?>

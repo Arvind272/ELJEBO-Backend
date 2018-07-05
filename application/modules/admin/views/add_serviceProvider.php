@@ -20,7 +20,20 @@
 
                 <!-- tile body -->
                 <div class="tile-body">
-                   <form action="<?php echo site_url();?>admin/add_servicePro" id="edit_servicePro" method='POST' enctype="multipart/form-data">
+                  <form action="<?php echo site_url();?>admin/add_servicePro" id="edit_servicePro" method='POST' enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <div class="form-group">
+                            <label for="pwd">First Name:<span style="color: red;">*</span></label>
+                            <input  type="text" class="form-control" id="firstname"  name="firstname">
+                          </div>
+                          <!-- // -->
+                      </div>
+                      <!-- /END OF COL/ -->
+                    </div>
+                    <!-- /END OF ROW/ -->
+            
+                  <form action="<?php echo site_url();?>admin/add_servicePro" id="edit_servicePro" method='POST' enctype="multipart/form-data">
                       
                       <div class="form-group">
                         <label for="pwd">First Name:<span style="color: red;">*</span></label>

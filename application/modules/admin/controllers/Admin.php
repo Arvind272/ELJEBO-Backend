@@ -129,6 +129,33 @@ class Admin extends CI_Controller {
 	}
 
 	// user list
+	
+	public function staff1() 
+	{
+		// echo is_logged_in(); die;
+		if(is_logged_in()){
+			//$this->load->model('Admin_model');
+
+			$obj = $this->Admin_model->getStaff();
+			
+			$arr['info'] = $obj;
+
+			if($arr != 0) {
+
+				$this->load->view('header');
+				$this->load->view('staff',$arr);
+				$this->load->view('footer');
+
+			} else {
+
+				$this->load->view('header');
+				$this->load->view('staff',array('error' => 'No data found'));
+				$this->load->view('footer');
+			}
+		} else {
+			redirect('admin');
+		}
+	}
 
 	public function customer_list() 
 	{
@@ -168,6 +195,13 @@ class Admin extends CI_Controller {
 			$whr_status['status'] = 1;
 			$arr['countries'] = $this->Admin_model->fetchrowedit('countries',$whr_status);
 
+				$role = $this->session->userdata('role');
+				if ($role  != '0'){
+
+					redirect('admin/customer_list');
+
+				}
+
 			if($arr != 0) {
 
 				$this->load->view('header');
@@ -187,6 +221,14 @@ class Admin extends CI_Controller {
 
 	public function save_customer()
 	{
+
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+
+					redirect('admin/customer_list');
+
+				}
 		
 
 		if(isset($_POST['add_provider'])){
@@ -226,7 +268,12 @@ class Admin extends CI_Controller {
 
 	public function updateCustomer()
 	{
-		
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+
+					redirect('admin/customer_list');
+
+				}
 
 		if(isset($_POST['update'])){
 			$data['firstname']=$_POST['firstname'];
@@ -352,6 +399,13 @@ class Admin extends CI_Controller {
 			
 			$arr['category_nam'] = $this->Admin_model->fetchrow('category');
 
+			$role = $this->session->userdata('role');
+				if ($role  != '0'){
+
+					redirect('admin/services');
+
+				}
+
 			if($arr != 0) {
 
 				$this->load->view('header');
@@ -373,7 +427,10 @@ class Admin extends CI_Controller {
 	public function add_servicess()
 	{
 		
-
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+			redirect('admin/services');
+		}
 
 		$data['category_id']=$_POST['category_id'];
 		$data['service_name']=$_POST['service_name'];
@@ -394,7 +451,13 @@ class Admin extends CI_Controller {
 	}
 
 	public function edit_service()
+
 	{
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/services');
+				}
 		$id = $this->uri->segment(3);
 		$category_names = $this->Admin_model->getCategoryNames();
 
@@ -423,6 +486,11 @@ class Admin extends CI_Controller {
 
 	public function update_service()
 	{
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/services');
+				}
 		if(isset($_POST['update'])){
 			$data['category_id']=$_POST['category_id'];
 			$data['service_name']=$_POST['service_name'];
@@ -817,6 +885,11 @@ class Admin extends CI_Controller {
 	public function add_serviceProvider() 
 	{
 
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/get_serviceProvider');
+				}
+
 		if(is_logged_in()){
 			
 			$whr['user_type']=1;
@@ -850,7 +923,10 @@ class Admin extends CI_Controller {
 	public function add_servicePro()
 	{
 		
-
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/get_serviceProvider');
+				}
 	if(isset($_POST['add_provider'])){
 
 		$dataimage['image'] = $this->upload_service('certification');
@@ -922,7 +998,10 @@ class Admin extends CI_Controller {
 	public function edit_servicePro()
 	{
 		
-
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/get_serviceProvider');
+				}
 	if(isset($_POST['edit_provider'])){
 
 
@@ -1016,7 +1095,10 @@ class Admin extends CI_Controller {
 
 	public function add_CustomerPro()
 	{
-		
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/get_serviceProvider');
+				}
 
 		if(isset($_POST['add_provider'])){
 
@@ -1251,6 +1333,11 @@ class Admin extends CI_Controller {
 
 	public function add_category()
 	{
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/getCategory');
+				}
 		$category_names = $this->Admin_model->getCategoryNames();
 
 		$arr['category_names'] = $category_names;
@@ -1270,7 +1357,10 @@ class Admin extends CI_Controller {
 
 	public function add_categ()
 	{
-		
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/getCategory');
+				}
 
 		if(isset($_POST['add_cat'])){
 
@@ -1288,6 +1378,12 @@ class Admin extends CI_Controller {
 
 	public function edit_category($id) 
 	{
+
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/getCategory');
+				}
 
 		if(is_logged_in()){
 			
@@ -1313,7 +1409,10 @@ class Admin extends CI_Controller {
 
 	public function updatecategory()
 	{
-		
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/getCategory');
+				}
 
 		if(isset($_POST['update'])){
 			$data['category_name']=$_POST['category_name'];
@@ -1458,8 +1557,6 @@ class Admin extends CI_Controller {
 
 	public function updateBeautycategory()
 	{
-		
-
 		if(isset($_POST['update'])){
 			$data['name']=$_POST['name'];
 
@@ -1656,7 +1753,6 @@ class Admin extends CI_Controller {
 			$whr['id'] = $id;
 			$result = $this->Admin_model->fetchrowedit('appointments',$whr);
 			$data['final_data'] = $result;
-			//print_r($result);die;
 			foreach ($result as $appoint) {
 
 				$stylerId = $appoint->service_provider_id;
@@ -2163,6 +2259,11 @@ class Admin extends CI_Controller {
 	public function editCustomer($id) 
 	{
 
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/customer_list');
+				}
+
 		if(is_logged_in()){
 			$whr['id']=$id;
 			$arr['fetch_customer'] = $this->Admin_model->fetchrow_user('users',$whr);
@@ -2201,6 +2302,11 @@ class Admin extends CI_Controller {
 	}
 public function edit_CustomerPro()
 	{
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/getCategory');
+				}
 		
 
 	if(isset($_POST['edit_provider'])){
@@ -2307,6 +2413,11 @@ public function edit_CustomerPro()
 
 	public function editServiceProvider($id) 
 	{
+
+		$role = $this->session->userdata('role');
+				if ($role  != '0'){
+					redirect('admin/get_serviceProvider');
+				}
 
 		if(is_logged_in()){
 			

@@ -1,6 +1,6 @@
 <div class="page page-tables-datatables">
     <div class="pageheader">
-        <h2>Customers <span>Registered customers of ELJEBO</span></h2>      
+        <h2>Staff <span>Staff of ELJEBO</span></h2>      
 
     </div>
     <!-- row -->
@@ -11,18 +11,18 @@
 
 <!-- tile header -->
 <div class="tile-header dvd dvd-btm">
-    <h1 class="custom-font"><strong>Customers</strong></h1>
+    <h1 class="custom-font"><strong>Staff</strong></h1>
 	<?php echo $this->session->flashdata('message'); ?>
 		<ul class="controls">
             <?php
                           $role = $this->session->userdata('role'); 
                             if($role == '0'){?>
-			<li>
+			<!--<li>
 				<a role="button" tabindex="0" id="add-entry" href="<?php echo site_url();?>admin/add_customer"><i class="fa fa-plus mr-5"></i> Add Customer</a>
-			</li>
+			</li>-->
         <?php } ?>
 		</ul>
-</div>
+</div> 
 <!-- /tile header -->
 
 <!-- tile body -->
@@ -35,12 +35,13 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Create Date</th>
                 <?php
                             if($role == '0'){?>
                 
                 <th style="width: 160px;" class="no-sort">Status</th>
-                <th style="width: 160px;" class="no-sort">Actions</th>
+               <?php /* <th style="width: 160px;" class="no-sort">Actions</th>*/?>
             <?php } ?>
             </tr>
             </thead>
@@ -50,13 +51,14 @@
                 <td><?php echo $data['firstname'];?></td>
                 <td><?php echo $data['lastname'];?></td>
                 <td><?php echo $data['email'];?></td>
+				 <td><?php echo ($data['user_type']==0)?'Super Admin':'Admin';?></td>
                 <td><?php echo $data['create_date'];?></td>
                  <?php
                             if($role == '0'){?>
-                <td class="actions">
+                <?php /*<td class="actions">
                     <a role="button" tabindex="0" class="edit text-primary text-uppercase text-strong text-sm mr-10" style="margin-right:  2px !important;" href="<?php echo base_url('admin/editCustomer/'.$data['id']);?>">Edit</a>|| <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="<?php echo base_url('admin/viewCustomerData/'.$data['id']);?>">view</a> || <a role="button" tabindex="0" style="margin-right:  2px !important;" class="edit text-primary text-uppercase text-strong text-sm mr-10" href="javascript:void(0)" onclick="delete_user(<?php echo $data['id'];?>);">Delete</a>
                     <!-- <a role="button" tabindex="0" class="delete text-danger text-uppercase text-strong text-sm mr-10" data-remove="<?php// echo $data['id'];?>">Remove</a> -->
-                </td>
+                </td>*/?>
                 <td class="actions">
                     <?php if($data['status']==1){ ?>
 

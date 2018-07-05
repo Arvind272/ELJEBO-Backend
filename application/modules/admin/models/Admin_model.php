@@ -16,6 +16,23 @@ class Admin_model extends CI_Model {
 		}
 
 	}
+	
+	public function getStaff () 
+	{
+
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where_in('user_type', array(0,3));
+		$query = $this->db->get();
+		if ($query -> num_rows() > 0) {
+
+			return $query -> result_array();
+		} else {
+			
+			return 0;
+		}
+
+	}
 
 
 	function alreadyexits($table,$var){

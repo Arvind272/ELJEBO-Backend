@@ -277,8 +277,11 @@
                                                     <li><a href="<?php echo site_url('admin/services');?>"><i class="fa fa-caret-right"></i>Sub Services List</a></li>
                                                    
                                                 </ul>
-                                            </li> 
-                                           <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-user"></i><span>Service Provider List</span></a></li>
+                                            </li>
+										   <?php /*
+										   <li class="<?php if(($this->uri->segment(2) == 'staff')||($this->uri->segment(2) == 'staff')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/staff');?>"><i class="fa fa-user"></i><span>Staff</span></a></li>
+                                           */ ?>
+										   <li class="<?php if(($this->uri->segment(2) == 'get_serviceProvider')||($this->uri->segment(2) == 'editServiceProvider')) {echo 'active';} ?>"><a href="<?php echo site_url('admin/get_serviceProvider');?>"><i class="fa fa-user"></i><span>Service Provider List</span></a></li>
 										   <li class="<?php if($this->uri->segment(2) == 'customer_list') {echo 'active';} ?>"><a href="<?php echo site_url('admin/customer_list');?>"><i class="fa fa-user"></i><span>Customer List</span></a></li> 
                                            <li class="<?php if($this->uri->segment(2) == 'appointments') {echo 'active';} ?>"><a href="<?php echo site_url('admin/getAppointments');?>"><i class="fa fa-list"></i><span>Appointments</span></a></li>
 
